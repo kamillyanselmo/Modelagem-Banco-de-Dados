@@ -19,7 +19,7 @@ Cliente → Pedido → Produção → Estoque → Separação de Pedido → Entr
 
 - HTML
 - CSS
-- JavaScript
+- BRMW
 
 ## 🎓 Contexto
 
