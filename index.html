@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dicionário de Dados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        h2 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 5px; margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h1>Dicionário de Dados - Diagrama Conceitual</h1>
+
+    <h2>Entidades Principais</h2>
+
+    <!-- Cliente -->
+    <h3>Cliente</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>CNPJ</td><td>Identificador/Documento do cliente</td></tr>
+        <tr><td>Razão Social</td><td>Nome jurídico do cliente</td></tr>
+        <tr><td>Nome Fantasia</td><td>Nome comercial do cliente</td></tr>
+        <tr><td>Endereço</td><td>Localização do cliente</td></tr>
+        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
+        <tr><td>Cidade</td><td>Cidade do cliente</td></tr>
+        <tr><td>UF</td><td>Estado (Unidade Federativa)</td></tr>
+    </table>
+
+    <!-- Representante -->
+    <h3>Representante</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdRep</td><td>Identificador do representante</td></tr>
+        <tr><td>Nome</td><td>Nome do representante</td></tr>
+        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
+        <tr><td>Email</td><td>Endereço de e-mail</td></tr>
+    </table>
+
+    <!-- Pedido -->
+    <h3>Pedido</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdPedido</td><td>Identificador único do pedido</td></tr>
+        <tr><td>Data_Pedido</td><td>Data em que o pedido foi feito</td></tr>
+        <tr><td>Valor_Total</td><td>Valor total cobrado no pedido</td></tr>
+        <tr><td>Status_Pedido</td><td>Situação atual do pedido</td></tr>
+    </table>
+
+    <!-- Fornecedor -->
+    <h3>Fornecedor</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdFornecedor</td><td>Identificador único do fornecedor</td></tr>
+        <tr><td>Nome</td><td>Nome do fornecedor</td></tr>
+        <tr><td>CNPJ (Unique)</td><td>Registro do fornecedor (único)</td></tr>
+        <tr><td>Endereço</td><td>Localização do fornecedor</td></tr>
+        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
+    </table>
+
+    <!-- Material -->
+    <h3>Material</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdMaterial</td><td>Identificador do material</td></tr>
+        <tr><td>Nome_Material</td><td>Nome da matéria-prima/material</td></tr>
+        <tr><td>Estoque_Mínimo</td><td>Quantidade mínima em estoque</td></tr>
+        <tr><td>Unidade</td><td>Unidade de medida (ex: kg, un)</td></tr>
+    </table>
+
+    <!-- Produto -->
+    <h3>Produto</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdProduto</td><td>Identificador do produto</td></tr>
+        <tr><td>Nome_Produto</td><td>Nome comercial do produto</td></tr>
+        <tr><td>EAN</td><td>Código de barras (EAN)</td></tr>
+        <tr><td>Descrição</td><td>Detalhes sobre o produto</td></tr>
+        <tr><td>Unidade</td><td>Unidade de medida de venda</td></tr>
+    </table>
+
+    <!-- Ordem de Produção -->
+    <h3>Ordem de Produção</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdOrdem</td><td>Identificador da ordem de produção</td></tr>
+        <tr><td>Data_Emissão</td><td>Data de criação da ordem</td></tr>
+        <tr><td>Quantidade</td><td>Quantidade a ser produzida</td></tr>
+        <tr><td>Status</td><td>Situação da ordem de produção</td></tr>
+    </table>
+
+    <!-- Produção -->
+    <h3>Produção</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdProdução</td><td>Identificador do processo produtivos</td></tr>
+        <tr><td>Data_Início</td><td>Data de início do processo</td></tr>
+        <tr><td>Data_Fim</td><td>Data de término do processo</td></tr>
+        <tr><td>Data_Programação</td><td>Data agendada para execução</td></tr>
+        <tr><td>Status</td><td>Situação da produção</td></tr>
+    </table>
+
+    <!-- Separação de Pedido -->
+    <h3>Separação de Pedido</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdSeparação</td><td>Identificador da etapa de separação</td></tr>
+        <tr><td>Data</td><td>Data da separação</td></tr>
+        <tr><td>Quantidade</td><td>Quantidade de itens separados</td></tr>
+        <tr><td>Status</td><td>Status do processo de separação</td></tr>
+    </table>
+
+    <!-- Estoque -->
+    <h3>Estoque</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdEstoque</td><td>Identificador do item em estoque</td></tr>
+        <tr><td>Lote</td><td>Número do lote armazenado</td></tr>
+        <tr><td>Validade</td><td>Data de validade do lote</td></tr>
+        <tr><td>Quantidade</td><td>Quantidade disponível</td></tr>
+        <tr><td>Endereço</td><td>Localização física no armazém</td></tr>
+    </table>
+
+    <!-- Embalagem -->
+    <h3>Embalagem</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdEmbalagem</td><td>Identificador da embalagem</td></tr>
+        <tr><td>Tipo</td><td>Tipo de embalagem utilizada</td></tr>
+        <tr><td>Capacidade</td><td>Capacidade suportada pela embalagem</td></tr>
+        <tr><td>Material</td><td>Material de fabricação da embalagem</td></tr>
+    </table>
+
+    <!-- Caixa -->
+    <h3>Caixa</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdCaixa</td><td>Identificador da caixa de envio</td></tr>
+        <tr><td>Peso</td><td>Peso final da caixa</td></tr>
+        <tr><td>Quantidade</td><td>Quantidade de itens acondicionados</td></tr>
+    </table>
+
+    <!-- Caminhão -->
+    <h3>Caminhão</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdCaminhao</td><td>Identificador do veículo</td></tr>
+        <tr><td>Placa (Unique)</td><td>Placa de identificação do caminhão</td></tr>
+        <tr><td>Motorista</td><td>Nome do motorista responsável</td></tr>
+        <tr><td>Data_Saída</td><td>Data de saída do transporte</td></tr>
+    </table>
+
+    <!-- Entrega -->
+    <h3>Entrega</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdEntrega</td><td>Identificador da entrega</td></tr>
+        <tr><td>Codigo_Rastreio</td><td>Código para rastreamento da carga</td></tr>
+        <tr><td>Data_Envio</td><td>Data em que a carga foi despachada</td></tr>
+        <tr><td>Data_Entrega</td><td>Data em que a entrega foi realizada</td></tr>
+        <tr><td>Status</td><td>Situação do envio/entrega</td></tr>
+    </table>
+
+    <h2>Controle de Acesso ao Sistema</h2>
+
+    <!-- Usuário -->
+    <h3>Usuário</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdUsuario</td><td>Identificador do usuário</td></tr>
+        <tr><td>Nome_Completo</td><td>Nome completo do usuário</td></tr>
+        <tr><td>Email</td><td>E-mail cadastrado</td></tr>
+        <tr><td>Login</td><td>Nome de usuário para acesso</td></tr>
+        <tr><td>Senha</td><td>Credencial de acesso</td></tr>
+        <tr><td>Status</td><td>Situação do cadastro (ativo/inativo)</td></tr>
+    </table>
+
+    <!-- Perfil -->
+    <h3>Perfil</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdPerfil</td><td>Identificador do perfil de acesso</td></tr>
+        <tr><td>Cargo</td><td>Descrição do cargo/perfil</td></tr>
+    </table>
+
+    <!-- Permissão -->
+    <h3>Permissão</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>Id_Permissão</td><td>Identificador da permissão</td></tr>
+        <tr><td>Consultar</td><td>Permissão de leitura (Sim/Não)</td></tr>
+        <tr><td>Inserir</td><td>Permissão de inserção (Sim/Não)</td></tr>
+        <tr><td>Alterar</td><td>Permissão de edição (Sim/Não)</td></tr>
+        <tr><td>Excluir</td><td>Permissão de exclusão (Sim/Não)</td></tr>
+    </table>
+
+    <!-- Recurso -->
+    <h3>Recurso</h3>
+    <table>
+        <tr><th>Atributo</th><th>Descrição</th></tr>
+        <tr><td>IdRecurso</td><td>Identificador do recurso do sistema</td></tr>
+        <tr><td>Nome</td><td>Nome do módulo/tela/recurso</td></tr>
+    </table>
+
+</body>
+</html>
