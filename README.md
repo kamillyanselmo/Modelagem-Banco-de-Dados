@@ -22,6 +22,7 @@ Endereço divulgado: Rua Forte do Rio Branco, 854, Parque Industrial São Louren
 Site oficial: Muriel Cosméticos
 Contato institucional: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921. Muriel Cosméticos
 Perfil empresarial: Muriel Cosméticos no LinkedIn
+
 *Foto retirada com a colaboradora da Muriel Cosméticos que nos guiou no processo de funcionamento do fluxo operacional dos processos:*
 <img width="1200" height="1600" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
 
