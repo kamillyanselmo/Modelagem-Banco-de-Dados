@@ -441,3 +441,9 @@ Estes critérios NÃO constam explicitamente como item de entrega no README. Ele
 - Comprometimento (7%): cumprimento de prazos e responsabilidades assumidas.
 - Colaboração (2%): respeito às contribuições dos colegas e cooperação na construção do projeto.
 - Autonomia (10%): busca independente de soluções e proposta de melhorias.
+
+### Colaboradores do projeto acadêmico:
+- Kevyn Deusdará Antônio.
+- Kamilly Anselmoo.
+- Maria Eduarda da Silva Costa.
+- Igor Tsuyoshi.
