@@ -1,19 +1,33 @@
 ## Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
 Introdução
-- Problema, objetivos e delimitação
-A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo. Muriel Cosméticos
+*Problema, objetivos e delimitação*
+  
+A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo. 
 O presente projeto tem como objetivo desenvolver uma modelagem conceitual de banco de dados capaz de representar, de maneira integrada, processos relacionados ao cadastro de clientes e representantes, registro de pedidos, fornecedores e materiais, produção, controle de estoque, separação de pedidos, acondicionamento em caixas, expedição e entrega, além do controle de acesso ao sistema.
 O problema abordado consiste na necessidade de organizar, em uma estrutura de dados única e consistente, informações que participam de diferentes etapas da operação industrial e logística. O modelo busca permitir o relacionamento entre pedido, produto, produção, estoque e entrega, reduzindo redundâncias e facilitando futuras etapas de implementação do sistema.
 O escopo deste trabalho está delimitado à modelagem conceitual do banco de dados. Não fazem parte desta etapa a implementação física do banco, desenvolvimento da aplicação, definição completa dos tipos de dados, criação das tabelas SQL ou integração efetiva com sistemas corporativos existentes.
 Desenvolvimento
 Caracterização da Organização
 (vale 7,5% — Dimensão Conceitual)
-- Nome e natureza da organização: a organização selecionada é a Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA.. Trata-se de uma empresa privada que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. Muriel Cosméticos
+- Nome e natureza da organização: a organização selecionada é a Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA. Trata-se de uma empresa privada que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
 - Contexto e porte: a Muriel informa possuir mais de 60 anos de atuação no mercado de cosméticos. Seu perfil institucional no LinkedIn classifica a empresa como privada, sediada em São Paulo e pertencente à faixa de 201 a 500 funcionários. Muriel Cosméticos
   A empresa disponibiliza diversas linhas e categorias de produtos, incluindo body splash, águas de banho, águas de colônia, sabonetes, óleos corporais, produtos capilares, shampoos, condicionadores, máscaras, produtos Muriel Baby, entre outros. Muriel Cosméticos
 - Problemas e necessidades identificados: para fins deste projeto, o principal problema de modelagem consiste na necessidade de integrar informações de diferentes etapas da operação: clientes e pedidos, fornecedores e materiais, produtos e produção, estoque, separação e expedição, entregas e controle de acesso.
   O DER foi construído para centralizar essas informações e representar os relacionamentos existentes entre as áreas. Dessa forma, o sistema poderá futuramente permitir o acompanhamento de um pedido desde seu cadastro até a separação, acondicionamento e entrega, relacionando essas operações às informações de produtos, estoque e produção.
-  -----Observação: os problemas específicos atualmente existentes nos sistemas internos da Muriel devem ser confirmados por meio da pesquisa de campo realizada pelo grupo, pois não são informações que possam ser comprovadas somente pelo DER ou pelo site público da empresa---- 
+  
+*Possível dor no sistema*
+Falta de visibilidade em tempo real do status do pedido
+O Comercial pode ter dificuldade para identificar rapidamente se o pedido está aguardando material, em produção, disponível no estoque, em separação ou já expedido.
+
+*SOLUÇÃO*
+Melhoria proposta
+Painel de acompanhamento integrado ao Protheus
+Status do pedido atualizado por etapa.
+Alertas para atrasos e falta de materiais.
+Rastreabilidade desde o pedido até a entrega.
+Redução de planilhas e comunicação manual.
+Sistema de Gestão de Informações • Projeto acadêmico • Protheus (TOTVS)
+
 - Justificativa da escolha: a Muriel apresenta características que tornam sua operação adequada para um projeto de modelagem de dados: possui atividade industrial, variedade de produtos, relacionamento com fornecedores, utilização de materiais, produção, armazenamento e processos de distribuição. A própria empresa destaca investimento em inovação, tecnologia, pesquisa e desenvolvimento de produtos.
 A diversidade de processos permite construir um modelo conceitual com diferentes níveis de relacionamento, incluindo operações comerciais, produtivas, logísticas e administrativas.
 
