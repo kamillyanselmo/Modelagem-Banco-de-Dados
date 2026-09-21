@@ -1,5 +1,8 @@
-## *Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
-Introdução*
+## Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
+Introdução<img width="1200" height="1600" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
+<img width="1200" height="1600" alt="eduarda" src="https://github.com/user-attachments/assets/cf750a66-a9cd-4ebb-a3ca-244ab24d650a" />
+<img width="1200" height="1600" alt="eduarda" src="https://github.com/user-attachments/assets/370d1b09-d6eb-49a8-b5d7-ed86ec404b9e" />
+
 - Problema, objetivos e delimitação
 A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo. Muriel Cosméticos
 O presente projeto tem como objetivo desenvolver uma modelagem conceitual de banco de dados capaz de representar, de maneira integrada, processos relacionados ao cadastro de clientes e representantes, registro de pedidos, fornecedores e materiais, produção, controle de estoque, separação de pedidos, acondicionamento em caixas, expedição e entrega, além do controle de acesso ao sistema.
