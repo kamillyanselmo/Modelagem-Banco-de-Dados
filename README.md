@@ -37,8 +37,8 @@ Site oficial: Muriel Cosméticos
 Contato institucional: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921. Muriel Cosméticos
 Perfil empresarial: Muriel Cosméticos no LinkedIn
 
-*Foto retirada com a colaboradora da Muriel Cosméticos que nos guiou no processo de funcionamento do fluxo operacional dos processos:*
-<img width="1200" height="1600" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
+*Foto retirada com a colaboradora da Muriel Cosméticos, que nos guiou no processo de funcionamento do fluxo operacional dos processos:*
+<img width="766" height="488" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
 
 *Processos de Negócio*
 (vale 10% — Dimensão Procedimental)
@@ -101,7 +101,7 @@ Os fluxogramas abaixo representam os principais processos contemplados pelo mode
 <img width="766" height="488" alt="Captura de tela 2026-09-22 083348" src="https://github.com/user-attachments/assets/64a3c019-fd8f-42cb-99b5-bcfa235ae247" />
 
 - Processo de controle de acesso:
-<img width="794" height="526" alt="Captura de tela 2026-09-22 133108" src="https://github.com/user-attachments/assets/2dcd889b-c4fc-4a9f-b2e7-687cb04491d1" />
+<img width="766" height="488" alt="Captura de tela 2026-09-22 133108" src="https://github.com/user-attachments/assets/2dcd889b-c4fc-4a9f-b2e7-687cb04491d1" />
 
   *Requisitos do Sistema*
 (esta seção e a Seção 4 "Regras de Negócio" DIVIDEM 7,5% na dimensão conceitual — juntas valem 7,5%, não 7,5% cada — + 4% exclusivos desta seção na organização/documentação)
