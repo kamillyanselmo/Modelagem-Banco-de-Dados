@@ -101,7 +101,7 @@ Os fluxogramas abaixo representam os principais processos contemplados pelo mode
 <img width="766" height="488" alt="Captura de tela 2026-09-22 083348" src="https://github.com/user-attachments/assets/64a3c019-fd8f-42cb-99b5-bcfa235ae247" />
 
 - Processo de controle de acesso:
-<img width="760" height="475" alt="Captura de tela 2026-09-22 134024" src="https://github.com/user-attachments/assets/8e922a83-b942-40d2-b588-5be527ec1121" />
+<img width="766" height="488" alt="Imagem do Codex 22 de set  de 2026, 13_43_40" src="https://github.com/user-attachments/assets/bf94f04c-9dfb-456a-86a0-f6535cd1ccad" />
 
 
   *Requisitos do Sistema*
