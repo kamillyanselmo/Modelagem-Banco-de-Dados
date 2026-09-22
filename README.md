@@ -101,7 +101,7 @@ Os fluxogramas abaixo representam os principais processos contemplados pelo mode
 <img width="766" height="488" alt="Captura de tela 2026-09-22 083348" src="https://github.com/user-attachments/assets/64a3c019-fd8f-42cb-99b5-bcfa235ae247" />
 
 - Processo de controle de acesso:
-<img width="764" height="484" alt="Captura de tela 2026-09-22 083833" src="https://github.com/user-attachments/assets/a4473691-fca4-4e9b-bc56-edffda7ae164" />
+<img width="794" height="526" alt="Captura de tela 2026-09-22 133108" src="https://github.com/user-attachments/assets/2dcd889b-c4fc-4a9f-b2e7-687cb04491d1" />
 
   *Requisitos do Sistema*
 (esta seção e a Seção 4 "Regras de Negócio" DIVIDEM 7,5% na dimensão conceitual — juntas valem 7,5%, não 7,5% cada — + 4% exclusivos desta seção na organização/documentação)
