@@ -88,11 +88,11 @@ Perfil empresarial: Muriel Cosméticos no LinkedIn
    - Definição de permissões.
    - Associação das permissões aos recursos do sistema.
 
-------     *Fluxogramas*
+*Fluxogramas*
 Os fluxogramas abaixo representam os principais processos contemplados pelo modelo.
 
 - Processo de pedido e atendimento:
-anexar imagem
+#####<img width="765" height="488" alt="Captura de tela 2026-09-22 083054" src="https://github.com/user-attachments/assets/9665ed01-2562-4687-ac55-88526b64a120" />
 - Processo de produção:
 anexar imagem
 - Processo de estoque e expedição:
