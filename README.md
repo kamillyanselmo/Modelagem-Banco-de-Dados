@@ -92,13 +92,14 @@ Perfil empresarial: Muriel Cosméticos no LinkedIn
 Os fluxogramas abaixo representam os principais processos contemplados pelo modelo.
 
 - Processo de pedido e atendimento:
-#####<img width="765" height="488" alt="Captura de tela 2026-09-22 083054" src="https://github.com/user-attachments/assets/9665ed01-2562-4687-ac55-88526b64a120" />
+<img width="765" height="488" alt="Captura de tela 2026-09-22 083054" src="https://github.com/user-attachments/assets/9665ed01-2562-4687-ac55-88526b64a120" />
 - Processo de produção:
-anexar imagem
+<img width="765" height="484" alt="Captura de tela 2026-09-22 083319" src="https://github.com/user-attachments/assets/819bb1ae-6a3f-4b57-a018-f0630f21dece" />
 - Processo de estoque e expedição:
-anexar imagem
+<img width="766" height="488" alt="Captura de tela 2026-09-22 083348" src="https://github.com/user-attachments/assets/64a3c019-fd8f-42cb-99b5-bcfa235ae247" />
 - Processo de controle de acesso:
-anexar imagem----------
+<img width="764" height="484" alt="Captura de tela 2026-09-22 083833" src="https://github.com/user-attachments/assets/a4473691-fca4-4e9b-bc56-edffda7ae164" />
+
   *Requisitos do Sistema*
 (esta seção e a Seção 4 "Regras de Negócio" DIVIDEM 7,5% na dimensão conceitual — juntas valem 7,5%, não 7,5% cada — + 4% exclusivos desta seção na organização/documentação)
 Requisitos Funcionais
