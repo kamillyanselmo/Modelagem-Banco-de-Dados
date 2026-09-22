@@ -443,7 +443,7 @@ Estes critérios NÃO constam explicitamente como item de entrega no README. Ele
 - Autonomia (10%): busca independente de soluções e proposta de melhorias.
 
 ### Colaboradores do projeto acadêmico:
-- Kevyn Deusdará Antônio.
-- Kamilly Anselmoo.
-- Maria Eduarda da Silva Costa.
-- Igor Tsuyoshi.
+- Kevyn Deusdará Antônio. (46970746)
+- Kamilly Anselmoo. (47234237)
+- Maria Eduarda da Silva Costa. (46939563)
+- Igor Tsuyoshi. (47133562)
