@@ -38,7 +38,7 @@ Contato institucional: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55
 Perfil empresarial: Muriel Cosméticos no LinkedIn
 
 *Foto retirada com a colaboradora da Muriel Cosméticos, que nos guiou no processo de funcionamento do fluxo operacional dos processos:*
-<img width="766" height="550" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
+<img width="766" height="580" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
 
 *Processos de Negócio*
 (vale 10% — Dimensão Procedimental)
