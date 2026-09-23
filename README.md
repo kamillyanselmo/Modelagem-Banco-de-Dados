@@ -1,10 +1,10 @@
 ## Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
 
 ### Colaboradores do projeto acadêmico:
-- Kevyn Deusdará Antônio. (46970746)
-- Kamilly Anselmoo. (47234237)
-- Maria Eduarda da Silva Costa. (46939563)
-- Igor Tsuyoshi. (47133562)
+- Kevyn Deusdará Antônio (RGM 46970746)
+- Kamilly Anselmoo (RGM 47234237)
+- Maria Eduarda da Silva Costa (RGM 46939563)
+- Igor Tsuyoshi (RGM 47133562)
 
 Introdução
 
@@ -46,6 +46,7 @@ Contato institucional: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55
 Perfil empresarial: Muriel Cosméticos no LinkedIn
 
 *Foto retirada com a colaboradora da Muriel Cosméticos, que nos guiou no processo de funcionamento do fluxo operacional dos processos:*
+
 <img width="480" height="480" alt="eduarda" src="https://github.com/user-attachments/assets/27ffe2f8-9a62-4a58-8b09-617f73fe4dd5" />
 
 *Processos de Negócio*
