@@ -3,10 +3,10 @@
 *Projeto acadêmico — Modelagem de Banco de Dados (2º semestre)*
 
 Colaboradores do projeto acadêmico
-Kevyn Deusdará Antônio (RGM 46970746)
-Kamilly Anselmoo (RGM 47234237)
-Maria Eduarda da Silva Costa (RGM 46939563)
-Igor Tsuyoshi (RGM 47133562)
+- Kevyn Deusdará Antônio (RGM 46970746)
+- Kamilly Anselmoo (RGM 47234237)
+- Maria Eduarda da Silva Costa (RGM 46939563)
+- Igor Tsuyoshi (RGM 47133562)
 
 1. Introdução
 
