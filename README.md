@@ -1,6 +1,6 @@
-Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
+###Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
 
-Projeto acadêmico — Modelagem de Banco de Dados (2º semestre)
+*Projeto acadêmico — Modelagem de Banco de Dados (2º semestre)*
 
 📄 Dicionário de dados (versão web) 🔗 Modelo conceitual no BRModelo Web
 
@@ -11,7 +11,7 @@ Maria Eduarda da Silva Costa (RGM 46939563)
 Igor Tsuyoshi (RGM 47133562)
 1. Introdução
 
-Problema, objetivos e delimitação
+######Problema, objetivos e delimitação
 
 A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo.
 
@@ -21,14 +21,14 @@ O problema abordado consiste na necessidade de organizar, em uma estrutura de da
 
 O escopo deste trabalho está delimitado à modelagem conceitual do banco de dados. Não fazem parte desta etapa a implementação física do banco, o desenvolvimento da aplicação, a definição completa dos tipos de dados, a criação das tabelas SQL ou a integração efetiva com sistemas corporativos existentes.
 
-2. Desenvolvimento
+*2. Desenvolvimento*
 2.1 Caracterização da Organização
 Nome e natureza da organização: a organização selecionada é a Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA. Trata-se de uma empresa privada que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
 Contexto e porte: a Muriel informa possuir mais de 60 anos de atuação no mercado de cosméticos. Seu perfil institucional no LinkedIn classifica a empresa como privada, sediada em São Paulo e pertencente à faixa de 201 a 500 funcionários. A empresa disponibiliza diversas linhas e categorias de produtos, incluindo body splash, águas de banho, águas de colônia, sabonetes, óleos corporais, produtos capilares, shampoos, condicionadores, máscaras e produtos Muriel Baby, entre outros.
 Problemas e necessidades identificados: o principal problema de modelagem consiste na necessidade de integrar informações de diferentes etapas da operação: clientes e pedidos, fornecedores e materiais, produtos e produção, estoque, separação e expedição, entregas e controle de acesso. O DER foi construído para centralizar essas informações e representar os relacionamentos existentes entre as áreas. Dessa forma, o sistema poderá futuramente permitir o acompanhamento de um pedido desde seu cadastro até a separação, o acondicionamento e a entrega, relacionando essas operações às informações de produtos, estoque e produção.
 Justificativa da escolha: a Muriel apresenta características que tornam sua operação adequada para um projeto de modelagem de dados: possui atividade industrial, variedade de produtos, relacionamento com fornecedores, utilização de materiais, produção, armazenamento e processos de distribuição. A própria empresa destaca investimento em inovação, tecnologia, pesquisa e desenvolvimento de produtos. A diversidade de processos permite construir um modelo conceitual com diferentes níveis de relacionamento, incluindo operações comerciais, produtivas, logísticas e administrativas.
 
-Dados da organização
+######Dados da organização
 
 Organização: Muriel Cosméticos / BEAUTY LAB DO BRASIL LTDA.
 Endereço divulgado: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
@@ -40,7 +40,7 @@ Visita à organização. A foto abaixo foi tirada com a colaboradora da Muriel C
 
 <img width="465" height="573" alt="Captura de tela 2026-09-23 133139" src="https://github.com/user-attachments/assets/573742d8-7582-4d01-8f05-952a3dd262dd" />
 
-2.2 Oportunidade de melhoria identificada
+*2.2 Oportunidade de melhoria identificada*
 
 Durante a visita, identificamos uma possível dificuldade operacional que o sistema modelado poderia ajudar a resolver.
 
@@ -53,7 +53,7 @@ redução de planilhas e de comunicação manual.
 
 Esta é uma proposta para trabalhos futuros. Ela está fora do escopo desta etapa (modelagem conceitual), mas o modelo foi pensado para dar suporte a ela: as entidades Pedido, Produção, Estoque, Separação de Pedido e Entrega, com seus respectivos campos de status, fornecem os dados necessários.
 
-2.3 Processos de Negócio
+*2.3 Processos de Negócio*
 
 Principais processos mapeados
 
@@ -100,7 +100,7 @@ Associação de usuários a perfis.
 Definição de permissões.
 Associação das permissões aos recursos do sistema.
 
-Fluxogramas
+######Fluxogramas
 
 Os fluxogramas abaixo representam os principais processos contemplados pelo modelo.
 
@@ -120,7 +120,7 @@ Processo de controle de acesso:
 
 <img width="764" height="484" alt="Captura de tela 2026-09-22 083833" src="https://github.com/user-attachments/assets/dc2a8c5a-2fca-479d-8608-17aad2a90716" />
 
-2.4 Requisitos do Sistema
+*2.4 Requisitos do Sistema*
 
 Requisitos Funcionais
 
@@ -210,7 +210,7 @@ RN32: dados pessoais de clientes, representantes e usuários devem ser protegido
 
 A legislação sanitária aplicável ao setor também torna relevantes os controles de documentação, produção, armazenamento, qualidade e rastreabilidade. A RDC nº 48/2013 da Anvisa contempla, entre outros pontos, recebimento e armazenamento, produção, controle da qualidade e documentação.
 
-Restrições organizacionais
+######Restrições organizacionais
 
 Proteção de dados pessoais: informações como nome, telefone, e-mail, endereço e dados de autenticação devem possuir acesso restrito e finalidade definida. A LGPD estabelece regras para o tratamento de dados pessoais em meios físicos e digitais.
 Controle de acesso: nem todos os usuários devem possuir as mesmas permissões. Por isso, o modelo separa Usuário, Perfil, Permissão e Recurso.
@@ -370,11 +370,11 @@ IdRecurso	Identificador do recurso	Chave da entidade
 Nome	Nome do recurso ou funcionalidade	Obrigatório
 2.7 Modelagem Conceitual (entidades, atributos e relacionamentos)
 
-Diagrama Entidade-Relacionamento (DER)
+######Diagrama Entidade-Relacionamento (DER)
 
-Mostrar Imagem
+<img width="801" height="580" alt="Captura de tela 2026-09-23 084153" src="https://github.com/user-attachments/assets/da00b8f1-6c83-450c-a1d0-47f91d44d3b1" />
 
-Entidades reconhecidas
+*Entidades reconhecidas*
 
 Cliente: representa empresas/clientes que realizam pedidos.
 Representante: representa o responsável comercial relacionado ao pedido.
@@ -395,7 +395,7 @@ Perfil: representa o conjunto de características/cargo associado ao usuário.
 Permissão: representa as operações autorizadas.
 Recurso: representa as funcionalidades ou recursos protegidos pelo controle de acesso.
 
-Atributos e classificações
+*Atributos e classificações*
 
 Os atributos foram classificados conceitualmente em:
 
@@ -406,7 +406,7 @@ Atributos temporais: datas de pedido, emissão, programação, início, fim, sa�
 Atributos de controle: status, login, senha e indicadores de permissão.
 Atributos de identificação externa: CNPJ, EAN, placa e código de rastreio.
 
-Relacionamentos e cardinalidades
+*Relacionamentos e cardinalidades*
 
 Relacionamento	Entidades	Cardinalidade	Finalidade
 Faz	Cliente — Pedido	1:N	Um cliente realiza vários pedidos; cada pedido pertence a um cliente
@@ -427,7 +427,7 @@ Possui	Usuário — Perfil	N:1	Cada usuário tem um perfil; um perfil vale para 
 Possui	Perfil — Permissão	N:N	Um perfil pode ter várias permissões
 Aplicada a	Permissão — Recurso	N:1	Cada permissão é aplicada a um recurso
 
-Restrições e políticas organizacionais aplicadas ao modelo
+######Restrições e políticas organizacionais aplicadas ao modelo
 
 O modelo considera:
 
@@ -455,7 +455,7 @@ As entidades Separação de Pedido, Caixa, Entrega e Caminhão representam etapa
 
 Por fim, Usuário, Perfil, Permissão e Recurso foram modelados separadamente para permitir um mecanismo de controle de acesso mais flexível. Essa estrutura possibilita que diferentes perfis tenham diferentes permissões sobre diferentes recursos do sistema.
 
-3. Uso de Inteligência Artificial
+*3. Uso de Inteligência Artificial*
 
 A Inteligência Artificial foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, principalmente na elaboração do README e do código HTML do dicionário de dados.
 
@@ -463,7 +463,7 @@ No desenvolvimento do dicionário de dados, inicialmente foi utilizado um prompt
 
 A IA também foi utilizada como apoio na organização e na elaboração do README, auxiliando na estruturação das informações do projeto, na descrição dos processos, dos requisitos, das regras de negócio e das demais seções solicitadas. Após a geração do conteúdo, as informações foram revisadas e ajustadas de acordo com o projeto desenvolvido e com as orientações da atividade.
 
-4. Conclusão
+######4. Conclusão
 
 Síntese. O projeto apresentou uma modelagem conceitual de banco de dados direcionada à realidade operacional da Muriel Cosméticos, contemplando processos comerciais, produtivos, logísticos e administrativos. O DER desenvolvido permite relacionar clientes, representantes, pedidos e produtos com os processos posteriores de separação, acondicionamento e entrega. Também foram contemplados fornecedores, materiais, produção, embalagens e estoques, possibilitando representar o fluxo de informações desde o fornecimento de materiais e a fabricação até a disponibilização e a distribuição dos produtos.
 
