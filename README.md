@@ -1,5 +1,13 @@
 ## Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
+
+### Colaboradores do projeto acadêmico:
+- Kevyn Deusdará Antônio. (46970746)
+- Kamilly Anselmoo. (47234237)
+- Maria Eduarda da Silva Costa. (46939563)
+- Igor Tsuyoshi. (47133562)
+
 Introdução
+
 *Problema, objetivos e delimitação*
   
 A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo. 
@@ -439,16 +447,3 @@ BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dado
 BRASIL. AGÊNCIA NACIONAL DE VIGILÂNCIA SANITÁRIA — ANVISA. Resolução RDC nº 48, de 25 de outubro de 2013. Regulamento Técnico de Boas Práticas de Fabricação para Produtos de Higiene Pessoal, Cosméticos e Perfumes. Disponível em: RDC nº 48/2013 — Anvisa. Acesso em: 21 set. 2026. BVSMS
 BRASIL. AGÊNCIA NACIONAL DE VIGILÂNCIA SANITÁRIA — ANVISA. Legislação e orientações em cosmetovigilância. Disponível em: Anvisa — Cosmetovigilância. Acesso em: 21 set. 2026. Serviços e Informações do Brasil
 GRUPO DO PROJETO. Conceptual model - BRMW. Diagrama conceitual/DER fornecido para o desenvolvimento deste projeto. 2026.     Conceptual model - BRMW
-
-*Critérios Atitudinais (20%)*
-Estes critérios NÃO constam explicitamente como item de entrega no README. Eles são avaliados por meio de Avaliação 360º entre os integrantes do grupo (cada membro avalia os colegas de equipe), e não pela leitura do repositório ou pela apresentação:
-- Participação (1%): envolvimento nas discussões técnicas e nas decisões do grupo.
-- Comprometimento (7%): cumprimento de prazos e responsabilidades assumidas.
-- Colaboração (2%): respeito às contribuições dos colegas e cooperação na construção do projeto.
-- Autonomia (10%): busca independente de soluções e proposta de melhorias.
-
-### Colaboradores do projeto acadêmico:
-- Kevyn Deusdará Antônio. (46970746)
-- Kamilly Anselmoo. (47234237)
-- Maria Eduarda da Silva Costa. (46939563)
-- Igor Tsuyoshi. (47133562)
