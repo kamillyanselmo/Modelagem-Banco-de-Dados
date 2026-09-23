@@ -1,4 +1,4 @@
-###Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
+### Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
 
 *Projeto acadêmico — Modelagem de Banco de Dados (2º semestre)*
 
@@ -11,7 +11,7 @@ Maria Eduarda da Silva Costa (RGM 46939563)
 Igor Tsuyoshi (RGM 47133562)
 1. Introdução
 
-######Problema, objetivos e delimitação
+###### Problema, objetivos e delimitação
 
 A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo.
 
@@ -28,7 +28,7 @@ Contexto e porte: a Muriel informa possuir mais de 60 anos de atuação no merca
 Problemas e necessidades identificados: o principal problema de modelagem consiste na necessidade de integrar informações de diferentes etapas da operação: clientes e pedidos, fornecedores e materiais, produtos e produção, estoque, separação e expedição, entregas e controle de acesso. O DER foi construído para centralizar essas informações e representar os relacionamentos existentes entre as áreas. Dessa forma, o sistema poderá futuramente permitir o acompanhamento de um pedido desde seu cadastro até a separação, o acondicionamento e a entrega, relacionando essas operações às informações de produtos, estoque e produção.
 Justificativa da escolha: a Muriel apresenta características que tornam sua operação adequada para um projeto de modelagem de dados: possui atividade industrial, variedade de produtos, relacionamento com fornecedores, utilização de materiais, produção, armazenamento e processos de distribuição. A própria empresa destaca investimento em inovação, tecnologia, pesquisa e desenvolvimento de produtos. A diversidade de processos permite construir um modelo conceitual com diferentes níveis de relacionamento, incluindo operações comerciais, produtivas, logísticas e administrativas.
 
-######Dados da organização
+###### Dados da organização
 
 Organização: Muriel Cosméticos / BEAUTY LAB DO BRASIL LTDA.
 Endereço divulgado: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
@@ -100,7 +100,7 @@ Associação de usuários a perfis.
 Definição de permissões.
 Associação das permissões aos recursos do sistema.
 
-######Fluxogramas
+###### Fluxogramas
 
 Os fluxogramas abaixo representam os principais processos contemplados pelo modelo.
 
@@ -210,7 +210,7 @@ RN32: dados pessoais de clientes, representantes e usuários devem ser protegido
 
 A legislação sanitária aplicável ao setor também torna relevantes os controles de documentação, produção, armazenamento, qualidade e rastreabilidade. A RDC nº 48/2013 da Anvisa contempla, entre outros pontos, recebimento e armazenamento, produção, controle da qualidade e documentação.
 
-######Restrições organizacionais
+###### Restrições organizacionais
 
 Proteção de dados pessoais: informações como nome, telefone, e-mail, endereço e dados de autenticação devem possuir acesso restrito e finalidade definida. A LGPD estabelece regras para o tratamento de dados pessoais em meios físicos e digitais.
 Controle de acesso: nem todos os usuários devem possuir as mesmas permissões. Por isso, o modelo separa Usuário, Perfil, Permissão e Recurso.
@@ -370,7 +370,7 @@ IdRecurso	Identificador do recurso	Chave da entidade
 Nome	Nome do recurso ou funcionalidade	Obrigatório
 2.7 Modelagem Conceitual (entidades, atributos e relacionamentos)
 
-######Diagrama Entidade-Relacionamento (DER)
+###### Diagrama Entidade-Relacionamento (DER)
 
 <img width="801" height="580" alt="Captura de tela 2026-09-23 084153" src="https://github.com/user-attachments/assets/da00b8f1-6c83-450c-a1d0-47f91d44d3b1" />
 
@@ -427,7 +427,7 @@ Possui	Usuário — Perfil	N:1	Cada usuário tem um perfil; um perfil vale para 
 Possui	Perfil — Permissão	N:N	Um perfil pode ter várias permissões
 Aplicada a	Permissão — Recurso	N:1	Cada permissão é aplicada a um recurso
 
-######Restrições e políticas organizacionais aplicadas ao modelo
+###### Restrições e políticas organizacionais aplicadas ao modelo
 
 O modelo considera:
 
@@ -463,7 +463,7 @@ No desenvolvimento do dicionário de dados, inicialmente foi utilizado um prompt
 
 A IA também foi utilizada como apoio na organização e na elaboração do README, auxiliando na estruturação das informações do projeto, na descrição dos processos, dos requisitos, das regras de negócio e das demais seções solicitadas. Após a geração do conteúdo, as informações foram revisadas e ajustadas de acordo com o projeto desenvolvido e com as orientações da atividade.
 
-######4. Conclusão
+###### 4. Conclusão
 
 Síntese. O projeto apresentou uma modelagem conceitual de banco de dados direcionada à realidade operacional da Muriel Cosméticos, contemplando processos comerciais, produtivos, logísticos e administrativos. O DER desenvolvido permite relacionar clientes, representantes, pedidos e produtos com os processos posteriores de separação, acondicionamento e entrega. Também foram contemplados fornecedores, materiais, produção, embalagens e estoques, possibilitando representar o fluxo de informações desde o fornecimento de materiais e a fabricação até a disponibilização e a distribuição dos produtos.
 
