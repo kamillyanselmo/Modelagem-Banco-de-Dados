@@ -1,210 +1,1582 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Dicionário de Dados</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        h2 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 5px; margin-top: 30px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
-        th { background-color: #f4f4f4; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dicionário de Dados — Modelo Conceitual BRMW</title>
+
+<style>
+@page {
+  size: A4;
+  margin: 18mm 16mm 18mm 16mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.35;
+  color: #111;
+  margin: 0;
+  background: #fff;
+}
+
+.page {
+  page-break-after: always;
+}
+
+.page:last-child {
+  page-break-after: auto;
+}
+
+h1 {
+  font-size: 20pt;
+  margin: 0 0 6px;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 18px 0 8px;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 14px 0 5px;
+}
+
+p {
+  margin: 5px 0 8px;
+}
+
+.subtitle {
+  font-size: 10pt;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+.note {
+  background: #f0f0f0;
+  border-left: 4px solid #777;
+  padding: 8px 10px;
+  margin: 8px 0 12px;
+}
+
+.formula {
+  background: #e5e5e5;
+  padding: 7px 9px;
+  font-family: "Courier New", monospace;
+  font-size: 9.5pt;
+  margin: 5px 0 8px;
+  border-radius: 1px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 7px 0 14px;
+  page-break-inside: avoid;
+}
+
+th,
+td {
+  border-bottom: 1px solid #777;
+  padding: 5px 6px;
+  vertical-align: top;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  border-top: 1px solid #333;
+}
+
+.center {
+  text-align: center;
+}
+
+.entity {
+  margin-top: 14px;
+  page-break-inside: avoid;
+}
+
+.entity h3 {
+  font-size: 13pt;
+  margin-bottom: 4px;
+}
+
+.small {
+  font-size: 9pt;
+  color: #333;
+}
+
+.muted {
+  color: #555;
+}
+
+.pill {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  font-size: 8.5pt;
+}
+
+ul {
+  margin-top: 5px;
+}
+
+li {
+  margin: 3px 0;
+}
+
+.footer {
+  font-size: 8.5pt;
+  color: #666;
+  margin-top: 14px;
+  border-top: 1px solid #bbb;
+  padding-top: 4px;
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Dicionário de Dados - Diagrama Conceitual</h1>
+<section class="page">
 
-    <h2>Entidades Principais</h2>
+<h1>Dicionário de Dados do Modelo Conceitual</h1>
 
-    <!-- Cliente -->
-    <h3>Cliente</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>CNPJ</td><td>Identificador/Documento do cliente</td></tr>
-        <tr><td>Razão Social</td><td>Nome jurídico do cliente</td></tr>
-        <tr><td>Nome Fantasia</td><td>Nome comercial do cliente</td></tr>
-        <tr><td>Endereço</td><td>Localização do cliente</td></tr>
-        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
-        <tr><td>Cidade</td><td>Cidade do cliente</td></tr>
-        <tr><td>UF</td><td>Estado (Unidade Federativa)</td></tr>
-    </table>
+<div class="subtitle">
+Modelo apresentado no diagrama “Conceptual model - BRMW” — elaboração baseada no diagrama fornecido.
+</div>
 
-    <!-- Representante -->
-    <h3>Representante</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdRep</td><td>Identificador do representante</td></tr>
-        <tr><td>Nome</td><td>Nome do representante</td></tr>
-        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
-        <tr><td>Email</td><td>Endereço de e-mail</td></tr>
-    </table>
+<h2>1. Modelo conceitual</h2>
 
-    <!-- Pedido -->
-    <h3>Pedido</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdPedido</td><td>Identificador único do pedido</td></tr>
-        <tr><td>Data_Pedido</td><td>Data em que o pedido foi feito</td></tr>
-        <tr><td>Valor_Total</td><td>Valor total cobrado no pedido</td></tr>
-        <tr><td>Status_Pedido</td><td>Situação atual do pedido</td></tr>
-    </table>
+<p>
+O modelo representa um processo de vendas, entrega, pagamento e produção,
+envolvendo <b>Cliente</b>, <b>Representante</b>, <b>Pedido</b>,
+<b>Pagamento</b>, <b>Entrega</b>, <b>Produto</b>, <b>Material</b>,
+<b>Fornecedor</b>, <b>Produção</b> e <b>Embalagem</b>.
+As relações e cardinalidades abaixo foram transcritas do diagrama conceitual.
+</p>
 
-    <!-- Fornecedor -->
-    <h3>Fornecedor</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdFornecedor</td><td>Identificador único do fornecedor</td></tr>
-        <tr><td>Nome</td><td>Nome do fornecedor</td></tr>
-        <tr><td>CNPJ (Unique)</td><td>Registro do fornecedor (único)</td></tr>
-        <tr><td>Endereço</td><td>Localização do fornecedor</td></tr>
-        <tr><td>Telefone</td><td>Contato telefônico</td></tr>
-    </table>
+<table>
+<thead>
+<tr>
+<th>Entidade</th>
+<th>Relaciona-se com</th>
+<th>Relacionamento / Cardinalidade</th>
+</tr>
+</thead>
 
-    <!-- Material -->
-    <h3>Material</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdMaterial</td><td>Identificador do material</td></tr>
-        <tr><td>Nome_Material</td><td>Nome da matéria-prima/material</td></tr>
-        <tr><td>Estoque_Mínimo</td><td>Quantidade mínima em estoque</td></tr>
-        <tr><td>Unidade</td><td>Unidade de medida (ex: kg, un)</td></tr>
-    </table>
+<tbody>
 
-    <!-- Produto -->
-    <h3>Produto</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdProduto</td><td>Identificador do produto</td></tr>
-        <tr><td>Nome_Produto</td><td>Nome comercial do produto</td></tr>
-        <tr><td>EAN</td><td>Código de barras (EAN)</td></tr>
-        <tr><td>Descrição</td><td>Detalhes sobre o produto</td></tr>
-        <tr><td>Unidade</td><td>Unidade de medida de venda</td></tr>
-    </table>
+<tr>
+<td>CLIENTE</td>
+<td>PEDIDO</td>
+<td>FAZ — Cliente (0,n) / Pedido (1,n)</td>
+</tr>
 
-    <!-- Ordem de Produção -->
-    <h3>Ordem de Produção</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdOrdem</td><td>Identificador da ordem de produção</td></tr>
-        <tr><td>Data_Emissão</td><td>Data de criação da ordem</td></tr>
-        <tr><td>Quantidade</td><td>Quantidade a ser produzida</td></tr>
-        <tr><td>Status</td><td>Situação da ordem de produção</td></tr>
-    </table>
+<tr>
+<td>REPRESENTANTE</td>
+<td>CLIENTE</td>
+<td>CADASTRA — Representante (0,n) / Cliente (1,n)</td>
+</tr>
 
-    <!-- Produção -->
-    <h3>Produção</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdProdução</td><td>Identificador do processo produtivos</td></tr>
-        <tr><td>Data_Início</td><td>Data de início do processo</td></tr>
-        <tr><td>Data_Fim</td><td>Data de término do processo</td></tr>
-        <tr><td>Data_Programação</td><td>Data agendada para execução</td></tr>
-        <tr><td>Status</td><td>Situação da produção</td></tr>
-    </table>
+<tr>
+<td>PEDIDO</td>
+<td>ENTREGA</td>
+<td>GERA — Pedido (0,1) / Entrega (1,1)</td>
+</tr>
 
-    <!-- Separação de Pedido -->
-    <h3>Separação de Pedido</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdSeparação</td><td>Identificador da etapa de separação</td></tr>
-        <tr><td>Data</td><td>Data da separação</td></tr>
-        <tr><td>Quantidade</td><td>Quantidade de itens separados</td></tr>
-        <tr><td>Status</td><td>Status do processo de separação</td></tr>
-    </table>
+<tr>
+<td>PEDIDO</td>
+<td>PRODUTO</td>
+<td>POSSUI — Pedido (0,n) / Produto (1,1)</td>
+</tr>
 
-    <!-- Estoque -->
-    <h3>Estoque</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdEstoque</td><td>Identificador do item em estoque</td></tr>
-        <tr><td>Lote</td><td>Número do lote armazenado</td></tr>
-        <tr><td>Validade</td><td>Data de validade do lote</td></tr>
-        <tr><td>Quantidade</td><td>Quantidade disponível</td></tr>
-        <tr><td>Endereço</td><td>Localização física no armazém</td></tr>
-    </table>
+<tr>
+<td>PAGAMENTO</td>
+<td>PEDIDO</td>
+<td>POSSUI — Pagamento (1,1) / Pedido (0,1)</td>
+</tr>
 
-    <!-- Embalagem -->
-    <h3>Embalagem</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdEmbalagem</td><td>Identificador da embalagem</td></tr>
-        <tr><td>Tipo</td><td>Tipo de embalagem utilizada</td></tr>
-        <tr><td>Capacidade</td><td>Capacidade suportada pela embalagem</td></tr>
-        <tr><td>Material</td><td>Material de fabricação da embalagem</td></tr>
-    </table>
+<tr>
+<td>FORNECEDOR</td>
+<td>MATERIAL</td>
+<td>FORNECE — Fornecedor (0,n) / Material (0,n)</td>
+</tr>
 
-    <!-- Caixa -->
-    <h3>Caixa</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdCaixa</td><td>Identificador da caixa de envio</td></tr>
-        <tr><td>Peso</td><td>Peso final da caixa</td></tr>
-        <tr><td>Quantidade</td><td>Quantidade de itens acondicionados</td></tr>
-    </table>
+<tr>
+<td>MATERIAL</td>
+<td>PRODUTO</td>
+<td>É FEITO COM — Material (0,n) / Produto (1,n)</td>
+</tr>
 
-    <!-- Caminhão -->
-    <h3>Caminhão</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdCaminhao</td><td>Identificador do veículo</td></tr>
-        <tr><td>Placa (Unique)</td><td>Placa de identificação do caminhão</td></tr>
-        <tr><td>Motorista</td><td>Nome do motorista responsável</td></tr>
-        <tr><td>Data_Saída</td><td>Data de saída do transporte</td></tr>
-    </table>
+<tr>
+<td>MATERIAL</td>
+<td>PRODUÇÃO</td>
+<td>É UTILIZADO — Material (0,n) / Produção (1,n)</td>
+</tr>
 
-    <!-- Entrega -->
-    <h3>Entrega</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdEntrega</td><td>Identificador da entrega</td></tr>
-        <tr><td>Codigo_Rastreio</td><td>Código para rastreamento da carga</td></tr>
-        <tr><td>Data_Envio</td><td>Data em que a carga foi despachada</td></tr>
-        <tr><td>Data_Entrega</td><td>Data em que a entrega foi realizada</td></tr>
-        <tr><td>Status</td><td>Situação do envio/entrega</td></tr>
-    </table>
+<tr>
+<td>PRODUTO</td>
+<td>PRODUÇÃO</td>
+<td>É PRODUZIDO EM — Produto (0,n) / Produção (1,1)</td>
+</tr>
 
-    <h2>Controle de Acesso ao Sistema</h2>
+<tr>
+<td>PRODUÇÃO</td>
+<td>EMBALAGEM</td>
+<td>UTILIZA — Produção (1,n) / Embalagem (0,n)</td>
+</tr>
 
-    <!-- Usuário -->
-    <h3>Usuário</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdUsuario</td><td>Identificador do usuário</td></tr>
-        <tr><td>Nome_Completo</td><td>Nome completo do usuário</td></tr>
-        <tr><td>Email</td><td>E-mail cadastrado</td></tr>
-        <tr><td>Login</td><td>Nome de usuário para acesso</td></tr>
-        <tr><td>Senha</td><td>Credencial de acesso</td></tr>
-        <tr><td>Status</td><td>Situação do cadastro (ativo/inativo)</td></tr>
-    </table>
+</tbody>
+</table>
 
-    <!-- Perfil -->
-    <h3>Perfil</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdPerfil</td><td>Identificador do perfil de acesso</td></tr>
-        <tr><td>Cargo</td><td>Descrição do cargo/perfil</td></tr>
-    </table>
+<h3>Definição das entidades</h3>
 
-    <!-- Permissão -->
-    <h3>Permissão</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>Id_Permissão</td><td>Identificador da permissão</td></tr>
-        <tr><td>Consultar</td><td>Permissão de leitura (Sim/Não)</td></tr>
-        <tr><td>Inserir</td><td>Permissão de inserção (Sim/Não)</td></tr>
-        <tr><td>Alterar</td><td>Permissão de edição (Sim/Não)</td></tr>
-        <tr><td>Excluir</td><td>Permissão de exclusão (Sim/Não)</td></tr>
-    </table>
+<table>
+<thead>
+<tr>
+<th>Entidade</th>
+<th>Descrição derivada do papel no diagrama</th>
+</tr>
+</thead>
 
-    <!-- Recurso -->
-    <h3>Recurso</h3>
-    <table>
-        <tr><th>Atributo</th><th>Descrição</th></tr>
-        <tr><td>IdRecurso</td><td>Identificador do recurso do sistema</td></tr>
-        <tr><td>Nome</td><td>Nome do módulo/tela/recurso</td></tr>
-    </table>
+<tbody>
+
+<tr>
+<td>CLIENTE</td>
+<td>Cadastro da organização cliente, identificado por ID_Cliente e contendo dados cadastrais e de contato.</td>
+</tr>
+
+<tr>
+<td>REPRESENTANTE</td>
+<td>Cadastro do representante responsável por cadastrar clientes.</td>
+</tr>
+
+<tr>
+<td>PEDIDO</td>
+<td>Registro do pedido realizado pelo cliente, com preço, status e data.</td>
+</tr>
+
+<tr>
+<td>ENTREGA</td>
+<td>Registro da entrega associada ao pedido, com dados de rastreio, motorista e caminhão.</td>
+</tr>
+
+<tr>
+<td>PAGAMENTO</td>
+<td>Registro do pagamento relacionado a um pedido, com data, preço e status.</td>
+</tr>
+
+<tr>
+<td>PRODUTO</td>
+<td>Cadastro do produto, com identificador, EAN, nome, unidade e descrição.</td>
+</tr>
+
+<tr>
+<td>MATERIAL</td>
+<td>Cadastro dos materiais, com controle de estoque mínimo e unidade.</td>
+</tr>
+
+<tr>
+<td>FORNECEDOR</td>
+<td>Cadastro do fornecedor e seus dados de contato.</td>
+</tr>
+
+<tr>
+<td>PRODUÇÃO</td>
+<td>Registro de uma produção, contendo quantidade, status, data de emissão e identificador.</td>
+</tr>
+
+<tr>
+<td>EMBALAGEM</td>
+<td>Cadastro da embalagem, com tipo, capacidade e material.</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>2. Convenções do dicionário</h2>
+
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr><td>=</td><td>é composto de</td></tr>
+<tr><td>+</td><td>e — conecta elementos do registro</td></tr>
+<tr><td>( )</td><td>atributo opcional no modelo lógico sugerido</td></tr>
+<tr><td>{ }, n{ }m</td><td>iteração, com limite mínimo n e máximo m</td></tr>
+<tr><td>[ | ]</td><td>escolha entre alternativas</td></tr>
+<tr><td>/ /</td><td>rótulo de um grupo repetitivo</td></tr>
+<tr><td>@</td><td>identificador / chave primária indicada no diagrama</td></tr>
+<tr><td>* *</td><td>comentário fora da estrutura formal</td></tr>
+
+</tbody>
+</table>
+
+<p>
+<b>Prefixos utilizados no modelo:</b>
+ID_ identificador; NM_/Nome nome; DS_ descrição;
+DT_/Data data; TP_ tipo/status; QT_ quantidade;
+EAN_ código EAN; UF unidade federativa;
+Email e Telefone dados de contato.
+</p>
+
+<h2>3. Dicionário de dados por entidade</h2>
+
+<div class="entity">
+
+<h3>CLIENTE</h3>
+
+<div class="formula">
+CLIENTE = @ID_CLIENTE + RAZAO_SOCIAL + NOME_FANTASIA +
+ENDERECO_CLIENTE + TELEFONE_CLIENTE + UF_CLIENTE
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_CLIENTE</span> é o identificador único;
+os cinco campos seguintes são obrigatórios e conectados por +,
+formando o cadastro do cliente com razão social, nome fantasia,
+endereço, telefone e UF.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_CLIENTE</td>
+<td>varchar(18)</td>
+<td>Sim (PK)</td>
+<td>Identificador do cliente destacado no diagrama.</td>
+</tr>
+
+<tr>
+<td>RAZAO_SOCIAL</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Razão social do cliente.</td>
+</tr>
+
+<tr>
+<td>NOME_FANTASIA</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Nome fantasia do cliente.</td>
+</tr>
+
+<tr>
+<td>ENDERECO_CLIENTE</td>
+<td>varchar(200)</td>
+<td>Sim</td>
+<td>Endereço cadastrado do cliente.</td>
+</tr>
+
+<tr>
+<td>TELEFONE_CLIENTE</td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Telefone de contato do cliente.</td>
+</tr>
+
+<tr>
+<td>UF_CLIENTE</td>
+<td>char(2)</td>
+<td>Sim</td>
+<td>Unidade federativa do cliente.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>REPRESENTANTE</h3>
+
+<div class="formula">
+REPRESENTANTE = @ID_REP + EMAIL_REP + NOME_REP + TELEFONE_REP
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_REP</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo ao e-mail, nome e telefone do representante.
+O relacionamento CADASTRA liga o representante aos clientes.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_REP</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do representante.</td>
+</tr>
+
+<tr>
+<td>EMAIL_REP</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>E-mail do representante.</td>
+</tr>
+
+<tr>
+<td>NOME_REP</td>
+<td>varchar(120)</td>
+<td>Sim</td>
+<td>Nome do representante.</td>
+</tr>
+
+<tr>
+<td>TELEFONE_REP</td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Telefone do representante.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+
+<section class="page">
+
+<div class="entity">
+
+<h3>PEDIDO</h3>
+
+<div class="formula">
+PEDIDO = @ID_PEDIDO + PRECO_PEDIDO + STATUS_PEDIDO + DATA_PEDIDO
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_PEDIDO</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo ao preço, status e data do pedido.
+O pedido participa dos relacionamentos FAZ, GERA e POSSUI.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_PEDIDO</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do pedido.</td>
+</tr>
+
+<tr>
+<td>PRECO_PEDIDO</td>
+<td>decimal(12,2)</td>
+<td>Sim</td>
+<td>Preço/valor registrado para o pedido.</td>
+</tr>
+
+<tr>
+<td>STATUS_PEDIDO</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Status atual do pedido.</td>
+</tr>
+
+<tr>
+<td>DATA_PEDIDO</td>
+<td>date</td>
+<td>Sim</td>
+<td>Data do pedido.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>ENTREGA</h3>
+
+<div class="formula">
+ENTREGA = @ID_ENTREGA + DATA_ENTREGA + STATUS_ENTREGA +
+NOME_MOTORISTA + ID_CAMINHAO + CODIGO_RASTREIO
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_ENTREGA</span> é o identificador único;
+os cinco campos seguintes são obrigatórios e conectados por +,
+correspondendo à data, status, nome do motorista, identificador
+do caminhão e código de rastreio da entrega.
+O relacionamento GERA liga a entrega ao pedido.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_ENTREGA</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador da entrega.</td>
+</tr>
+
+<tr>
+<td>DATA_ENTREGA</td>
+<td>date</td>
+<td>Sim</td>
+<td>Data da entrega.</td>
+</tr>
+
+<tr>
+<td>STATUS_ENTREGA</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Status da entrega.</td>
+</tr>
+
+<tr>
+<td>NOME_MOTORISTA</td>
+<td>varchar(120)</td>
+<td>Sim</td>
+<td>Nome do motorista relacionado à entrega.</td>
+</tr>
+
+<tr>
+<td>ID_CAMINHAO</td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador do caminhão utilizado.</td>
+</tr>
+
+<tr>
+<td>CODIGO_RASTREIO</td>
+<td>varchar(60)</td>
+<td>Sim</td>
+<td>Código utilizado para rastreio da entrega.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>PAGAMENTO</h3>
+
+<div class="formula">
+PAGAMENTO = @ID_PAGAMENTO + DATA_PAGAMENTO + PRECO + STATUS_PAGAMENTO
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_PAGAMENTO</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo à data, preço e status do pagamento.
+O relacionamento POSSUI conecta o pagamento ao pedido.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_PAGAMENTO</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do pagamento.</td>
+</tr>
+
+<tr>
+<td>DATA_PAGAMENTO</td>
+<td>date</td>
+<td>Sim</td>
+<td>Data do pagamento.</td>
+</tr>
+
+<tr>
+<td>PRECO</td>
+<td>decimal(12,2)</td>
+<td>Sim</td>
+<td>Valor/preço registrado para o pagamento.</td>
+</tr>
+
+<tr>
+<td>STATUS_PAGAMENTO</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Status do pagamento.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+
+<section class="page">
+
+<div class="entity">
+
+<h3>PRODUTO</h3>
+
+<div class="formula">
+PRODUTO = @ID_PRODUTO + EAN_PRODUTO + NOME_PRODUTO +
+UNIDADE_PRODUTO + DESCRICAO_PRODUTO
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_PRODUTO</span> é o identificador único;
+os quatro campos seguintes são obrigatórios e conectados por +,
+correspondendo ao EAN, nome, unidade e descrição do produto.
+O produto participa dos relacionamentos POSSUI, É FEITO COM e
+É PRODUZIDO EM.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_PRODUTO</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do produto.</td>
+</tr>
+
+<tr>
+<td>EAN_PRODUTO</td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Código EAN do produto.</td>
+</tr>
+
+<tr>
+<td>NOME_PRODUTO</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Nome do produto.</td>
+</tr>
+
+<tr>
+<td>UNIDADE_PRODUTO</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Unidade associada ao produto.</td>
+</tr>
+
+<tr>
+<td>DESCRICAO_PRODUTO</td>
+<td>text</td>
+<td>Sim</td>
+<td>Descrição do produto.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>MATERIAL</h3>
+
+<div class="formula">
+MATERIAL = @ID_MATERIAL + NOME_MATERIAL +
+ESTOQUE_MINIMO + UNIDADE_MATERIAL
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_MATERIAL</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo ao nome, estoque mínimo e unidade do material.
+O material relaciona-se com fornecedor, produto e produção.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_MATERIAL</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do material.</td>
+</tr>
+
+<tr>
+<td>NOME_MATERIAL</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Nome do material.</td>
+</tr>
+
+<tr>
+<td>ESTOQUE_MINIMO</td>
+<td>decimal(12,3)</td>
+<td>Sim</td>
+<td>Quantidade mínima de estoque indicada no cadastro.</td>
+</tr>
+
+<tr>
+<td>UNIDADE_MATERIAL</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Unidade utilizada para o material.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>FORNECEDOR</h3>
+
+<div class="formula">
+FORNECEDOR = @ID_FORNECEDOR + NOME_FORNECEDOR +
+ENDERECO_FORNECEDOR + TELEFONE_FORNECEDOR + CNPJ_FORNECEDOR
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_FORNECEDOR</span> é o identificador único;
+os quatro campos seguintes são obrigatórios e conectados por +,
+correspondendo ao nome, endereço, telefone e CNPJ do fornecedor.
+O fornecedor participa do relacionamento FORNECE com MATERIAL.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_FORNECEDOR</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador do fornecedor.</td>
+</tr>
+
+<tr>
+<td>NOME_FORNECEDOR</td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Nome do fornecedor.</td>
+</tr>
+
+<tr>
+<td>ENDERECO_FORNECEDOR</td>
+<td>varchar(200)</td>
+<td>Sim</td>
+<td>Endereço do fornecedor.</td>
+</tr>
+
+<tr>
+<td>TELEFONE_FORNECEDOR</td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Telefone do fornecedor.</td>
+</tr>
+
+<tr>
+<td>CNPJ_FORNECEDOR</td>
+<td>varchar(18)</td>
+<td>Sim</td>
+<td>CNPJ do fornecedor.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+</section>
+
+
+<section class="page">
+
+<div class="entity">
+
+<h3>PRODUÇÃO</h3>
+
+<div class="formula">
+PRODUÇÃO = @ID_PRODUCAO + QUANTIDADE_PRODUCAO +
+STATUS_PRODUCAO + DATA_EMISSAO
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_PRODUCAO</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo à quantidade, status e data de emissão da produção.
+A produção participa dos relacionamentos É UTILIZADO,
+É PRODUZIDO EM e UTILIZA.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_PRODUCAO</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador da produção.</td>
+</tr>
+
+<tr>
+<td>QUANTIDADE_PRODUCAO</td>
+<td>decimal(12,3)</td>
+<td>Sim</td>
+<td>Quantidade produzida.</td>
+</tr>
+
+<tr>
+<td>STATUS_PRODUCAO</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Status da produção.</td>
+</tr>
+
+<tr>
+<td>DATA_EMISSAO</td>
+<td>date</td>
+<td>Sim</td>
+<td>Data de emissão registrada para a produção.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="entity">
+
+<h3>EMBALAGEM</h3>
+
+<div class="formula">
+EMBALAGEM = @ID_EMBALAGEM + TIPO + CAPACIDADE + MATERIAL
+</div>
+
+<p>
+<b>Leitura:</b>
+<span class="muted">@ID_EMBALAGEM</span> é o identificador único;
+os três campos seguintes são obrigatórios e conectados por +,
+correspondendo ao tipo, capacidade e material da embalagem.
+A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Significado</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_EMBALAGEM</td>
+<td>integer</td>
+<td>Sim (PK)</td>
+<td>Identificador da embalagem.</td>
+</tr>
+
+<tr>
+<td>TIPO</td>
+<td>varchar(60)</td>
+<td>Sim</td>
+<td>Tipo de embalagem.</td>
+</tr>
+
+<tr>
+<td>CAPACIDADE</td>
+<td>decimal(12,3)</td>
+<td>Sim</td>
+<td>Capacidade da embalagem.</td>
+</tr>
+
+<tr>
+<td>MATERIAL</td>
+<td>varchar(100)</td>
+<td>Sim</td>
+<td>Material informado para a embalagem.</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<h2>4. Relacionamentos e interpretação das cardinalidades</h2>
+
+<table>
+<thead>
+<tr>
+<th>Relacionamento</th>
+<th>Lado A</th>
+<th>Lado B</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>FAZ</td>
+<td>CLIENTE (0,n)</td>
+<td>PEDIDO (1,n)</td>
+<td>Um cliente pode estar ligado a zero ou vários pedidos; cada pedido participa da relação com um ou vários clientes conforme o diagrama.</td>
+</tr>
+
+<tr>
+<td>CADASTRA</td>
+<td>REPRESENTANTE (0,n)</td>
+<td>CLIENTE (1,n)</td>
+<td>Um representante pode cadastrar zero ou vários clientes; cada cliente participa com um ou vários representantes conforme o diagrama.</td>
+</tr>
+
+<tr>
+<td>GERA</td>
+<td>PEDIDO (0,1)</td>
+<td>ENTREGA (1,1)</td>
+<td>Um pedido pode não gerar ou gerar uma entrega; cada entrega está ligada a exatamente um pedido.</td>
+</tr>
+
+<tr>
+<td>POSSUI</td>
+<td>PEDIDO (0,n)</td>
+<td>PRODUTO (1,1)</td>
+<td>Um pedido pode possuir zero ou vários produtos; cada produto participa de uma ocorrência da relação segundo a cardinalidade indicada.</td>
+</tr>
+
+<tr>
+<td>POSSUI</td>
+<td>PAGAMENTO (1,1)</td>
+<td>PEDIDO (0,1)</td>
+<td>Cada pagamento está ligado a um pedido; um pedido pode não possuir ou possuir um pagamento.</td>
+</tr>
+
+<tr>
+<td>FORNECE</td>
+<td>FORNECEDOR (0,n)</td>
+<td>MATERIAL (0,n)</td>
+<td>Fornecedor e material possuem participação opcional e múltipla na relação.</td>
+</tr>
+
+<tr>
+<td>É FEITO COM</td>
+<td>MATERIAL (0,n)</td>
+<td>PRODUTO (1,n)</td>
+<td>Materiais podem estar associados a vários produtos; produtos participam com um ou vários materiais.</td>
+</tr>
+
+<tr>
+<td>É UTILIZADO</td>
+<td>MATERIAL (0,n)</td>
+<td>PRODUÇÃO (1,n)</td>
+<td>Um material pode participar de várias produções; cada produção utiliza um ou vários materiais.</td>
+</tr>
+
+<tr>
+<td>É PRODUZIDO EM</td>
+<td>PRODUTO (0,n)</td>
+<td>PRODUÇÃO (1,1)</td>
+<td>Um produto pode participar de várias produções; cada produção está associada a um produto.</td>
+</tr>
+
+<tr>
+<td>UTILIZA</td>
+<td>PRODUÇÃO (1,n)</td>
+<td>EMBALAGEM (0,n)</td>
+<td>Uma produção utiliza uma ou várias embalagens; uma embalagem pode participar de zero ou várias produções.</td>
+</tr>
+
+</tbody>
+</table>
+
+</section>
+
+
+<section class="page">
+
+<h2>6. Acesso por operação</h2>
+
+<p>
+O controle de acesso apresentado no diagrama é estruturado em quatro entidades:
+<b>USUÁRIO</b>, <b>PERFIL</b>, <b>PERMISSÃO</b> e <b>RECURSO</b>.
+O usuário possui um perfil; o perfil possui permissões; e cada permissão
+é aplicada a um recurso. As operações de acesso representadas são
+<b>Consultar</b>, <b>Inserir</b>, <b>Alterar</b> e <b>Excluir</b>.
+</p>
+
+<h3>Estrutura de controle de acesso</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Entidade</th>
+<th>Relacionamento</th>
+<th>Cardinalidade</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>USUÁRIO</td>
+<td>POSSUI — PERFIL</td>
+<td>Usuário (1,1) / Perfil (0,n)</td>
+<td>Cada usuário possui um perfil; um perfil pode estar associado a zero ou vários usuários.</td>
+</tr>
+
+<tr>
+<td>PERFIL</td>
+<td>POSSUI — PERMISSÃO</td>
+<td>Perfil (0,n) / Permissão (0,n)</td>
+<td>Um perfil pode possuir zero ou várias permissões, e uma permissão pode estar associada a zero ou vários perfis.</td>
+</tr>
+
+<tr>
+<td>PERMISSÃO</td>
+<td>É APLICADA A — RECURSO</td>
+<td>Permissão (1,1) / Recurso (0,n)</td>
+<td>Cada permissão é aplicada a um recurso; um recurso pode receber zero ou várias permissões.</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<h3>Acesso por operação</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Tabela / Recurso</th>
+<th>CONSULTAR</th>
+<th>INSERIR</th>
+<th>ALTERAR</th>
+<th>EXCLUIR</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>RECURSO</td>
+<td>Controlado pela PERMISSÃO</td>
+<td>Controlado pela PERMISSÃO</td>
+<td>Controlado pela PERMISSÃO</td>
+<td>Controlado pela PERMISSÃO</td>
+</tr>
+
+<tr>
+<td>USUÁRIO</td>
+<td>Conforme PERMISSÃO do PERFIL</td>
+<td>Conforme PERMISSÃO do PERFIL</td>
+<td>Conforme PERMISSÃO do PERFIL</td>
+<td>Conforme PERMISSÃO do PERFIL</td>
+</tr>
+
+<tr>
+<td>PERFIL</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+</tr>
+
+<tr>
+<td>PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+<td>Conforme PERMISSÃO</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<h3>Dados das entidades de controle de acesso</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Entidade</th>
+<th>Atributos identificados no diagrama</th>
+<th>Finalidade no controle de acesso</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>USUÁRIO</td>
+<td>IdUsuario, Nome Completo, Email, Login, Senha, Status</td>
+<td>Identifica o usuário e mantém seus dados de autenticação e situação cadastral.</td>
+</tr>
+
+<tr>
+<td>PERFIL</td>
+<td>IdPerfil, Cargo</td>
+<td>Representa o perfil/cargo associado ao usuário e utilizado para agrupar permissões.</td>
+</tr>
+
+<tr>
+<td>PERMISSÃO</td>
+<td>IdPermissão, Consultar, Inserir, Alterar, Excluir</td>
+<td>Representa as operações que podem ser autorizadas para um recurso.</td>
+</tr>
+
+<tr>
+<td>RECURSO</td>
+<td>IdRecurso, Nome</td>
+<td>Identifica o recurso do sistema ao qual a permissão é aplicada.</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>7. Tabela de cargos, recursos e permissões</h2>
+
+<p>
+A tabela abaixo apresenta a distribuição das permissões entre os cargos
+(PERFIS) e os recursos do sistema, mantendo a estrutura:
+<b>USUÁRIO → PERFIL → PERMISSÃO → RECURSO</b>.
+</p>
+
+<h3>Leitura</h3>
+
+<p>
+O <b>USUÁRIO</b> é vinculado a um <b>PERFIL</b>; o <b>PERFIL</b> pode possuir
+várias <b>PERMISSÕES</b>; e cada <b>PERMISSÃO</b> é aplicada a um
+<b>RECURSO</b>. As permissões definem as operações representadas no diagrama —
+<b>Consultar</b>, <b>Inserir</b>, <b>Alterar</b> e <b>Excluir</b> —
+sobre os recursos do sistema.
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Cargo / Perfil</th>
+<th>Recurso / Entidade</th>
+<th>Consultar</th>
+<th>Inserir</th>
+<th>Alterar</th>
+<th>Excluir</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Administrador</td>
+<td>Cliente</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Representante</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Pedido</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Entrega</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Produto</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Material</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Fornecedor</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Produção</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Pagamento</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+<tr>
+<td>Administrador</td>
+<td>Embalagem</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+
+
+<tr>
+<td>Vendedor</td>
+<td>Cliente</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Vendedor</td>
+<td>Representante</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Vendedor</td>
+<td>Pedido</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Vendedor</td>
+<td>Produto</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Vendedor</td>
+<td>Entrega</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+
+<tr>
+<td>Financeiro</td>
+<td>Cliente</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Financeiro</td>
+<td>Pedido</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Financeiro</td>
+<td>Pagamento</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Financeiro</td>
+<td>Entrega</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+
+<tr>
+<td>Estoque</td>
+<td>Produto</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Estoque</td>
+<td>Material</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Estoque</td>
+<td>Fornecedor</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Estoque</td>
+<td>Embalagem</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Estoque</td>
+<td>Produção</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+
+<tr>
+<td>Produção</td>
+<td>Produto</td>
+<td>✓</td>
+<td>—</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Produção</td>
+<td>Material</td>
+<td>✓</td>
+<td>—</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Produção</td>
+<td>Produção</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Produção</td>
+<td>Embalagem</td>
+<td>✓</td>
+<td>—</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+
+<tr>
+<td>Logística</td>
+<td>Pedido</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Logística</td>
+<td>Entrega</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>—</td>
+</tr>
+
+<tr>
+<td>Logística</td>
+<td>Cliente</td>
+<td>✓</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+
+</tbody>
+</table>
+
+
+</section>
 
 </body>
 </html>
