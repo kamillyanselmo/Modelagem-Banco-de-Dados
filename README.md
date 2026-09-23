@@ -477,7 +477,8 @@ relacionar Separação de Pedido e Caixa ao Estoque (lote), para garantir a rast
 avaliar a criação de uma entidade própria para o motorista e o tratamento de Valor_Total como atributo derivado dos itens do pedido;
 elaborar o modelo lógico e físico, com definição de tipos de dados e criação das tabelas em SQL;
 implementar o painel de acompanhamento de pedidos integrado ao Protheus, descrito na seção 2.2.
-5. Referências Bibliográficas
+
+#### 5. Referências Bibliográficas
 
 MURIEL COSMÉTICOS. Muriel Cosméticos — site institucional. Disponível em: https://muriel.com.br/. Acesso em: 21 set. 2026.
 
