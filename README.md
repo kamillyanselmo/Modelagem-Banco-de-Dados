@@ -122,7 +122,7 @@ Processo de controle de acesso:
 
 *2.4 Requisitos do Sistema*
 
-Requisitos Funcionais
+#### Requisitos Funcionais
 
 O sistema deverá:
 
@@ -157,7 +157,7 @@ RF28 — Permitir associar permissões a recursos.
 RF29 — Permitir controlar operações de consulta, inserção, alteração e exclusão conforme as permissões do usuário.
 RF30 — Permitir consultar informações de pedidos, estoque, produção e entregas de forma integrada.
 
-Requisitos Não Funcionais
+#### Requisitos Não Funcionais
 
 RNF01 — Segurança: o acesso ao sistema deverá exigir autenticação de usuários.
 RNF02 — Controle de acesso: as funcionalidades disponíveis deverão respeitar o perfil e as permissões atribuídas ao usuário.
@@ -173,7 +173,7 @@ RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e int
 RNF12 — Conformidade: o processo de fabricação deve considerar os requisitos regulatórios aplicáveis ao setor de cosméticos, higiene pessoal e perfumaria. A Anvisa, por meio da RDC nº 48/2013, estabelece requisitos de Boas Práticas de Fabricação para esses produtos, incluindo aspectos de produção, armazenamento, documentação e controle da qualidade.
 2.5 Regras de Negócio
 
-Regras operacionais
+#### Regras operacionais
 
 RN01: cada cliente pode possuir zero ou vários pedidos.
 RN02: cada pedido deve estar associado a um cliente.
