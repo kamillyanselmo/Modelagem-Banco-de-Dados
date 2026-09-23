@@ -118,7 +118,7 @@ Processo de estoque e expedição:
 
 Processo de controle de acesso:
 
-<img width="764" height="484" alt="Captura de tela 2026-09-22 083833" src="https://github.com/user-attachments/assets/dc2a8c5a-2fca-479d-8608-17aad2a90716" />
+<img width="766" height="488" alt="Captura de tela 2026-09-22 133108" src="https://github.com/user-attachments/assets/e021934d-3395-42c7-96b3-8beee5ba78f1" />
 
 *2.4 Requisitos do Sistema*
 
