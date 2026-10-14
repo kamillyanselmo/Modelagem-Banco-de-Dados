@@ -1,484 +1,454 @@
-### Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Produção, Estoque, Logística e Controle de Acesso
+# Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Pagamentos, Produção e Entregas
 
-*Projeto acadêmico — Modelagem de Banco de Dados (2º semestre)*
+*Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) — Entrega 1: Modelo Conceitual (DER)*
 
-Colaboradores do projeto acadêmico
+**Colaboradores do projeto**
 - Kevyn Deusdará Antônio (RGM 46970746)
 - Kamilly Anselmoo (RGM 47234237)
 - Maria Eduarda da Silva Costa (RGM 46939563)
 - Igor Tsuyoshi (RGM 47133562)
 
-1. Introdução
+---
+
+## Introdução
 
 #### Problema, objetivos e delimitação
 
 A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo.
 
-O presente projeto tem como objetivo desenvolver uma modelagem conceitual de banco de dados capaz de representar, de maneira integrada, processos relacionados ao cadastro de clientes e representantes, registro de pedidos, fornecedores e materiais, produção, controle de estoque, separação de pedidos, acondicionamento em caixas, expedição e entrega, além do controle de acesso ao sistema.
+**Problema:** a operação da empresa envolve etapas comerciais, financeiras, industriais e logísticas que dependem de informações compartilhadas entre setores. Sem uma estrutura de dados única e consistente, torna-se difícil acompanhar um pedido desde o cadastro até o pagamento, a produção e a entrega.
 
-O problema abordado consiste na necessidade de organizar, em uma estrutura de dados única e consistente, informações que participam de diferentes etapas da operação industrial e logística. O modelo busca permitir o relacionamento entre pedido, produto, produção, estoque e entrega, reduzindo redundâncias e facilitando futuras etapas de implementação do sistema.
+**Objetivo:** desenvolver uma modelagem conceitual de banco de dados que represente, de maneira integrada, o cadastro de clientes e representantes, o registro de pedidos e pagamentos, o cadastro de fornecedores, materiais e produtos, a produção (com materiais e embalagens) e a entrega, reduzindo redundâncias e facilitando as próximas etapas do projeto.
 
-O escopo deste trabalho está delimitado à modelagem conceitual do banco de dados. Não fazem parte desta etapa a implementação física do banco, o desenvolvimento da aplicação, a definição completa dos tipos de dados, a criação das tabelas SQL ou a integração efetiva com sistemas corporativos existentes.
+**Delimitação:** o escopo está restrito à modelagem conceitual. Não fazem parte desta etapa a implementação física do banco, o desenvolvimento da aplicação, a definição completa dos tipos de dados, a criação das tabelas SQL ou a integração com sistemas corporativos existentes. Processos observados na visita, mas não incluídos nesta versão do modelo (controle de estoque por lote e validade, separação e acondicionamento de pedidos e controle de acesso), estão listados como trabalhos futuros.
 
-*2. Desenvolvimento*
-2.1 Caracterização da Organização
-Nome e natureza da organização: a organização selecionada é a Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA. Trata-se de uma empresa privada que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
-Contexto e porte: a Muriel informa possuir mais de 60 anos de atuação no mercado de cosméticos. Seu perfil institucional no LinkedIn classifica a empresa como privada, sediada em São Paulo e pertencente à faixa de 201 a 500 funcionários. A empresa disponibiliza diversas linhas e categorias de produtos, incluindo body splash, águas de banho, águas de colônia, sabonetes, óleos corporais, produtos capilares, shampoos, condicionadores, máscaras e produtos Muriel Baby, entre outros.
-Problemas e necessidades identificados: o principal problema de modelagem consiste na necessidade de integrar informações de diferentes etapas da operação: clientes e pedidos, fornecedores e materiais, produtos e produção, estoque, separação e expedição, entregas e controle de acesso. O DER foi construído para centralizar essas informações e representar os relacionamentos existentes entre as áreas. Dessa forma, o sistema poderá futuramente permitir o acompanhamento de um pedido desde seu cadastro até a separação, o acondicionamento e a entrega, relacionando essas operações às informações de produtos, estoque e produção.
-Justificativa da escolha: a Muriel apresenta características que tornam sua operação adequada para um projeto de modelagem de dados: possui atividade industrial, variedade de produtos, relacionamento com fornecedores, utilização de materiais, produção, armazenamento e processos de distribuição. A própria empresa destaca investimento em inovação, tecnologia, pesquisa e desenvolvimento de produtos. A diversidade de processos permite construir um modelo conceitual com diferentes níveis de relacionamento, incluindo operações comerciais, produtivas, logísticas e administrativas.
+---
 
-#### Dados da organização
+## Desenvolvimento
 
-Organização: Muriel Cosméticos / BEAUTY LAB DO BRASIL LTDA.
-Endereço divulgado: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
-Site oficial: https://muriel.com.br/
-Contato institucional: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921.
-Perfil empresarial: Muriel Cosméticos no LinkedIn.
+### Caracterização da Organização
 
-Visita à organização. A foto abaixo foi tirada com a colaboradora da Muriel Cosméticos que nos guiou pelo fluxo operacional dos processos:
+- **Nome e natureza da organização:** Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA. Trata-se de uma empresa privada, com fins lucrativos, que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
+
+- **Contexto e porte:** a empresa informa mais de 60 anos de atuação. Seu perfil institucional no LinkedIn a classifica como privada, sediada em São Paulo e na faixa de 201 a 500 funcionários. O portfólio inclui body splash, águas de banho, águas de colônia, sabonetes, óleos corporais, produtos capilares, shampoos, condicionadores, máscaras e produtos Muriel Baby, entre outros. A operação envolve fornecedores, uso de materiais e embalagens, produção industrial, representantes comerciais e entrega dos pedidos aos clientes. *(PREENCHER, se informado na visita: volume aproximado de pedidos/entregas.)*
+
+- **Problemas e necessidades identificados:** durante a visita, identificamos a falta de visibilidade em tempo real do status do pedido. O setor Comercial pode ter dificuldade para saber rapidamente se o pedido está aguardando material, em produção, pago, já expedido ou entregue, e o acompanhamento depende de planilhas e de comunicação manual entre setores.
+  - **Proposta (trabalho futuro):** painel de acompanhamento integrado ao Protheus (TOTVS), sistema de gestão utilizado pela empresa, com status do pedido por etapa, alertas de atraso e falta de materiais, rastreabilidade do pedido até a entrega e redução de planilhas. Está fora do escopo desta etapa, mas o modelo dá suporte a ela por meio das entidades Pedido, Pagamento, Produção e Entrega e seus campos de status.
+
+- **Justificativa da escolha:** a Muriel possui atividade industrial, variedade de produtos, relacionamento com fornecedores, uso de materiais e embalagens, produção e processos de distribuição. Essa diversidade permite um modelo com diferentes níveis de relacionamento (comercial, financeiro, produtivo e logístico), sem ser inviável para esta primeira etapa. O grupo teve acesso à empresa por meio de visita guiada.
+
+- **Evidências da organização:**
+  - Site oficial: https://muriel.com.br/
+  - Perfil no LinkedIn: Muriel Cosméticos *(COLE-AQUI-A-URL)*
+  - Google Maps / Meu Negócio: *(COLE-AQUI-A-URL)*
+  - Endereço: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
+  - Contato: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921.
+  - Responsável/colaboradora que acompanhou a visita: *(PREENCHER: nome e setor, se autorizado)*. Data da visita: *(PREENCHER)*.
+  - Foto da visita, tirada com a colaboradora da Muriel que nos guiou pelo fluxo operacional:
 
 <img width="465" height="573" alt="Captura de tela 2026-09-23 133139" src="https://github.com/user-attachments/assets/573742d8-7582-4d01-8f05-952a3dd262dd" />
 
-*2.2 Oportunidade de melhoria identificada*
+---
 
-Durante a visita, identificamos uma possível dificuldade operacional que o sistema modelado poderia ajudar a resolver.
-
-Dor: falta de visibilidade em tempo real do status do pedido. O setor Comercial pode ter dificuldade para identificar rapidamente se o pedido está aguardando material, em produção, disponível no estoque, em separação ou já expedido.
-Proposta: um painel de acompanhamento integrado ao Protheus (TOTVS), o sistema de gestão utilizado pela empresa, com:
-status do pedido atualizado por etapa;
-alertas para atrasos e falta de materiais;
-rastreabilidade desde o pedido até a entrega;
-redução de planilhas e de comunicação manual.
-
-Esta é uma proposta para trabalhos futuros. Ela está fora do escopo desta etapa (modelagem conceitual), mas o modelo foi pensado para dar suporte a ela: as entidades Pedido, Produção, Estoque, Separação de Pedido e Entrega, com seus respectivos campos de status, fornecem os dados necessários.
-
-*2.3 Processos de Negócio*
+### Processos de Negócio
 
 #### Principais processos mapeados
 
-Cadastro e gestão de clientes e representantes
-Cadastro das informações do cliente.
-Cadastro dos representantes.
-Associação entre representantes e pedidos.
-Registro e gerenciamento de pedidos
-Identificação do cliente.
-Registro do representante responsável.
-Registro da data, do valor e do status do pedido.
-Associação dos produtos ao pedido.
-Gestão de fornecedores e materiais
-Cadastro de fornecedores.
-Cadastro de materiais.
-Associação entre fornecedores e materiais fornecidos.
-Controle de unidade e estoque mínimo dos materiais.
-Planejamento e execução da produção
-Cadastro da ordem de produção.
-Definição da quantidade a produzir.
-Registro do status e da data de emissão.
-Geração de registros de produção.
-Associação de produtos às ordens de produção.
-Registro das datas de programação, início e término da produção.
-Controle de estoque
-Cadastro dos estoques.
-Controle de lote, validade e quantidade.
-Identificação do endereço físico do estoque.
-Associação do estoque ao produto.
-Separação e acondicionamento de pedidos
-Criação da separação do pedido.
-Registro de data, quantidade e status.
-Acondicionamento dos itens em caixas.
-Controle de peso e quantidade das caixas.
-Expedição e entrega
-Registro das caixas que compõem uma entrega.
-Associação da entrega a um caminhão.
-Registro do código de rastreio.
-Registro das datas de envio e entrega.
-Acompanhamento do status da entrega.
-Controle de acesso
-Cadastro de usuários.
-Associação de usuários a perfis.
-Definição de permissões.
-Associação das permissões aos recursos do sistema.
+**Cadastro e gestão de clientes e representantes**
+- Cadastro das informações do cliente.
+- Cadastro dos representantes.
+- Associação entre representantes e pedidos.
+
+**Registro e gerenciamento de pedidos**
+- Identificação do cliente.
+- Registro do representante responsável.
+- Registro da data, do preço e do status do pedido.
+- Associação dos produtos ao pedido.
+
+**Controle de pagamentos**
+- Registro do pagamento do pedido.
+- Registro da data, do preço, do valor pago e do status do pagamento.
+
+**Gestão de fornecedores, materiais e produtos**
+- Cadastro de fornecedores e de materiais.
+- Associação entre fornecedores e materiais fornecidos.
+- Controle de unidade e estoque mínimo dos materiais.
+- Cadastro de produtos e associação dos materiais que os compõem.
+
+**Produção**
+- Registro da produção de um produto, com data de emissão, quantidade e status.
+- Associação dos materiais e das embalagens utilizados na produção.
+
+**Expedição e entrega**
+- Geração da entrega a partir do pedido.
+- Registro do motorista e do caminhão responsáveis.
+- Registro do código de rastreio, das datas de envio e entrega e do status.
 
 #### Fluxogramas
 
-Os fluxogramas abaixo representam os principais processos contemplados pelo modelo.
+O fluxograma abaixo representa os processos-chave e mostra como eles se integram: o pedido (com cliente, representante e pagamento) aciona a produção, que consome materiais e embalagens, e a produção culmina na entrega.
 
-Processo de pedido e atendimento:
+---
 
-<img width="765" height="488" alt="Captura de tela 2026-09-22 083054" src="https://github.com/user-attachments/assets/52b850d5-b07f-436c-9d44-ec03cceb8c90" />
+<img width="1600" height="900" alt="WhatsApp Image 2026-10-14 at 11 43 23" src="https://github.com/user-attachments/assets/eef6aa40-d5b4-423d-9100-a53ceba410de" />
 
-Processo de produção:
 
-<img width="765" height="484" alt="Captura de tela 2026-09-22 083319" src="https://github.com/user-attachments/assets/ceeb1763-fd09-4e22-bbfc-2a96151d7d81" />
+---
 
-Processo de estoque e expedição:
-
-<img width="766" height="488" alt="Captura de tela 2026-09-22 083348" src="https://github.com/user-attachments/assets/37bf5ec5-9f95-4502-96dd-f201bd543b9d" />
-
-Processo de controle de acesso:
-
-<img width="766" height="488" alt="Captura de tela 2026-09-22 133108" src="https://github.com/user-attachments/assets/e021934d-3395-42c7-96b3-8beee5ba78f1" />
-
-*2.4 Requisitos do Sistema*
+### Requisitos do Sistema
 
 #### Requisitos Funcionais
 
 O sistema deverá:
 
-RF01 — Permitir cadastrar, consultar, alterar e manter dados de clientes.
-RF02 — Permitir cadastrar representantes.
-RF03 — Permitir cadastrar e consultar pedidos.
-RF04 — Permitir associar um pedido a um cliente.
-RF05 — Permitir associar um pedido a um representante.
-RF06 — Permitir associar produtos aos pedidos.
-RF07 — Permitir controlar o status dos pedidos.
-RF08 — Permitir cadastrar fornecedores.
-RF09 — Permitir cadastrar materiais.
-RF10 — Permitir associar fornecedores aos materiais fornecidos.
-RF11 — Permitir cadastrar produtos e suas características.
-RF12 — Permitir cadastrar ordens de produção.
-RF13 — Permitir registrar a quantidade planejada para produção.
-RF14 — Permitir acompanhar o status das ordens de produção.
-RF15 — Permitir registrar as etapas de produção.
-RF16 — Permitir relacionar produtos às ordens de produção.
-RF17 — Permitir controlar os registros de estoque.
-RF18 — Permitir controlar lote, validade, quantidade e endereço do estoque.
-RF19 — Permitir registrar a separação de pedidos.
-RF20 — Permitir registrar caixas utilizadas no acondicionamento.
-RF21 — Permitir registrar peso e quantidade das caixas.
-RF22 — Permitir cadastrar caminhões e informações de saída.
-RF23 — Permitir registrar entregas.
-RF24 — Permitir registrar código de rastreio e datas de envio/entrega.
-RF25 — Permitir associar uma entrega ao caminhão utilizado.
-RF26 — Permitir cadastrar usuários do sistema.
-RF27 — Permitir associar usuários a perfis.
-RF28 — Permitir associar permissões a recursos.
-RF29 — Permitir controlar operações de consulta, inserção, alteração e exclusão conforme as permissões do usuário.
-RF30 — Permitir consultar informações de pedidos, estoque, produção e entregas de forma integrada.
+- RF01 — Permitir cadastrar, consultar, alterar e manter dados de clientes.
+- RF02 — Permitir cadastrar representantes.
+- RF03 — Permitir cadastrar e consultar pedidos.
+- RF04 — Permitir associar um pedido a um cliente.
+- RF05 — Permitir associar um pedido a um representante.
+- RF06 — Permitir associar produtos aos pedidos.
+- RF07 — Permitir controlar o status dos pedidos.
+- RF08 — Permitir registrar o pagamento de um pedido.
+- RF09 — Permitir registrar data, preço, valor pago e status do pagamento.
+- RF10 — Permitir cadastrar fornecedores.
+- RF11 — Permitir cadastrar materiais.
+- RF12 — Permitir associar fornecedores aos materiais fornecidos.
+- RF13 — Permitir cadastrar produtos e suas características.
+- RF14 — Permitir associar produtos aos materiais que os compõem.
+- RF15 — Permitir registrar a produção de um produto.
+- RF16 — Permitir registrar a quantidade produzida e a data de emissão da produção.
+- RF17 — Permitir acompanhar o status da produção.
+- RF18 — Permitir associar materiais e embalagens utilizados em cada produção.
+- RF19 — Permitir cadastrar embalagens.
+- RF20 — Permitir gerar e registrar a entrega de um pedido.
+- RF21 — Permitir registrar código de rastreio, datas de envio e entrega e status da entrega.
+- RF22 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
+- RF23 — Permitir consultar informações de pedidos, pagamentos, produção e entregas de forma integrada.
 
 #### Requisitos Não Funcionais
 
-RNF01 — Segurança: o acesso ao sistema deverá exigir autenticação de usuários.
-RNF02 — Controle de acesso: as funcionalidades disponíveis deverão respeitar o perfil e as permissões atribuídas ao usuário.
-RNF03 — Privacidade: informações pessoais deverão ser tratadas de acordo com a legislação aplicável, especialmente a Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018), que regulamenta o tratamento de dados pessoais por pessoas físicas e jurídicas.
-RNF04 — Integridade: o sistema deverá impedir registros que violem chaves únicas, relacionamentos ou obrigatoriedades definidas pelo modelo.
-RNF05 — Rastreabilidade: operações relevantes deverão poder ser identificadas e rastreadas por seus registros.
-RNF06 — Disponibilidade: o sistema deverá estar disponível durante os períodos necessários às operações administrativas, produtivas e logísticas.
-RNF07 — Desempenho: consultas de pedidos, estoque e produção deverão apresentar resposta adequada mesmo com o crescimento do volume de registros.
-RNF08 — Escalabilidade: o modelo deverá permitir o crescimento da quantidade de produtos, clientes, pedidos, fornecedores, estoques, produções e entregas sem alteração estrutural frequente.
-RNF09 — Usabilidade: as informações deverão ser apresentadas de forma clara e organizada para os usuários.
-RNF10 — Backup: os dados deverão possuir mecanismos de cópia de segurança e recuperação.
-RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e integrações com outros sistemas.
-RNF12 — Conformidade: o processo de fabricação deve considerar os requisitos regulatórios aplicáveis ao setor de cosméticos, higiene pessoal e perfumaria. A Anvisa, por meio da RDC nº 48/2013, estabelece requisitos de Boas Práticas de Fabricação para esses produtos, incluindo aspectos de produção, armazenamento, documentação e controle da qualidade.
-2.5 Regras de Negócio
+- RNF01 — Segurança: o acesso ao sistema deverá exigir autenticação de usuários.
+- RNF02 — Controle de acesso: o controle de perfis e permissões por usuário deverá ser definido na etapa de implementação, pois não faz parte do modelo conceitual desta versão.
+- RNF03 — Privacidade: informações pessoais deverão ser tratadas de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018).
+- RNF04 — Integridade: o sistema deverá impedir registros que violem chaves únicas, relacionamentos ou obrigatoriedades definidas pelo modelo.
+- RNF05 — Rastreabilidade: operações relevantes deverão poder ser identificadas e rastreadas por seus registros.
+- RNF06 — Disponibilidade: o sistema deverá estar disponível durante os períodos necessários às operações administrativas, produtivas e logísticas.
+- RNF07 — Desempenho: consultas de pedidos, pagamentos, produção e entregas deverão apresentar resposta adequada mesmo com o crescimento do volume de registros.
+- RNF08 — Escalabilidade: o modelo deverá permitir o crescimento da quantidade de produtos, clientes, pedidos, fornecedores, produções e entregas sem alteração estrutural frequente.
+- RNF09 — Usabilidade: as informações deverão ser apresentadas de forma clara e organizada para os usuários.
+- RNF10 — Backup: os dados deverão possuir mecanismos de cópia de segurança e recuperação.
+- RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e integrações com outros sistemas.
+- RNF12 — Conformidade: o processo de fabricação deve considerar os requisitos regulatórios do setor. A Anvisa, por meio da RDC nº 48/2013, estabelece requisitos de Boas Práticas de Fabricação para produtos de higiene pessoal, cosméticos e perfumes, incluindo produção, armazenamento, documentação e controle da qualidade.
+
+---
+
+### Regras de Negócio
 
 #### Regras operacionais
 
-RN01: cada cliente pode possuir zero ou vários pedidos.
-RN02: cada pedido deve estar associado a um cliente.
-RN03: cada pedido deve estar associado a um representante.
-RN04: um representante pode estar associado a vários pedidos.
-RN05: um fornecedor pode fornecer diversos materiais.
-RN06: um material pode ser fornecido por diferentes fornecedores.
-RN07: o CNPJ do fornecedor deve ser único.
-RN08: cada material deve possuir identificação própria.
-RN09: o estoque deve manter informações de lote, validade, quantidade e localização.
-RN10: um produto pode possuir diferentes registros de estoque.
-RN11: cada registro de estoque deve estar relacionado a um produto.
-RN12: uma ordem de produção deve possuir identificação, data de emissão, quantidade e status.
-RN13: uma ordem de produção deve estar associada a um produto.
-RN14: uma ordem de produção gera registros de produção.
-RN15: os registros de produção devem permitir o acompanhamento de programação, início, término e status.
-RN16: uma produção pode utilizar uma ou mais embalagens.
-RN17: a separação de pedido deve registrar data, quantidade e status.
-RN18: o processo de acondicionamento deve registrar as caixas utilizadas.
-RN19: cada caixa deve possuir identificação própria.
-RN20: a entrega deve possuir identificação e status.
-RN21: a entrega pode possuir código de rastreio para permitir o acompanhamento logístico.
-RN22: uma entrega deve ser realizada por um caminhão.
-RN23: a placa do caminhão deve ser única.
-RN24: o sistema deve controlar os acessos por meio de usuários, perfis, permissões e recursos.
-RN25: um usuário deve possuir um perfil.
-RN26: um perfil pode possuir várias permissões.
-RN27: as permissões devem indicar as operações autorizadas: consultar, inserir, alterar e excluir.
-RN28: as permissões devem ser aplicadas aos recursos correspondentes do sistema.
-RN29: os status de pedido, produção, separação e entrega devem utilizar valores previamente definidos pelo sistema.
-RN30: quantidades relacionadas a pedidos, produção, estoque e caixas não devem assumir valores negativos.
-RN31: registros relacionados à validade devem permitir identificar materiais e produtos que não podem ser utilizados após o vencimento.
-RN32: dados pessoais de clientes, representantes e usuários devem ser protegidos contra acesso não autorizado.
-
-A legislação sanitária aplicável ao setor também torna relevantes os controles de documentação, produção, armazenamento, qualidade e rastreabilidade. A RDC nº 48/2013 da Anvisa contempla, entre outros pontos, recebimento e armazenamento, produção, controle da qualidade e documentação.
+- RN01: cada cliente pode possuir zero ou vários pedidos.
+- RN02: cada pedido deve estar associado a um único cliente.
+- RN03: cada pedido deve estar associado a um único representante.
+- RN04: um representante pode estar associado a zero ou vários pedidos.
+- RN05: um pedido deve conter um ou mais produtos; um produto pode estar em zero ou vários pedidos.
+- RN06: um pedido pode possuir no máximo um pagamento; cada pagamento deve pertencer a exatamente um pedido.
+- RN07: um pedido pode gerar no máximo uma entrega; cada entrega deve estar associada a exatamente um pedido.
+- RN08: um fornecedor pode fornecer zero ou vários materiais.
+- RN09: um material pode ser fornecido por zero ou vários fornecedores.
+- RN10: o CNPJ do fornecedor deve ser único.
+- RN11: cada material deve possuir identificação própria e estoque mínimo não negativo.
+- RN12: um produto deve ser feito com um ou mais materiais; um material pode compor zero ou vários produtos.
+- RN13: cada produção deve estar associada a exatamente um produto; um produto pode possuir zero ou várias produções.
+- RN14: uma produção deve utilizar um ou mais materiais; um material pode ser utilizado em zero ou várias produções.
+- RN15: uma produção deve utilizar uma ou mais embalagens; uma embalagem pode ser utilizada em zero ou várias produções.
+- RN16: uma produção deve possuir identificação, data de emissão, quantidade e status.
+- RN17: cada embalagem deve possuir identificação própria, tipo, capacidade e material.
+- RN18: a entrega deve possuir identificação e status.
+- RN19: a entrega pode possuir código de rastreio para permitir o acompanhamento logístico.
+- RN20: a data de entrega deve ser igual ou posterior à data de envio.
+- RN21: os status de pedido, pagamento, produção e entrega devem utilizar valores previamente definidos pelo sistema.
+- RN22: quantidades, preços e valores relacionados a pedidos, pagamentos, produção e embalagens não devem assumir valores negativos.
+- RN23: dados pessoais de clientes e representantes devem ser protegidos contra acesso não autorizado.
 
 #### Restrições organizacionais
 
-Proteção de dados pessoais: informações como nome, telefone, e-mail, endereço e dados de autenticação devem possuir acesso restrito e finalidade definida. A LGPD estabelece regras para o tratamento de dados pessoais em meios físicos e digitais.
-Controle de acesso: nem todos os usuários devem possuir as mesmas permissões. Por isso, o modelo separa Usuário, Perfil, Permissão e Recurso.
-Controle de estoque e validade: o modelo precisa permitir identificar lotes, quantidades, endereços e validade, o que é especialmente relevante para uma indústria de cosméticos, considerando os requisitos de armazenamento e controle previstos nas Boas Práticas de Fabricação.
-Rastreabilidade logística: a existência de entrega, código de rastreio, caminhão, data de envio e data de entrega permite acompanhar a movimentação dos pedidos.
-Integridade dos cadastros: identificadores como o CNPJ do fornecedor e a placa do caminhão são tratados como únicos no modelo.
-2.6 Dicionário de Dados Conceitual (preliminar)
+- **Proteção de dados pessoais:** nome, telefone, e-mail e endereço devem ter acesso restrito e finalidade definida, conforme a LGPD. Importa porque o cadastro de clientes e representantes contém dados de contato.
+- **Normas sanitárias:** a RDC nº 48/2013 da Anvisa torna relevantes os controles de documentação, produção, armazenamento, qualidade e rastreabilidade. Por isso o modelo registra a produção com seus materiais e embalagens, permitindo identificar o que foi utilizado em cada fabricação.
+- **Rastreabilidade logística:** entrega, código de rastreio, motorista, caminhão, data de envio e data de entrega permitem acompanhar a movimentação dos pedidos.
+- **Controle financeiro:** a separação entre Pedido e Pagamento permite acompanhar a situação financeira de cada pedido (data, preço, valor pago e status).
+- **Integridade dos cadastros:** identificadores como o CNPJ do fornecedor são tratados como únicos no modelo.
 
-Entidade: Cliente
+---
 
-Atributo	Descrição	Regra de negócio associada
-CNPJ	Identificador fiscal do cliente empresarial	Deve identificar o cliente de forma única
-Razão_Social	Nome empresarial oficial	Obrigatório no cadastro
-Nome_Fantasia	Nome comercial utilizado pelo cliente	Pode ser informado quando aplicável
-Telefone	Telefone de contato	Deve possuir formato válido
-Cidade	Cidade do cliente	Obrigatória para localização
-UF	Unidade federativa do cliente	Deve utilizar UF válida
-Endereço	Endereço do cliente	Obrigatório para cadastro completo
+### Dicionário de Dados Conceitual (Preliminar)
 
-Entidade: Representante
+**Entidade: Cliente**
 
-Atributo	Descrição	Regra de negócio associada
-IdRep	Identificador do representante	Chave da entidade
-Nome	Nome do representante	Obrigatório
-Telefone	Telefone de contato	Deve possuir formato válido
-Email	E-mail do representante	Deve possuir formato válido
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdCliente | Identificador do cliente | Chave da entidade |
+| Telefone_Cliente | Telefone de contato | Deve possuir formato válido |
+| Endereco_Cliente | Endereço do cliente | Obrigatório para cadastro completo |
+| UF_Cliente | Unidade federativa do cliente | Deve utilizar UF válida |
 
-Entidade: Pedido
+**Entidade: Representante**
 
-Atributo	Descrição	Regra de negócio associada
-IdPedido	Identificador do pedido	Chave da entidade
-Data_Pedido	Data de criação do pedido	Obrigatória
-Valor_Total	Valor total do pedido	Não deve ser negativo
-Status_Pedido	Situação atual do pedido	Deve utilizar valores previamente definidos
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdRep | Identificador do representante | Chave da entidade |
+| Nome_Rep | Nome do representante | Obrigatório |
+| Telefone_Rep | Telefone de contato | Deve possuir formato válido |
+| Email_Rep | E-mail do representante | Deve possuir formato válido |
 
-Entidade: Fornecedor
+**Entidade: Pedido**
 
-Atributo	Descrição	Regra de negócio associada
-IdFornecedor	Identificador do fornecedor	Chave da entidade
-Nome	Nome do fornecedor	Obrigatório
-CNPJ	CNPJ do fornecedor	Deve ser único
-Telefone	Telefone do fornecedor	Deve possuir formato válido
-Endereço	Endereço do fornecedor	Obrigatório para cadastro completo
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdPedido | Identificador do pedido | Chave da entidade |
+| Data_Pedido | Data de criação do pedido | Obrigatória |
+| Preco_Pedido | Preço do pedido | Não deve ser negativo |
+| Status_Pedido | Situação atual do pedido | Deve utilizar valores previamente definidos |
 
-Entidade: Material
+**Entidade: Pagamento**
 
-Atributo	Descrição	Regra de negócio associada
-IdMaterial	Identificador do material	Chave da entidade
-Nome_Material	Nome ou descrição do material	Obrigatório
-Unidade	Unidade utilizada para controle do material	Deve utilizar unidade válida
-Estoque_Minimo	Quantidade mínima desejada em estoque	Não deve ser negativa
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdPagamento | Identificador do pagamento | Chave da entidade |
+| Data_Pagamento | Data do pagamento | Deve ser uma data válida |
+| Preco | Valor a ser pago pelo pedido | Não deve ser negativo |
+| Valor_Pago | Valor efetivamente pago | Não deve ser negativo |
+| Status_Pagamento | Situação do pagamento | Deve utilizar valores previamente definidos |
 
-Entidade: Produto
+**Entidade: Fornecedor**
 
-Atributo	Descrição	Regra de negócio associada
-IdProduto	Identificador do produto	Chave da entidade
-Nome	Nome do produto	Obrigatório
-EAN	Código EAN do produto	Deve possuir formato válido quando utilizado
-Unidade	Unidade de comercialização/controle	Obrigatória
-Descrição	Características descritivas do produto	Campo textual
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdFornecedor | Identificador do fornecedor | Chave da entidade |
+| Nome_Fornecedor | Nome do fornecedor | Obrigatório |
+| CNPJ_Fornecedor | CNPJ do fornecedor | Deve ser único |
+| Telefone_Fornecedor | Telefone do fornecedor | Deve possuir formato válido |
+| Endereco_Fornecedor | Endereço do fornecedor | Obrigatório para cadastro completo |
 
-Entidade: Ordem de Produção
+**Entidade: Material**
 
-Atributo	Descrição	Regra de negócio associada
-IdOrdem	Identificador da ordem de produção	Chave da entidade
-Data_Emissão	Data de emissão da ordem	Obrigatória
-Status	Situação da ordem de produção	Deve utilizar valores definidos
-Quantidade	Quantidade planejada para produção	Deve ser positiva
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdMaterial | Identificador do material | Chave da entidade |
+| Nome_Material | Nome ou descrição do material | Obrigatório |
+| Unidade_Material | Unidade utilizada para controle do material | Deve utilizar unidade válida |
+| Estoque_minimo | Quantidade mínima desejada em estoque | Não deve ser negativa |
 
-Entidade: Produção
+**Entidade: Produto**
 
-Atributo	Descrição	Regra de negócio associada
-IdProdução	Identificador do registro de produção	Chave da entidade
-Data_Programação	Data planejada para produção	Obrigatória
-Data_Início	Data de início da produção	Não deve anteceder a programação de forma inconsistente
-Data_Fim	Data de término da produção	Deve ser compatível com a data de início
-Status	Situação da produção	Deve utilizar valores definidos
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| Id_Produto | Identificador do produto | Chave da entidade |
+| Nome_Produto | Nome do produto | Obrigatório |
+| EAN_Produto | Código EAN do produto | Deve possuir formato válido quando utilizado |
+| Unidade_Produto | Unidade de comercialização/controle | Obrigatória |
+| Descricao_Produto | Características descritivas do produto | Campo textual |
 
-Entidade: Embalagem
+**Entidade: Produção**
 
-Atributo	Descrição	Regra de negócio associada
-IdEmbalagem	Identificador da embalagem	Chave da entidade
-Tipo	Tipo de embalagem	Obrigatório
-Capacidade	Capacidade da embalagem	Deve ser positiva
-Material	Material utilizado na embalagem	Deve ser informado
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdProducao | Identificador do registro de produção | Chave da entidade |
+| Data_emissao | Data de emissão da produção | Obrigatória |
+| Quantidade_Producao | Quantidade produzida/planejada | Deve ser positiva |
+| Status_Producao | Situação da produção | Deve utilizar valores definidos |
 
-Entidade: Estoque
+**Entidade: Embalagem**
 
-Atributo	Descrição	Regra de negócio associada
-IdEstoque	Identificador do registro de estoque	Chave da entidade
-Lote	Identificação do lote	Deve permitir rastreabilidade
-Validade	Data de validade	Deve ser uma data válida
-Quantidade	Quantidade disponível	Não deve ser negativa
-Endereço	Localização física do estoque	Deve identificar a localização
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdEmbalagem | Identificador da embalagem | Chave da entidade |
+| Tipo | Tipo de embalagem | Obrigatório |
+| Capacidade | Capacidade da embalagem | Deve ser positiva |
+| Material | Material de que a embalagem é feita | Deve ser informado (atributo descritivo, distinto da entidade Material) |
 
-Entidade: Separação de Pedido
+**Entidade: Entrega**
 
-Atributo	Descrição	Regra de negócio associada
-IdSeparação	Identificador da separação	Chave da entidade
-Data	Data da separação	Obrigatória
-Quantidade	Quantidade separada	Deve ser positiva
-Status	Situação da separação	Deve utilizar valores definidos
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdEntrega | Identificador da entrega | Chave da entidade |
+| Codigo_Rastreio | Código utilizado para rastreamento | Deve ser único quando utilizado |
+| Data_Envio | Data em que a entrega foi enviada | Deve ser válida |
+| Data_Entrega | Data efetiva da entrega | Deve ser igual ou posterior à data de envio |
+| Status_Entrega | Situação da entrega | Deve utilizar valores definidos |
+| Nome_Motorista | Nome do motorista responsável | Deve ser informado para operação de entrega |
+| IdCaminhao | Identificação do caminhão utilizado | Deve ser informado para operação de entrega |
 
-Entidade: Caixa
+---
 
-Atributo	Descrição	Regra de negócio associada
-IdCaixa	Identificador da caixa	Chave da entidade
-Peso	Peso da caixa	Deve ser positivo
-Quantidade	Quantidade acondicionada	Deve ser positiva
+### Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
 
-Entidade: Caminhão
+#### Entidades reconhecidas
 
-Atributo	Descrição	Regra de negócio associada
-IdCaminhão	Identificador do caminhão	Chave da entidade
-Placa	Placa do veículo	Deve ser única
-Motorista	Identificação do motorista	Deve ser informado para operação de entrega
-Data_Saída	Data de saída do veículo	Deve ser válida
+- **Cliente:** empresas que realizam pedidos; separado de Pedido porque um cliente faz vários pedidos ao longo do tempo.
+- **Representante:** responsável comercial que cadastra os pedidos.
+- **Pedido:** solicitação comercial feita pelo cliente; é o eixo que liga as áreas comercial, financeira e logística.
+- **Pagamento:** pagamento associado a um pedido, com ciclo de vida próprio (data, valor pago e status).
+- **Produto:** produtos comercializados pela organização.
+- **Fornecedor:** empresas que fornecem materiais.
+- **Material:** insumos usados na composição dos produtos e na produção.
+- **Produção:** registro da execução da fabricação de um produto.
+- **Embalagem:** tipos de embalagens utilizadas na produção.
+- **Entrega:** envio do pedido ao cliente, com rastreio, datas, status, motorista e caminhão.
 
-Entidade: Entrega
+#### Atributos e classificações
 
-Atributo	Descrição	Regra de negócio associada
-IdEntrega	Identificador da entrega	Chave da entidade
-Código_Rastreio	Código utilizado para rastreamento	Deve ser único quando utilizado
-Data_Envio	Data em que a entrega foi enviada	Deve ser válida
-Data_Entrega	Data efetiva da entrega	Deve ser igual ou posterior à data de envio
-Status	Situação da entrega	Deve utilizar valores definidos
+**Atributos por entidade**
 
-Entidade: Usuário
+| Entidade | Atributos (identificador em negrito) |
+|---|---|
+| Cliente | **IdCliente**, Telefone_Cliente, Endereco_Cliente, UF_Cliente |
+| Representante | **IdRep**, Nome_Rep, Telefone_Rep, Email_Rep |
+| Pedido | **IdPedido**, Data_Pedido, Preco_Pedido, Status_Pedido |
+| Pagamento | **IdPagamento**, Data_Pagamento, Preco, Valor_Pago, Status_Pagamento |
+| Fornecedor | **IdFornecedor**, Nome_Fornecedor, CNPJ_Fornecedor, Telefone_Fornecedor, Endereco_Fornecedor |
+| Material | **IdMaterial**, Nome_Material, Unidade_Material, Estoque_minimo |
+| Produto | **Id_Produto**, Nome_Produto, EAN_Produto, Unidade_Produto, Descricao_Produto |
+| Produção | **IdProducao**, Data_emissao, Quantidade_Producao, Status_Producao |
+| Embalagem | **IdEmbalagem**, Tipo, Capacidade, Material |
+| Entrega | **IdEntrega**, Codigo_Rastreio, Data_Envio, Data_Entrega, Status_Entrega, Nome_Motorista, IdCaminhao |
 
-Atributo	Descrição	Regra de negócio associada
-IdUsuario	Identificador do usuário	Chave da entidade
-Nome_Completo	Nome do usuário	Obrigatório
-Email	E-mail do usuário	Deve possuir formato válido
-Login	Identificador para autenticação	Deve ser único
-Senha	Credencial de autenticação	Deve ser armazenada de forma segura, nunca em texto puro
-Status	Situação do usuário	Deve permitir ativação/inativação
+**Classificação dos atributos**
 
-Entidade: Perfil
+- **Identificadores:** IdCliente, IdRep, IdPedido, IdPagamento, IdFornecedor, IdMaterial, Id_Produto, IdProducao, IdEmbalagem e IdEntrega.
+- **Descritivos:** nomes, descrições, endereços, tipos, material da embalagem e demais informações textuais.
+- **Quantitativos:** Preco_Pedido, Preco, Valor_Pago, Quantidade_Producao, Capacidade e Estoque_minimo.
+- **Temporais:** Data_Pedido, Data_Pagamento, Data_emissao, Data_Envio e Data_Entrega.
+- **De controle:** Status_Pedido, Status_Pagamento, Status_Producao e Status_Entrega.
+- **De identificação externa:** CNPJ_Fornecedor, EAN_Produto, Codigo_Rastreio e IdCaminhao.
 
-Atributo	Descrição	Regra de negócio associada
-IdPerfil	Identificador do perfil	Chave da entidade
-Cargo	Cargo/função associado ao perfil	Obrigatório
+#### Relacionamentos pertinentes
 
-Entidade: Permissão
+As cardinalidades seguem a notação (mínima, máxima) do DER.
 
-Atributo	Descrição	Regra de negócio associada
-Id_Permissão	Identificador da permissão	Chave da entidade
-Consultar	Indica autorização para consulta	Booleano
-Inserir	Indica autorização para inserção	Booleano
-Alterar	Indica autorização para alteração	Booleano
-Excluir	Indica autorização para exclusão	Booleano
-
-Entidade: Recurso
-
-Atributo	Descrição	Regra de negócio associada
-IdRecurso	Identificador do recurso	Chave da entidade
-Nome	Nome do recurso ou funcionalidade	Obrigatório
-2.7 Modelagem Conceitual (entidades, atributos e relacionamentos)
-
-#### Diagrama Entidade-Relacionamento (DER)
-
-<img width="801" height="580" alt="Captura de tela 2026-09-23 084153" src="https://github.com/user-attachments/assets/da00b8f1-6c83-450c-a1d0-47f91d44d3b1" />
-
-*Entidades reconhecidas*
-
-Cliente: representa empresas/clientes que realizam pedidos.
-Representante: representa o responsável comercial relacionado ao pedido.
-Pedido: representa a solicitação comercial realizada pelo cliente.
-Produto: representa os produtos comercializados pela organização.
-Fornecedor: representa empresas fornecedoras.
-Material: representa materiais utilizados na operação produtiva.
-Ordem de Produção: representa a programação formal de fabricação.
-Produção: representa o registro da execução da produção.
-Embalagem: representa os tipos de embalagens utilizadas.
-Estoque: representa a disponibilidade e a localização dos produtos armazenados.
-Separação de Pedido: representa a etapa de preparação do pedido para expedição.
-Caixa: representa a unidade física utilizada no acondicionamento.
-Caminhão: representa o veículo utilizado na operação de entrega.
-Entrega: representa o processo de envio/entrega do pedido.
-Usuário: representa quem acessa o sistema.
-Perfil: representa o conjunto de características/cargo associado ao usuário.
-Permissão: representa as operações autorizadas.
-Recurso: representa as funcionalidades ou recursos protegidos pelo controle de acesso.
-
-*Atributos e classificações*
-
-Os atributos foram classificados conceitualmente em:
-
-Identificadores: CNPJ (Cliente), IdRep, IdPedido, IdFornecedor, IdMaterial, IdProduto, IdOrdem, IdProdução, IdEmbalagem, IdEstoque, IdSeparação, IdCaixa, IdCaminhão, IdEntrega, IdUsuario, IdPerfil, Id_Permissão e IdRecurso.
-Atributos descritivos: nomes, descrições, endereços, tipos, cargos e demais informações textuais.
-Atributos quantitativos: quantidade, valor total, peso, capacidade e estoque mínimo.
-Atributos temporais: datas de pedido, emissão, programação, início, fim, saída, envio e entrega.
-Atributos de controle: status, login, senha e indicadores de permissão.
-Atributos de identificação externa: CNPJ, EAN, placa e código de rastreio.
-
-*Relacionamentos e cardinalidades*
-
-Relacionamento	Entidades	Cardinalidade	Finalidade
-Faz	Cliente — Pedido	1:N	Um cliente realiza vários pedidos; cada pedido pertence a um cliente
-Cadastra	Representante — Pedido	1:N	Um representante cadastra vários pedidos; cada pedido tem um representante
-Possui	Pedido — Produto	N:N	Um pedido contém vários produtos; um produto pode estar em vários pedidos
-Fornece	Fornecedor — Material	N:N	Um fornecedor fornece vários materiais; um material pode ter vários fornecedores
-É feito com	Produto — Material	N:N	Relaciona o produto aos materiais que o compõem
-É utilizado	Material — Produção	N:N	Relaciona os materiais consumidos em cada produção
-Produzido em	Produto — Ordem de Produção	1:N	Um produto pode ter várias ordens de produção
-Gera	Ordem de Produção — Produção	1:N	Uma ordem gera registros de produção
-Possui	Produto — Estoque	1:N	Um produto pode ter vários registros de estoque (lote, validade, endereço)
-Utiliza	Produção — Embalagem	N:N	Uma produção pode utilizar várias embalagens
-Separado em	Pedido — Separação de Pedido	1:N	Relaciona o pedido à sua separação
-Acondiciona	Separação de Pedido — Caixa	1:N	Uma separação é acondicionada em uma ou mais caixas
-Compõe	Caixa — Entrega	N:1	Várias caixas compõem uma entrega
-Realizada por	Entrega — Caminhão	N:1	Um caminhão realiza várias entregas; cada entrega usa um caminhão
-Possui	Usuário — Perfil	N:1	Cada usuário tem um perfil; um perfil vale para vários usuários
-Possui	Perfil — Permissão	N:N	Um perfil pode ter várias permissões
-Aplicada a	Permissão — Recurso	N:1	Cada permissão é aplicada a um recurso
+| Relacionamento | Entidades | Cardinalidade | Finalidade |
+|---|---|---|---|
+| Faz | Cliente (0,n) — Pedido (1,1) | 1:N | Um cliente realiza zero ou vários pedidos; cada pedido pertence a um cliente |
+| Cadastra | Representante (0,n) — Pedido (1,1) | 1:N | Um representante cadastra zero ou vários pedidos; cada pedido tem um representante |
+| Possui | Pedido (1,n) — Produto (0,n) | N:N | Um pedido contém um ou mais produtos; um produto pode estar em vários pedidos |
+| Possui | Pedido (0,N) — Pagamento (1,1) | 1:1 | um pedido pode ter vários pagamentos por causa do parcelamento |
+| Gera | Pedido (0,1) — Entrega (1,1) | 1:1 | Um pedido gera no máximo uma entrega; cada entrega pertence a um pedido |
+| Fornece | Fornecedor (0,n) — Material (0,n) | N:N | Um fornecedor fornece vários materiais; um material pode ter vários fornecedores |
+| É feito com | Material (0,n) — Produto (1,n) | N:N | Relaciona o produto aos materiais que o compõem (mínimo de um) |
+| É utilizado | Material (0,n) — Produção (1,n) | N:N | Relaciona os materiais utilizados em cada produção (mínimo de um) |
+| É produzido em | Produto (0,n) — Produção (1,1) | 1:N | Um produto pode ter várias produções; cada produção é de um único produto |
+| Utiliza | Produção (1,n) — Embalagem (0,n) | N:N | Uma produção utiliza uma ou mais embalagens; uma embalagem pode ser usada em várias produções |
 
 #### Restrições e políticas organizacionais aplicadas ao modelo
 
-O modelo considera:
+- identificação única dos principais registros e unicidade do CNPJ do fornecedor;
+- controle de status dos processos (pedido, pagamento, produção e entrega) com valores pré-definidos;
+- rastreabilidade das entregas (código de rastreio, datas, motorista e caminhão);
+- rastreabilidade da produção (produto, materiais e embalagens utilizados);
+- integridade referencial entre entidades;
+- proteção dos dados pessoais (LGPD);
+- possibilidade de expansão futura para outros processos da organização.
 
-identificação única dos principais registros;
-controle de status dos processos;
-rastreabilidade de estoque por lote e validade;
-rastreabilidade das entregas;
-controle de acesso baseado em perfil e permissão;
-integridade referencial entre entidades;
-proteção dos dados pessoais;
-possibilidade de expansão futura para outros processos da organização.
-2.8 Justificativa Técnica
+---
 
-A modelagem foi estruturada de maneira a separar os principais objetos de negócio da organização em entidades independentes. Essa decisão evita concentrar informações diferentes em uma única estrutura e permite que cada entidade represente um conceito específico da operação.
+### Diagrama Entidade-Relacionamento (DER)
 
-A entidade Cliente foi separada de Pedido porque um mesmo cliente pode realizar diferentes pedidos ao longo do tempo. Da mesma forma, Representante foi separado de Pedido, permitindo que um representante esteja associado a diferentes operações comerciais.
+O DER foi construído no BRModelo Web e representa entidades, atributos, relacionamentos e cardinalidades (mínima, máxima). Link para visualização: https://app.brmodeloweb.com/publicview/6ab340cd664f8629cdf4e2ef
 
-A separação entre Fornecedor e Material permite representar a relação de fornecimento. O modelo considera que diferentes fornecedores podem fornecer materiais e que um fornecedor pode trabalhar com diversos materiais.
 
-A distinção entre Produto, Ordem de Produção e Produção permite separar o cadastro permanente do produto, da ordem que determina uma fabricação e do registro efetivo de produção. Isso possibilita acompanhar o planejamento e a execução da fabricação.
+<img width="917" height="585" alt="Captura de tela 2026-10-14 092831" src="https://github.com/user-attachments/assets/36f49aaf-81c9-4019-bdaf-c999aeca25f0" />
 
-A entidade Estoque foi separada de Produto porque um mesmo produto pode possuir diferentes registros de estoque, inclusive por lote, validade ou localização. Essa decisão é importante para permitir rastreabilidade.
 
-As entidades Separação de Pedido, Caixa, Entrega e Caminhão representam etapas diferentes da logística. A separação representa a preparação, a caixa representa o acondicionamento físico, a entrega representa o transporte do pedido e o caminhão representa o veículo responsável pelo transporte.
+O modelo é consistente com o dicionário de dados e com as regras de negócio, e já prevê integração e escalabilidade: as entidades Pedido, Pagamento, Produção e Entrega, com seus campos de status, sustentam o painel proposto, e novos processos (estoque, separação, controle de acesso) podem ser acrescentados sem reestruturar o que já existe.
 
-Por fim, Usuário, Perfil, Permissão e Recurso foram modelados separadamente para permitir um mecanismo de controle de acesso mais flexível. Essa estrutura possibilita que diferentes perfis tenham diferentes permissões sobre diferentes recursos do sistema.
+---
 
-*3. Uso de Inteligência Artificial*
+### Justificativa Técnica
 
-A Inteligência Artificial foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, principalmente na elaboração do README e do código HTML do dicionário de dados.
+**Por que separar as entidades.** Cada entidade representa um conceito específico da operação, o que evita concentrar informações diferentes em uma única estrutura. Cliente e Representante ficam fora de Pedido porque ambos se repetem em vários pedidos; guardar seus dados dentro do pedido geraria redundância.
 
-No desenvolvimento do dicionário de dados, inicialmente foi utilizado um prompt para gerar a estrutura em HTML. Entretanto, o primeiro resultado apresentou uma estrutura mais elaborada do que a solicitada pelo professor. Por esse motivo, o prompt foi reformulado, orientando a IA a desenvolver o HTML utilizando uma lista simples, conforme as orientações fornecidas para a atividade.
+**Pagamento como entidade, e não atributos de Pedido.** A alternativa seria colocar data, valor pago e status do pagamento dentro de Pedido. Optamos por uma entidade própria porque o pagamento tem ciclo de vida independente do pedido (um pedido pode ser aprovado e ainda não pago, por exemplo). A cardinalidade (0,N)–(1,1) reflete que o pedido pode ainda não ter pagamento registrado, mas todo pedido pode ter vários pagamentos por causa do parcelamento.
 
-A IA também foi utilizada como apoio na organização e na elaboração do README, auxiliando na estruturação das informações do projeto, na descrição dos processos, dos requisitos, das regras de negócio e das demais seções solicitadas. Após a geração do conteúdo, as informações foram revisadas e ajustadas de acordo com o projeto desenvolvido e com as orientações da atividade.
+**Entrega com relacionamento 1:1 opcional com Pedido.** Uma alternativa seria uma entrega agrupar vários pedidos. Adotamos uma entrega por pedido porque simplifica o rastreio nesta etapa e corresponde ao fluxo observado; a cardinalidade (0,1) do lado do pedido indica que o pedido pode existir antes de a entrega ser gerada.
 
-#### 4. Conclusão
+**Motorista e caminhão como atributos da Entrega.** Poderiam ser entidades próprias. Como nesta etapa precisamos apenas identificar quem e o que realizou a entrega, mantê-los como atributos reduz a complexidade. A criação de entidades específicas (com placa única) está nos trabalhos futuros.
 
-Síntese. O projeto apresentou uma modelagem conceitual de banco de dados direcionada à realidade operacional da Muriel Cosméticos, contemplando processos comerciais, produtivos, logísticos e administrativos. O DER desenvolvido permite relacionar clientes, representantes, pedidos e produtos com os processos posteriores de separação, acondicionamento e entrega. Também foram contemplados fornecedores, materiais, produção, embalagens e estoques, possibilitando representar o fluxo de informações desde o fornecimento de materiais e a fabricação até a disponibilização e a distribuição dos produtos.
+**Pedido e Produto em N:N.** Um pedido tem vários produtos e um produto aparece em vários pedidos, então a relação é naturalmente N:N. Ela será resolvida em uma tabela associativa no modelo lógico, onde entrarão quantidade e preço unitário.
 
-Contribuições. Outro aspecto importante foi a inclusão do controle de acesso, por meio das entidades Usuário, Perfil, Permissão e Recurso, que permite que uma futura implementação controle quais operações cada usuário está autorizado a executar. As cardinalidades dos relacionamentos foram documentadas na seção 2.7.
+**Produto, Produção e materiais.** Separamos o cadastro permanente do produto (Produto) do registro de cada fabricação (Produção), o que permite várias produções do mesmo produto ao longo do tempo. A relação Produto–Material (N:N) descreve a composição; a relação Material–Produção (N:N) registra o que foi realmente usado em cada fabricação, importante para a rastreabilidade exigida pela RDC nº 48/2013. Optamos por uma única entidade Produção, que concentra emissão, quantidade e status, em vez de separar "ordem" e "execução", por ser suficiente para o escopo desta etapa.
 
-Aprendizados. O projeto permitiu compreender a importância de transformar processos organizacionais em entidades, atributos e relacionamentos, considerando não apenas o armazenamento das informações, mas também as regras de negócio, as cardinalidades, a integridade, a segurança e a possibilidade de expansão futura.
+**Embalagem separada de Material.** Embalagem tem atributos próprios (tipo e capacidade) e uma relação própria com a Produção (N:N), por isso não foi tratada como mais um material.
 
-Trabalhos futuros. Como evolução deste trabalho, propomos:
+**Fornecedor–Material em N:N.** Um mesmo material pode ser comprado de fornecedores diferentes, e um fornecedor atende vários materiais; a relação 1:N impediria representar essa realidade.
 
-detalhar os relacionamentos com atributos próprios, como quantidade e preço unitário na relação Pedido — Produto e quantidade de cada material na composição do produto;
-relacionar Separação de Pedido e Caixa ao Estoque (lote), para garantir a rastreabilidade completa do lote até a entrega;
-avaliar a criação de uma entidade própria para o motorista e o tratamento de Valor_Total como atributo derivado dos itens do pedido;
-elaborar o modelo lógico e físico, com definição de tipos de dados e criação das tabelas em SQL;
-implementar o painel de acompanhamento de pedidos integrado ao Protheus, descrito na seção 2.2.
+**Escopo.** Estoque, separação/acondicionamento e controle de acesso foram observados, mas ficaram fora desta versão para manter o modelo viável nesta primeira etapa. O atributo Estoque_minimo em Material mantém o controle mínimo dos insumos.
 
-#### 5. Referências Bibliográficas
+---
+
+### Uso de Inteligência Artificial
+
+
+#### Uso 1 — Código HTML do dicionário de dados
+
+| Item | Registro |
+|---|---|
+| **Ferramenta e etapa** | *ChatGPT* — geração do código HTML do dicionário de dados. |
+| **Motivação** | Agilizar a montagem do dicionário de dados em HTML. |
+| **Prompt(s) utilizados** | 1º prompt: solicitação para gerar o código HTML do dicionário de dados a partir das informações do projeto. Prompt reformulado: solicitação para simplificar o código e apresentar o dicionário em formato de lista simples, seguindo as orientações do professor.|
+| **Resposta recebida** | O primeiro resultado trouxe uma estrutura mais elaborada do que a pedida pelo professor. Após a reformulação do prompt, a IA gerou o HTML em formato de lista simples. |
+| **Fontes consultadas e verificadas** | Não se aplica: o conteúdo do dicionário foi definido pelo grupo a partir do DER; a IA só gerou a formatação. |
+| **Trechos rejeitados ou corrigidos** | A primeira versão foi descartada por apresentar uma estrutura mais complexa do que a solicitada. A segunda versão foi utilizada, com revisão do conteúdo e adequação dos nomes dos atributos às informações do DER. |
+| **Justificativa da escolha final** | Mantida a versão em lista simples, por seguir as orientações do professor. |
+| **Reflexão crítica** | A IA tendeu a entregar mais do que o pedido (estrutura mais complexa), mostrando a necessidade de especificar o formato no prompt e revisar o resultado. |
+
+#### Uso 2 — Elaboração do README (versão inicial)
+
+| Item | Registro |
+|---|---|
+| **Ferramenta e etapa** | *(PREENCHER: nome da ferramenta)* — organização e redação do README (descrição dos processos, requisitos, regras de negócio e demais seções). |
+| **Motivação** | Apoio na estruturação das informações levantadas na visita e no DER. |
+| **Prompt(s) utilizados** | *(PREENCHER)* |
+| **Resposta recebida** | Texto do README organizado nas seções solicitadas. |
+| **Fontes consultadas e verificadas** | LGPD (Lei nº 13.709/2018), RDC nº 48/2013 da Anvisa e dados institucionais da Muriel (site e LinkedIn). *(PREENCHER: como o grupo conferiu, por exemplo acessando os links e comparando com o que foi visto na visita)* |
+| **Trechos rejeitados ou corrigidos** | *(PREENCHER)* |
+| **Justificativa da escolha final** | O conteúdo foi revisado e ajustado ao projeto e às orientações da atividade. |
+| **Reflexão crítica** | *(PREENCHER: por exemplo, informações genéricas ou que não correspondiam ao observado na visita)* |
+
+#### Uso 3 — Ajuste do README ao DER final e às normas da entrega
+
+| Item | Registro |
+|---|---|
+| **Ferramenta e etapa** | Claude (Anthropic) — revisão do README para torná-lo coerente com o DER final e com o modelo de README fornecido pelo professor. |
+| **Motivação** | O DER mudou depois da primeira versão do README (saíram entidades como Estoque, Caixa, Separação, Caminhão e as de controle de acesso; entrou Pagamento), e o texto precisava refletir o diagrama e seguir a estrutura exigida. |
+| **Prompt(s) utilizados** | "Preciso ajustar meu readme para que fique coerente com meu diagrama conceitual" (com a imagem do DER anexada) e "Tem que estar de acordo com as normas fornecidas do anexo" (com o modelo do professor). |
+| **Resposta recebida** | README reescrito com entidades, atributos, relacionamentos, cardinalidades, requisitos e regras alinhados ao DER, mais a lista de inconsistências encontradas. |
+| **Fontes consultadas e verificadas** | A IA se baseou na imagem do DER e no texto do grupo; não buscou fontes externas. As cardinalidades foram lidas da imagem e *(PREENCHER: o grupo conferiu cada uma no BRModelo?)*. |
+| **Trechos rejeitados ou corrigidos** | *(PREENCHER: o que o grupo alterou ou descartou)* |
+| **Justificativa da escolha final** | *(PREENCHER)* |
+| **Reflexão crítica** | A IA interpreta o diagrama a partir de uma imagem e pode errar a leitura de cardinalidades ou nomes de atributos; por isso o grupo precisa conferir tudo com o DER original. Também apontou pontos que precisam de decisão humana (ex.: possível redundância entre Preco_Pedido e Preco). |
+
+---
+
+## Conclusão
+
+**Síntese.** O projeto apresentou uma modelagem conceitual de banco de dados direcionada à realidade operacional da Muriel Cosméticos, contemplando processos comerciais, financeiros, produtivos e logísticos. O DER relaciona clientes, representantes, pedidos, produtos e pagamentos com a entrega, além de fornecedores, materiais, produção e embalagens, representando o fluxo de informações desde o fornecimento de materiais e a fabricação até a entrega do pedido.
+
+**Contribuições.** O modelo documenta as cardinalidades mínimas e máximas de todos os relacionamentos e fornece a base para o acompanhamento integrado de pedido, pagamento, produção e entrega, apoiando a proposta de painel de acompanhamento identificada na visita.
+
+**Aprendizados.** O projeto permitiu compreender como transformar processos organizacionais em entidades, atributos e relacionamentos, considerando regras de negócio, cardinalidades, integridade, segurança e expansão futura, além da importância de manter a documentação coerente com o diagrama.
+
+**Trabalhos futuros.**
+- incluir o controle de estoque, com lote, validade, quantidade e endereço, relacionado a Produto;
+- incluir a separação de pedidos e o acondicionamento em caixas, relacionados ao estoque (lote), para garantir a rastreabilidade completa do lote até a entrega;
+- incluir o controle de acesso, por meio de entidades como Usuário, Perfil, Permissão e Recurso;
+- avaliar entidades próprias para Caminhão (com placa única) e Motorista, hoje atributos da Entrega;
+- detalhar os relacionamentos com atributos próprios, como quantidade e preço unitário em Pedido — Produto e quantidade de cada material na composição do produto;
+- revisar a redundância entre Preco_Pedido (Pedido) e Preco (Pagamento), avaliando o valor do pedido como atributo derivado dos itens;
+- elaborar o modelo lógico e físico, com tipos de dados e criação das tabelas em SQL;
+- implementar o painel de acompanhamento integrado ao Protheus.
+
+---
+
+## Referências Bibliográficas
 
 MURIEL COSMÉTICOS. Muriel Cosméticos — site institucional. Disponível em: https://muriel.com.br/. Acesso em: 21 set. 2026.
 
