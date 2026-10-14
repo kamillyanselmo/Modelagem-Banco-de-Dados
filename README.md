@@ -218,6 +218,16 @@ O sistema deverá:
 | Preco_Pedido | Preço do pedido | Não deve ser negativo |
 | Status_Pedido | Situação atual do pedido | Deve utilizar valores previamente definidos |
 
+**Entidade: Pagamento**
+
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdPagamento | Identificador do pagamento | Chave da entidade |
+| Data_Pagamento | Data do pagamento | Deve ser uma data válida |
+| Preco | Valor a ser pago pelo pedido | Não deve ser negativo |
+| Valor_Pago | Valor efetivamente pago | Não deve ser negativo |
+| Status_Pagamento | Situação do pagamento | Deve utilizar valores previamente definidos |
+
 **Entidade: Nota fiscal**
 
 | Atributo | Descrição | Regra de negócio associada |
@@ -229,16 +239,6 @@ O sistema deverá:
 | Chave_Acesso | Chave de acesso da nota fiscal | Deve possuir formato válido |
 | Valor_Total | Valor total da nota fiscal | Não deve ser negativo |
 | StatusNF | Situação da nota fiscal | Deve utilizar valores previamente definidos |
-
-**Entidade: Pagamento**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdPagamento | Identificador do pagamento | Chave da entidade |
-| Data_Pagamento | Data do pagamento | Deve ser uma data válida |
-| Preco | Valor a ser pago pelo pedido | Não deve ser negativo |
-| Valor_Pago | Valor efetivamente pago | Não deve ser negativo |
-| Status_Pagamento | Situação do pagamento | Deve utilizar valores previamente definidos |
 
 **Entidade: Fornecedor**
 
