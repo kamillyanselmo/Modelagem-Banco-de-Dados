@@ -64,6 +64,7 @@ A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméti
 - Registro do representante responsável.
 - Registro da data, do preço e do status do pedido.
 - Associação dos produtos ao pedido.
+- Registro de NF.
 
 **Controle de pagamentos**
 - Registro do pagamento do pedido.
@@ -120,10 +121,15 @@ O sistema deverá:
 - RF17 — Permitir acompanhar o status da produção.
 - RF18 — Permitir associar materiais e embalagens utilizados em cada produção.
 - RF19 — Permitir cadastrar embalagens.
-- RF20 — Permitir gerar e registrar a entrega de um pedido.
-- RF21 — Permitir registrar código de rastreio, datas de envio e entrega e status da entrega.
-- RF22 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
-- RF23 — Permitir consultar informações de pedidos, pagamentos, produção e entregas de forma integrada.
+- RF21 — Permitir gerar e registrar notas fiscais relacionadas aos pedidos.
+- RF22 — Permitir registrar o número, série, data de emissão, chave de acesso, valor total e status da nota fiscal.
+- RF23 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
+- RF24 — Permitir consultar as notas fiscais vinculadas aos pedidos.
+- RF25 — Permitir gerar e registrar a entrega de um pedido.
+- RF26 — Permitir registrar código de rastreio, datas de envio e entrega e status da entrega.
+- RF27 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
+- RF28 — Permitir consultar informações de pedidos, pagamentos, produção, notas fiscais e entregas de forma integrada.
+
 
 #### Requisitos Não Funcionais
 
@@ -133,11 +139,11 @@ O sistema deverá:
 - RNF04 — Integridade: o sistema deverá impedir registros que violem chaves únicas, relacionamentos ou obrigatoriedades definidas pelo modelo.
 - RNF05 — Rastreabilidade: operações relevantes deverão poder ser identificadas e rastreadas por seus registros.
 - RNF06 — Disponibilidade: o sistema deverá estar disponível durante os períodos necessários às operações administrativas, produtivas e logísticas.
-- RNF07 — Desempenho: consultas de pedidos, pagamentos, produção e entregas deverão apresentar resposta adequada mesmo com o crescimento do volume de registros.
-- RNF08 — Escalabilidade: o modelo deverá permitir o crescimento da quantidade de produtos, clientes, pedidos, fornecedores, produções e entregas sem alteração estrutural frequente.
+- RNF07 — Desempenho: consultas de pedidos, pagamentos, notas fiscais, produção e entregas deverão apresentar resposta adequada mesmo com o crescimento do volume de registros.
+- RNF08 — Escalabilidade: o modelo deverá permitir o crescimento da quantidade de produtos, clientes, pedidos, fornecedores, produções, notas fiscais e entregas sem alteração estrutural frequente.
 - RNF09 — Usabilidade: as informações deverão ser apresentadas de forma clara e organizada para os usuários.
 - RNF10 — Backup: os dados deverão possuir mecanismos de cópia de segurança e recuperação.
-- RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e integrações com outros sistemas.
+- RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e integrações com outros sistemas, incluindo sistemas de emissão e consulta de notas fiscais.
 - RNF12 — Conformidade: o processo de fabricação deve considerar os requisitos regulatórios do setor. A Anvisa, por meio da RDC nº 48/2013, estabelece requisitos de Boas Práticas de Fabricação para produtos de higiene pessoal, cosméticos e perfumes, incluindo produção, armazenamento, documentação e controle da qualidade.
 
 ---
@@ -151,7 +157,7 @@ O sistema deverá:
 - RN03: cada pedido deve estar associado a um único representante.
 - RN04: um representante pode estar associado a zero ou vários pedidos.
 - RN05: um pedido deve conter um ou mais produtos; um produto pode estar em zero ou vários pedidos.
-- RN06: um pedido pode possuir no máximo um pagamento; cada pagamento deve pertencer a exatamente um pedido.
+- RN06: um pedido pode possuir zero ou vários pagamentos; cada pagamento deve pertencer a exatamente um pedido.
 - RN07: um pedido pode gerar no máximo uma entrega; cada entrega deve estar associada a exatamente um pedido.
 - RN08: um fornecedor pode fornecer zero ou vários materiais.
 - RN09: um material pode ser fornecido por zero ou vários fornecedores.
@@ -169,7 +175,10 @@ O sistema deverá:
 - RN21: os status de pedido, pagamento, produção e entrega devem utilizar valores previamente definidos pelo sistema.
 - RN22: quantidades, preços e valores relacionados a pedidos, pagamentos, produção e embalagens não devem assumir valores negativos.
 - RN23: dados pessoais de clientes e representantes devem ser protegidos contra acesso não autorizado.
-
+- RN24: cada nota fiscal deve estar associada a exatamente um pedido; um pedido pode possuir zero ou várias notas fiscais.
+- RN25: cada nota fiscal deve possuir identificação, número, série, data de emissão, chave de acesso, valor total e status.
+- RN26: o número e a série da nota fiscal devem identificar a nota fiscal dentro do contexto definido pelo sistema.
+- RN27: o valor total da nota fiscal não deve assumir valor negativo.
 #### Restrições organizacionais
 
 - **Proteção de dados pessoais:** nome, telefone, e-mail e endereço devem ter acesso restrito e finalidade definida, conforme a LGPD. Importa porque o cadastro de clientes e representantes contém dados de contato.
@@ -208,6 +217,18 @@ O sistema deverá:
 | Data_Pedido | Data de criação do pedido | Obrigatória |
 | Preco_Pedido | Preço do pedido | Não deve ser negativo |
 | Status_Pedido | Situação atual do pedido | Deve utilizar valores previamente definidos |
+
+**Entidade: Nota fiscal**
+
+| Atributo | Descrição | Regra de negócio associada |
+|---|---|---|
+| IdNotaFiscal | Identificador da nota fiscal | Chave da entidade |
+| Numero_NF | Número da nota fiscal | Deve ser informado |
+| Serie | Série da nota fiscal | Deve ser informada |  
+| Data_Emissao | Data de emissão da nota fiscal | Deve ser uma data válida |
+| Chave_Acesso | Chave de acesso da nota fiscal | Deve possuir formato válido |
+| Valor_Total | Valor total da nota fiscal | Não deve ser negativo |
+| StatusNF | Situação da nota fiscal | Deve utilizar valores previamente definidos |
 
 **Entidade: Pagamento**
 
@@ -288,6 +309,7 @@ O sistema deverá:
 - **Representante:** responsável comercial que cadastra os pedidos.
 - **Pedido:** solicitação comercial feita pelo cliente; é o eixo que liga as áreas comercial, financeira e logística.
 - **Pagamento:** pagamento associado a um pedido, com ciclo de vida próprio (data, valor pago e status).
+- **Nota_Fiscal**: documento fiscal associado a um pedido, contendo informações como número, série, data de emissão, chave de acesso, valor total e status.
 - **Produto:** produtos comercializados pela organização.
 - **Fornecedor:** empresas que fornecem materiais.
 - **Material:** insumos usados na composição dos produtos e na produção.
@@ -305,6 +327,7 @@ O sistema deverá:
 | Representante | **IdRep**, Nome_Rep, Telefone_Rep, Email_Rep |
 | Pedido | **IdPedido**, Data_Pedido, Preco_Pedido, Status_Pedido |
 | Pagamento | **IdPagamento**, Data_Pagamento, Preco, Valor_Pago, Status_Pagamento |
+| Nota_Fiscal	**IdNotaFiscal**, NumeroNF, Serie, DataEmissao, ChaveAcesso, ValorTotal, StatusNF |
 | Fornecedor | **IdFornecedor**, Nome_Fornecedor, CNPJ_Fornecedor, Telefone_Fornecedor, Endereco_Fornecedor |
 | Material | **IdMaterial**, Nome_Material, Unidade_Material, Estoque_minimo |
 | Produto | **Id_Produto**, Nome_Produto, EAN_Produto, Unidade_Produto, Descricao_Produto |
@@ -314,7 +337,7 @@ O sistema deverá:
 
 **Classificação dos atributos**
 
-- **Identificadores:** IdCliente, IdRep, IdPedido, IdPagamento, IdFornecedor, IdMaterial, Id_Produto, IdProducao, IdEmbalagem e IdEntrega.
+- **Identificadores:** IdCliente, IdRep, IdPedido, IdPagamento, IdNotaFiscal, IdFornecedor, IdMaterial, Id_Produto, IdProducao, IdEmbalagem e IdEntrega.
 - **Descritivos:** nomes, descrições, endereços, tipos, material da embalagem e demais informações textuais.
 - **Quantitativos:** Preco_Pedido, Preco, Valor_Pago, Quantidade_Producao, Capacidade e Estoque_minimo.
 - **Temporais:** Data_Pedido, Data_Pagamento, Data_emissao, Data_Envio e Data_Entrega.
@@ -332,6 +355,7 @@ As cardinalidades seguem a notação (mínima, máxima) do DER.
 | Possui | Pedido (1,n) — Produto (0,n) | N:N | Um pedido contém um ou mais produtos; um produto pode estar em vários pedidos |
 | Possui | Pedido (0,N) — Pagamento (1,1) | 1:1 | um pedido pode ter vários pagamentos por causa do parcelamento |
 | Gera | Pedido (0,1) — Entrega (1,1) | 1:1 | Um pedido gera no máximo uma entrega; cada entrega pertence a um pedido |
+| Possui	Pedido (0,n) — Nota_Fiscal (1,1)	1:N	Um pedido pode possuir zero ou várias notas fiscais; cada nota fiscal pertence a um pedido |
 | Fornece | Fornecedor (0,n) — Material (0,n) | N:N | Um fornecedor fornece vários materiais; um material pode ter vários fornecedores |
 | É feito com | Material (0,n) — Produto (1,n) | N:N | Relaciona o produto aos materiais que o compõem (mínimo de um) |
 | É utilizado | Material (0,n) — Produção (1,n) | N:N | Relaciona os materiais utilizados em cada produção (mínimo de um) |
@@ -344,6 +368,7 @@ As cardinalidades seguem a notação (mínima, máxima) do DER.
 - controle de status dos processos (pedido, pagamento, produção e entrega) com valores pré-definidos;
 - rastreabilidade das entregas (código de rastreio, datas, motorista e caminhão);
 - rastreabilidade da produção (produto, materiais e embalagens utilizados);
+- rastreabilidade das notas fiscais (número, série, data de emissão, chave de acesso, valor total e status);
 - integridade referencial entre entidades;
 - proteção dos dados pessoais (LGPD);
 - possibilidade de expansão futura para outros processos da organização.
@@ -367,6 +392,8 @@ O modelo é consistente com o dicionário de dados e com as regras de negócio, 
 **Por que separar as entidades.** Cada entidade representa um conceito específico da operação, o que evita concentrar informações diferentes em uma única estrutura. Cliente e Representante ficam fora de Pedido porque ambos se repetem em vários pedidos; guardar seus dados dentro do pedido geraria redundância.
 
 **Pagamento como entidade, e não atributos de Pedido.** A alternativa seria colocar data, valor pago e status do pagamento dentro de Pedido. Optamos por uma entidade própria porque o pagamento tem ciclo de vida independente do pedido (um pedido pode ser aprovado e ainda não pago, por exemplo). A cardinalidade (0,N)–(1,1) reflete que o pedido pode ainda não ter pagamento registrado, mas todo pedido pode ter vários pagamentos por causa do parcelamento.
+
+**Nota Fiscal como entidade própria**. A Nota Fiscal foi separada de Pedido porque possui informações próprias, como número, série, data de emissão, chave de acesso, valor total e status. Dessa forma, é possível manter o registro e o acompanhamento das informações fiscais relacionadas aos pedidos sem concentrá-las diretamente na entidade Pedido.
 
 **Entrega com relacionamento 1:1 opcional com Pedido.** Uma alternativa seria uma entrega agrupar vários pedidos. Adotamos uma entrega por pedido porque simplifica o rastreio nesta etapa e corresponde ao fluxo observado; a cardinalidade (0,1) do lado do pedido indica que o pedido pode existir antes de a entrega ser gerada.
 
