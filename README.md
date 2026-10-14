@@ -39,8 +39,8 @@ A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméti
 
 - **Evidências da organização:**
   - Site oficial: https://muriel.com.br/
-  - Perfil no LinkedIn: Muriel Cosméticos *(COLE-AQUI-A-URL)*
-  - Google Maps / Meu Negócio: *(COLE-AQUI-A-URL)*
+  - Perfil no LinkedIn: Muriel Cosméticos: https://br.linkedin.com/company/muriel-cosmeticos
+  - Google Maps / Meu Negócio: Rua Prefeito Takume Koike, 213 - Núcleo Itaim, Ferraz de Vasconcelos - SP, 08538-100
   - Endereço: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
   - Contato: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921.
   - Responsável/colaboradora que acompanhou a visita: *(PREENCHER: nome e setor, se autorizado)*. Data da visita: *(PREENCHER)*.
