@@ -327,7 +327,7 @@ O sistema deverá:
 | Representante | **IdRep**, Nome_Rep, Telefone_Rep, Email_Rep |
 | Pedido | **IdPedido**, Data_Pedido, Preco_Pedido, Status_Pedido |
 | Pagamento | **IdPagamento**, Data_Pagamento, Preco, Valor_Pago, Status_Pagamento |
-| Nota_Fiscal	**IdNotaFiscal**, NumeroNF, Serie, DataEmissao, ChaveAcesso, ValorTotal, StatusNF |
+| Nota_Fiscal |	**IdNotaFiscal**, NumeroNF, Serie, DataEmissao, ChaveAcesso, ValorTotal, StatusNF |
 | Fornecedor | **IdFornecedor**, Nome_Fornecedor, CNPJ_Fornecedor, Telefone_Fornecedor, Endereco_Fornecedor |
 | Material | **IdMaterial**, Nome_Material, Unidade_Material, Estoque_minimo |
 | Produto | **Id_Produto**, Nome_Produto, EAN_Produto, Unidade_Produto, Descricao_Produto |
