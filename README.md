@@ -355,7 +355,7 @@ As cardinalidades seguem a notação (mínima, máxima) do DER.
 | Possui | Pedido (1,n) — Produto (0,n) | N:N | Um pedido contém um ou mais produtos; um produto pode estar em vários pedidos |
 | Possui | Pedido (0,N) — Pagamento (1,1) | 1:1 | um pedido pode ter vários pagamentos por causa do parcelamento |
 | Gera | Pedido (0,1) — Entrega (1,1) | 1:1 | Um pedido gera no máximo uma entrega; cada entrega pertence a um pedido |
-| Possui	Pedido (0,n) — Nota_Fiscal (1,1) |	1:N	Um pedido pode possuir zero ou várias notas fiscais; cada nota fiscal pertence a um pedido |
+| Possui |	Pedido (0,n) — Nota_Fiscal (1,1) |	1:N	Um pedido pode possuir zero ou várias notas fiscais; cada nota fiscal pertence a um pedido |
 | Fornece | Fornecedor (0,n) — Material (0,n) | N:N | Um fornecedor fornece vários materiais; um material pode ter vários fornecedores |
 | É feito com | Material (0,n) — Produto (1,n) | N:N | Relaciona o produto aos materiais que o compõem (mínimo de um) |
 | É utilizado | Material (0,n) — Produção (1,n) | N:N | Relaciona os materiais utilizados em cada produção (mínimo de um) |
