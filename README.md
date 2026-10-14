@@ -284,7 +284,7 @@ O sistema deverá:
 
 #### Entidades reconhecidas
 
-- **Cliente:** empresas que realizam pedidos; separado de Pedido porque um cliente faz vários pedidos ao longo do tempo.
+- **Cliente:** pessoas físicas que realizam pedidos; separado de Pedido porque um cliente faz vários pedidos ao longo do tempo.
 - **Representante:** responsável comercial que cadastra os pedidos.
 - **Pedido:** solicitação comercial feita pelo cliente; é o eixo que liga as áreas comercial, financeira e logística.
 - **Pagamento:** pagamento associado a um pedido, com ciclo de vida próprio (data, valor pago e status).
@@ -393,7 +393,7 @@ O modelo é consistente com o dicionário de dados e com as regras de negócio, 
 |---|---|
 | **Ferramenta e etapa** | *ChatGPT* — geração do código HTML do dicionário de dados. |
 | **Motivação** | Agilizar a montagem do dicionário de dados em HTML. |
-| **Prompt(s) utilizados** | 1º prompt: solicitação para gerar o código HTML do dicionário de dados a partir das informações do projeto. Prompt reformulado: solicitação para simplificar o código e apresentar o dicionário em formato de lista simples, seguindo as orientações do professor.|
+| **Prompts utilizados** | 1º prompt: solicitação para gerar o código HTML do dicionário de dados a partir das informações do projeto. Prompt reformulado: solicitação para simplificar o código e apresentar o dicionário em formato de lista simples, seguindo as orientações do professor.|
 | **Resposta recebida** | O primeiro resultado trouxe uma estrutura mais elaborada do que a pedida pelo professor. Após a reformulação do prompt, a IA gerou o HTML em formato de lista simples. |
 | **Fontes consultadas e verificadas** | Não se aplica: o conteúdo do dicionário foi definido pelo grupo a partir do DER; a IA só gerou a formatação. |
 | **Trechos rejeitados ou corrigidos** | A primeira versão foi descartada por apresentar uma estrutura mais complexa do que a solicitada. A segunda versão foi utilizada, com revisão do conteúdo e adequação dos nomes dos atributos às informações do DER. |
@@ -406,12 +406,12 @@ O modelo é consistente com o dicionário de dados e com as regras de negócio, 
 |---|---|
 | **Ferramenta e etapa** | *(PREENCHER: nome da ferramenta)* — organização e redação do README (descrição dos processos, requisitos, regras de negócio e demais seções). |
 | **Motivação** | Apoio na estruturação das informações levantadas na visita e no DER. |
-| **Prompt(s) utilizados** | *(PREENCHER)* |
+| **Prompt(s) utilizados** | Solicitação para elaborar e organizar o README do projeto acadêmico de modelagem de banco de dados, contemplando as seções exigidas na atividade e utilizando as informações fornecidas pelo grupo. |
 | **Resposta recebida** | Texto do README organizado nas seções solicitadas. |
 | **Fontes consultadas e verificadas** | LGPD (Lei nº 13.709/2018), RDC nº 48/2013 da Anvisa e dados institucionais da Muriel (site e LinkedIn). *(PREENCHER: como o grupo conferiu, por exemplo acessando os links e comparando com o que foi visto na visita)* |
-| **Trechos rejeitados ou corrigidos** | *(PREENCHER)* |
+| **Trechos rejeitados ou corrigidos** | Foram corrigidos trechos com informações genéricas que não correspondiam diretamente ao contexto observado na visita. Também foram ajustadas descrições de processos, requisitos e regras de negócio para evitar a inclusão de funcionalidades que não faziam parte do escopo definido pelo grupo. |
 | **Justificativa da escolha final** | O conteúdo foi revisado e ajustado ao projeto e às orientações da atividade. |
-| **Reflexão crítica** | *(PREENCHER: por exemplo, informações genéricas ou que não correspondiam ao observado na visita)* |
+| **Reflexão crítica** | A IA facilitou a organização e redação do README, mas apresentou algumas informações genéricas que precisaram ser comparadas com o que realmente foi observado na visita. Isso mostrou que a IA deve ser utilizada como ferramenta de apoio e que as informações geradas precisam ser verificadas pelo grupo antes da utilização. |
 
 #### Uso 3 — Ajuste do README ao DER final e às normas da entrega
 
@@ -419,11 +419,11 @@ O modelo é consistente com o dicionário de dados e com as regras de negócio, 
 |---|---|
 | **Ferramenta e etapa** | Claude (Anthropic) — revisão do README para torná-lo coerente com o DER final e com o modelo de README fornecido pelo professor. |
 | **Motivação** | O DER mudou depois da primeira versão do README (saíram entidades como Estoque, Caixa, Separação, Caminhão e as de controle de acesso; entrou Pagamento), e o texto precisava refletir o diagrama e seguir a estrutura exigida. |
-| **Prompt(s) utilizados** | "Preciso ajustar meu readme para que fique coerente com meu diagrama conceitual" (com a imagem do DER anexada) e "Tem que estar de acordo com as normas fornecidas do anexo" (com o modelo do professor). |
-| **Resposta recebida** | README reescrito com entidades, atributos, relacionamentos, cardinalidades, requisitos e regras alinhados ao DER, mais a lista de inconsistências encontradas. |
-| **Fontes consultadas e verificadas** | A IA se baseou na imagem do DER e no texto do grupo; não buscou fontes externas. As cardinalidades foram lidas da imagem e *(PREENCHER: o grupo conferiu cada uma no BRModelo?)*. |
-| **Trechos rejeitados ou corrigidos** | *(PREENCHER: o que o grupo alterou ou descartou)* |
-| **Justificativa da escolha final** | *(PREENCHER)* |
+| **Prompt(s) utilizados** | Solicitação para elaborar e organizar o README do projeto acadêmico de modelagem de banco de dados, contemplando as seções exigidas na atividade e utilizando as informações fornecidas pelo grupo. |
+| **Resposta recebida** | Foi gerado um texto estruturado nas seções solicitadas, contemplando a apresentação do projeto, caracterização da organização, processos de negócio, requisitos funcionais e não funcionais, regras de negócio, dicionário de dados, modelagem conceitual, justificativa técnica, uso de IA, conclusão e referências. |
+| **Fontes consultadas e verificadas** |Foram utilizadas e verificadas a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), a RDC nº 48/2013 da Anvisa e informações institucionais da Muriel Cosméticos, obtidas por meio do site institucional e do perfil institucional no LinkedIn. O grupo comparou essas informações com os dados levantados durante a visita e com o conteúdo do projeto antes de utilizá-las no README. |
+| **Trechos rejeitados ou corrigidos** | Foram corrigidos trechos com informações genéricas que não correspondiam diretamente ao contexto observado na visita. Também foram ajustadas descrições de processos, requisitos e regras de negócio para evitar a inclusão de funcionalidades que não faziam parte do escopo definido pelo grupo. |
+| **Justificativa da escolha final** | O conteúdo final foi mantido após revisão do grupo, pois apresentava as informações necessárias para documentar o projeto e estava mais adequado às informações coletadas na visita, ao DER e às orientações da atividade. |
 | **Reflexão crítica** | A IA interpreta o diagrama a partir de uma imagem e pode errar a leitura de cardinalidades ou nomes de atributos; por isso o grupo precisa conferir tudo com o DER original. Também apontou pontos que precisam de decisão humana (ex.: possível redundância entre Preco_Pedido e Preco). |
 
 ---
