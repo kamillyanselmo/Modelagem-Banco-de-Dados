@@ -196,6 +196,7 @@ O sistema deverá:
 | Atributo | Descrição | Regra de negócio associada |
 |---|---|---|
 | IdCliente | Identificador do cliente | Chave da entidade |
+| Nome_Cliente | Nome do cliente | Obrigatório para cadastro completo |
 | Telefone_Cliente | Telefone de contato | Deve possuir formato válido |
 | Endereco_Cliente | Endereço do cliente | Obrigatório para cadastro completo |
 | UF_Cliente | Unidade federativa do cliente | Deve utilizar UF válida |
@@ -323,7 +324,7 @@ O sistema deverá:
 
 | Entidade | Atributos (identificador em negrito) |
 |---|---|
-| Cliente | **IdCliente**, Telefone_Cliente, Endereco_Cliente, UF_Cliente |
+| Cliente | **IdCliente**, Nome_Cliente, Telefone_Cliente, Endereco_Cliente, UF_Cliente |
 | Representante | **IdRep**, Nome_Rep, Telefone_Rep, Email_Rep |
 | Pedido | **IdPedido**, Data_Pedido, Preco_Pedido, Status_Pedido |
 | Pagamento | **IdPagamento**, Data_Pagamento, Preco, Valor_Pago, Status_Pagamento |
