@@ -7,159 +7,142 @@
 
 <style>
 @page {
-  size: A4;
-  margin: 18mm 16mm 18mm 16mm;
+    size: A4;
+    margin: 18mm 16mm 18mm 16mm;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.35;
-  color: #111;
-  margin: 0;
-  background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.35;
+    color: #111;
+    margin: 0;
+    background: #fff;
 }
 
 .page {
-  page-break-after: always;
+    page-break-after: always;
 }
 
 .page:last-child {
-  page-break-after: auto;
+    page-break-after: auto;
 }
 
 h1 {
-  font-size: 20pt;
-  margin: 0 0 6px;
+    font-size: 20pt;
+    margin: 0 0 6px;
 }
 
 h2 {
-  font-size: 14pt;
-  margin: 18px 0 8px;
+    font-size: 14pt;
+    margin: 18px 0 8px;
 }
 
 h3 {
-  font-size: 11.5pt;
-  margin: 14px 0 5px;
+    font-size: 11.5pt;
+    margin: 14px 0 5px;
 }
 
 p {
-  margin: 5px 0 8px;
+    margin: 5px 0 8px;
 }
 
 .subtitle {
-  font-size: 10pt;
-  color: #444;
-  margin-bottom: 18px;
+    font-size: 10pt;
+    color: #444;
+    margin-bottom: 18px;
 }
 
 .note {
-  background: #f0f0f0;
-  border-left: 4px solid #777;
-  padding: 8px 10px;
-  margin: 8px 0 12px;
+    background: #f0f0f0;
+    border-left: 4px solid #777;
+    padding: 8px 10px;
+    margin: 8px 0 12px;
 }
 
 .formula {
-  background: #e5e5e5;
-  padding: 7px 9px;
-  font-family: "Courier New", monospace;
-  font-size: 9.5pt;
-  margin: 5px 0 8px;
-  border-radius: 1px;
+    background: #e5e5e5;
+    padding: 7px 9px;
+    font-family: "Courier New", monospace;
+    font-size: 9.5pt;
+    margin: 5px 0 8px;
+    border-radius: 1px;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 7px 0 14px;
-  page-break-inside: avoid;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 7px 0 14px;
+    page-break-inside: avoid;
 }
 
 th,
 td {
-  border-bottom: 1px solid #777;
-  padding: 5px 6px;
-  vertical-align: top;
+    border-bottom: 1px solid #777;
+    padding: 5px 6px;
+    vertical-align: top;
 }
 
 th {
-  font-weight: bold;
-  text-align: left;
-  border-top: 1px solid #333;
-}
-
-.center {
-  text-align: center;
+    font-weight: bold;
+    text-align: left;
+    border-top: 1px solid #333;
 }
 
 .entity {
-  margin-top: 14px;
-  page-break-inside: avoid;
+    margin-top: 14px;
+    page-break-inside: avoid;
 }
 
 .entity h3 {
-  font-size: 13pt;
-  margin-bottom: 4px;
-}
-
-.small {
-  font-size: 9pt;
-  color: #333;
+    font-size: 13pt;
+    margin-bottom: 4px;
 }
 
 .muted {
-  color: #555;
-}
-
-.pill {
-  display: inline-block;
-  padding: 1px 5px;
-  border: 1px solid #999;
-  border-radius: 8px;
-  font-size: 8.5pt;
-}
-
-ul {
-  margin-top: 5px;
-}
-
-li {
-  margin: 3px 0;
+    color: #555;
 }
 
 .footer {
-  font-size: 8.5pt;
-  color: #666;
-  margin-top: 14px;
-  border-top: 1px solid #bbb;
-  padding-top: 4px;
+    font-size: 8.5pt;
+    color: #666;
+    margin-top: 14px;
+    border-top: 1px solid #bbb;
+    padding-top: 4px;
+}
+
+.center {
+    text-align: center;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ========================================================= -->
+<!-- 1. MODELO CONCEITUAL -->
+<!-- ========================================================= -->
+
 <section class="page">
 
 <h1>Dicionário de Dados do Modelo Conceitual</h1>
 
 <div class="subtitle">
-Modelo apresentado no diagrama “Conceptual model - BRMW” — elaboração baseada no diagrama fornecido.
+Modelo apresentado no diagrama “Conceptual model - BRMW”.
 </div>
 
 <h2>1. Modelo conceitual</h2>
 
 <p>
-O modelo representa um processo de vendas, entrega, pagamento e produção,
-envolvendo <b>Cliente</b>, <b>Representante</b>, <b>Pedido</b>,
-<b>Pagamento</b>, <b>Entrega</b>, <b>Produto</b>, <b>Material</b>,
-<b>Fornecedor</b>, <b>Produção</b> e <b>Embalagem</b>.
-As relações e cardinalidades abaixo foram transcritas do diagrama conceitual.
+O modelo representa um processo de vendas, entrega, pagamento, emissão de nota fiscal
+e produção, envolvendo as entidades <b>Cliente</b>, <b>Representante</b>,
+<b>Pedido</b>, <b>Pagamento</b>, <b>Entrega</b>, <b>Nota Fiscal</b>,
+<b>Produto</b>, <b>Material</b>, <b>Fornecedor</b>, <b>Produção</b>
+e <b>Embalagem</b>.
 </p>
 
 <table>
@@ -236,13 +219,15 @@ As relações e cardinalidades abaixo foram transcritas do diagrama conceitual.
 </tbody>
 </table>
 
-<h3>Definição das entidades</h3>
+
+<h3>LEITURA</h3>
 
 <table>
+
 <thead>
 <tr>
 <th>Entidade</th>
-<th>Descrição derivada do papel no diagrama</th>
+<th>LEITURA</th>
 </tr>
 </thead>
 
@@ -250,60 +235,103 @@ As relações e cardinalidades abaixo foram transcritas do diagrama conceitual.
 
 <tr>
 <td>CLIENTE</td>
-<td>Cadastro da organização cliente, identificado por CNPJ_Cliente e contendo dados cadastrais e de contato.</td>
+<td>
+Representa o cliente cadastrado no sistema, reunindo informações de
+identificação, endereço, unidade federativa e contato para permitir seu
+relacionamento com pedidos e representantes.
+</td>
 </tr>
 
 <tr>
 <td>REPRESENTANTE</td>
-<td>Cadastro do representante responsável por cadastrar clientes.</td>
+<td>
+Representa o responsável pelo atendimento e cadastro de clientes,
+mantendo seus dados de identificação e contato para o relacionamento comercial.
+</td>
 </tr>
 
 <tr>
 <td>PEDIDO</td>
-<td>Registro do pedido realizado pelo cliente, com preço, status e data.</td>
-</tr>
-
-<tr>
-<td>ENTREGA</td>
-<td>Registro da entrega associada ao pedido, com dados de rastreio, motorista e caminhão.</td>
+<td>
+Representa uma solicitação de compra realizada por um cliente,
+registrando seu identificador, valor, situação e data, além de permitir
+o relacionamento com produtos, pagamento e entrega.
+</td>
 </tr>
 
 <tr>
 <td>PAGAMENTO</td>
-<td>Registro do pagamento relacionado a um pedido, com data, preço e status.</td>
+<td>
+Representa o registro financeiro associado a um pedido, contendo a data,
+o valor e a situação do pagamento realizado.
+</td>
+</tr>
+
+<tr>
+<td>ENTREGA</td>
+<td>
+Representa o processo de entrega associado ao pedido, contendo informações
+de data, situação, motorista, caminhão e código de rastreamento.
+</td>
+</tr>
+
+<tr>
+<td>NOTA_FISCAL</td>
+<td>
+Representa o documento fiscal emitido para registrar a operação comercial,
+contendo número, série, status, data de emissão, valor total e chave de acesso.
+</td>
 </tr>
 
 <tr>
 <td>PRODUTO</td>
-<td>Cadastro do produto, com identificador, EAN, nome, unidade e descrição.</td>
+<td>
+Representa o produto comercializado ou produzido pela empresa, identificado
+por código próprio e EAN, com nome, unidade de comercialização e descrição.
+</td>
 </tr>
 
 <tr>
 <td>MATERIAL</td>
-<td>Cadastro dos materiais, com controle de estoque mínimo e unidade.</td>
+<td>
+Representa os materiais utilizados na composição ou fabricação dos produtos
+e nos processos de produção, mantendo informações de identificação,
+unidade e estoque mínimo.
+</td>
 </tr>
 
 <tr>
 <td>FORNECEDOR</td>
-<td>Cadastro do fornecedor e seus dados de contato.</td>
+<td>
+Representa a empresa ou entidade responsável pelo fornecimento de materiais,
+mantendo seus dados de identificação, endereço e contato.
+</td>
 </tr>
 
 <tr>
 <td>PRODUÇÃO</td>
-<td>Registro de uma produção, contendo quantidade, status, data de emissão e identificador.</td>
+<td>
+Representa uma ocorrência de produção, registrando a quantidade produzida,
+seu status, a data de emissão e os relacionamentos com produto, material e embalagem.
+</td>
 </tr>
 
 <tr>
 <td>EMBALAGEM</td>
-<td>Cadastro da embalagem, com tipo, capacidade e material.</td>
+<td>
+Representa a embalagem utilizada no processo produtivo, contendo seu tipo,
+capacidade e material de composição.
+</td>
 </tr>
 
 </tbody>
 </table>
 
+
 <h2>2. Convenções do dicionário</h2>
 
 <table>
+
 <thead>
 <tr>
 <th>Símbolo</th>
@@ -313,14 +341,45 @@ As relações e cardinalidades abaixo foram transcritas do diagrama conceitual.
 
 <tbody>
 
-<tr><td>=</td><td>é composto de</td></tr>
-<tr><td>+</td><td>e — conecta elementos do registro</td></tr>
-<tr><td>( )</td><td>atributo opcional no modelo lógico sugerido</td></tr>
-<tr><td>{ }, n{ }m</td><td>iteração, com limite mínimo n e máximo m</td></tr>
-<tr><td>[ | ]</td><td>escolha entre alternativas</td></tr>
-<tr><td>/ /</td><td>rótulo de um grupo repetitivo</td></tr>
-<tr><td>@</td><td>identificador / chave primária indicada no diagrama</td></tr>
-<tr><td>* *</td><td>comentário fora da estrutura formal</td></tr>
+<tr>
+<td>=</td>
+<td>É composto de.</td>
+</tr>
+
+<tr>
+<td>+</td>
+<td>E — conecta elementos do registro.</td>
+</tr>
+
+<tr>
+<td>( )</td>
+<td>Atributo opcional no modelo lógico sugerido.</td>
+</tr>
+
+<tr>
+<td>{ }, n{ }m</td>
+<td>Iteração, com limite mínimo n e máximo m.</td>
+</tr>
+
+<tr>
+<td>[ | ]</td>
+<td>Escolha entre alternativas.</td>
+</tr>
+
+<tr>
+<td>/ /</td>
+<td>Rótulo de um grupo repetitivo.</td>
+</tr>
+
+<tr>
+<td>@</td>
+<td>Identificador / chave primária indicada no diagrama.</td>
+</tr>
+
+<tr>
+<td>* *</td>
+<td>Comentário fora da estrutura formal.</td>
+</tr>
 
 </tbody>
 </table>
@@ -333,32 +392,45 @@ EAN_ código EAN; UF unidade federativa;
 Email e Telefone dados de contato.
 </p>
 
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 3. ENTIDADES -->
+<!-- ========================================================= -->
+
+<section class="page">
+
 <h2>3. Dicionário de dados por entidade</h2>
+
+
+<!-- CLIENTE -->
 
 <div class="entity">
 
 <h3>CLIENTE</h3>
 
 <div class="formula">
-CLIENTE = @ID_CLIENTE + RAZAO_SOCIAL + NOME_FANTASIA +
+CLIENTE = @ID_CLIENTE + NOME_CLIENTE + CPF +
 ENDERECO_CLIENTE + TELEFONE_CLIENTE + UF_CLIENTE
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_CLIENTE</span> é o identificador único;
-os cinco campos seguintes são obrigatórios e conectados por +,
-formando o cadastro do cliente com razão social, nome fantasia,
-endereço, telefone e UF.
+<b>LEITURA:</b>
+<span class="muted">@ID_CLIENTE</span> identifica exclusivamente o cliente.
+Os demais atributos formam seu cadastro básico, registrando nome, CPF,
+endereço, telefone e unidade federativa.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -366,44 +438,62 @@ endereço, telefone e UF.
 
 <tr>
 <td>ID_CLIENTE</td>
-<td>varchar(18)</td>
-<td>Sim (PK)</td>
-<td>Identificador do cliente destacado no diagrama.</td>
+<td>integer</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada cliente cadastrado no sistema.
+</td>
 </tr>
 
 <tr>
-<td>RAZAO_SOCIAL</td>
+<td>NOME_CLIENTE</td>
 <td>varchar(150)</td>
 <td>Sim</td>
-<td>Razão social do cliente.</td>
+<td>—</td>
+<td>
+Nome utilizado para identificar formalmente o cliente no cadastro e nos relacionamentos comerciais.
+</td>
 </tr>
 
 <tr>
-<td>NOME_FANTASIA</td>
-<td>varchar(150)</td>
+<td>CPF</td>
+<td>varchar(14)</td>
 <td>Sim</td>
-<td>Nome fantasia do cliente.</td>
+<td>—</td>
+<td>
+Documento de identificação fiscal utilizado para identificar o cliente pessoa física.
+</td>
 </tr>
 
 <tr>
 <td>ENDERECO_CLIENTE</td>
 <td>varchar(200)</td>
 <td>Sim</td>
-<td>Endereço cadastrado do cliente.</td>
+<td>—</td>
+<td>
+Endereço informado para localização e comunicação com o cliente.
+</td>
 </tr>
 
 <tr>
 <td>TELEFONE_CLIENTE</td>
 <td>varchar(20)</td>
 <td>Sim</td>
-<td>Telefone de contato do cliente.</td>
+<td>—</td>
+<td>
+Número de telefone utilizado como meio de contato com o cliente.
+</td>
 </tr>
 
 <tr>
 <td>UF_CLIENTE</td>
 <td>char(2)</td>
 <td>Sim</td>
-<td>Unidade federativa do cliente.</td>
+<td>—</td>
+<td>
+Unidade federativa correspondente à localização do cliente.
+</td>
 </tr>
 
 </tbody>
@@ -411,6 +501,8 @@ endereço, telefone e UF.
 
 </div>
 
+
+<!-- REPRESENTANTE -->
 
 <div class="entity">
 
@@ -421,20 +513,20 @@ REPRESENTANTE = @ID_REP + EMAIL_REP + NOME_REP + TELEFONE_REP
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_REP</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo ao e-mail, nome e telefone do representante.
-O relacionamento CADASTRA liga o representante aos clientes.
+<b>LEITURA:</b>
+<span class="muted">@ID_REP</span> identifica exclusivamente o representante.
+Os demais atributos registram seus dados de contato e identificação.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -443,29 +535,41 @@ O relacionamento CADASTRA liga o representante aos clientes.
 <tr>
 <td>ID_REP</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do representante.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada representante cadastrado.
+</td>
 </tr>
 
 <tr>
 <td>EMAIL_REP</td>
 <td>varchar(150)</td>
 <td>Sim</td>
-<td>E-mail do representante.</td>
+<td>—</td>
+<td>
+Endereço de e-mail utilizado para comunicação com o representante.
+</td>
 </tr>
 
 <tr>
 <td>NOME_REP</td>
 <td>varchar(120)</td>
 <td>Sim</td>
-<td>Nome do representante.</td>
+<td>—</td>
+<td>
+Nome completo utilizado para identificação do representante responsável pelo atendimento.
+</td>
 </tr>
 
 <tr>
 <td>TELEFONE_REP</td>
 <td>varchar(20)</td>
 <td>Sim</td>
-<td>Telefone do representante.</td>
+<td>—</td>
+<td>
+Número de telefone utilizado para contato com o representante.
+</td>
 </tr>
 
 </tbody>
@@ -475,6 +579,10 @@ O relacionamento CADASTRA liga o representante aos clientes.
 
 </section>
 
+
+<!-- ========================================================= -->
+<!-- PEDIDO -->
+<!-- ========================================================= -->
 
 <section class="page">
 
@@ -487,20 +595,20 @@ PEDIDO = @ID_PEDIDO + PRECO_PEDIDO + STATUS_PEDIDO + DATA_PEDIDO
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_PEDIDO</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo ao preço, status e data do pedido.
-O pedido participa dos relacionamentos FAZ, GERA e POSSUI.
+<b>LEITURA:</b>
+<span class="muted">@ID_PEDIDO</span> identifica exclusivamente o pedido.
+Os demais atributos registram seu valor, situação e data.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -509,29 +617,41 @@ O pedido participa dos relacionamentos FAZ, GERA e POSSUI.
 <tr>
 <td>ID_PEDIDO</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do pedido.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada pedido realizado no sistema.
+</td>
 </tr>
 
 <tr>
 <td>PRECO_PEDIDO</td>
 <td>decimal(12,2)</td>
 <td>Sim</td>
-<td>Preço/valor registrado para o pedido.</td>
+<td>—</td>
+<td>
+Valor monetário associado ao pedido, utilizado para representar o preço total registrado para a solicitação.
+</td>
 </tr>
 
 <tr>
 <td>STATUS_PEDIDO</td>
 <td>varchar(30)</td>
 <td>Sim</td>
-<td>Status atual do pedido.</td>
+<td>—</td>
+<td>
+Situação atual do pedido dentro do processo comercial, permitindo acompanhar seu andamento.
+</td>
 </tr>
 
 <tr>
 <td>DATA_PEDIDO</td>
 <td>date</td>
 <td>Sim</td>
-<td>Data do pedido.</td>
+<td>—</td>
+<td>
+Data em que o pedido foi registrado ou realizado pelo cliente.
+</td>
 </tr>
 
 </tbody>
@@ -539,6 +659,84 @@ O pedido participa dos relacionamentos FAZ, GERA e POSSUI.
 
 </div>
 
+
+<!-- PAGAMENTO -->
+
+<div class="entity">
+
+<h3>PAGAMENTO</h3>
+
+<div class="formula">
+PAGAMENTO = @ID_PAGAMENTO + DATA_PAGAMENTO + PRECO + STATUS_PAGAMENTO
+</div>
+
+<p>
+<b>LEITURA:</b>
+<span class="muted">@ID_PAGAMENTO</span> identifica exclusivamente o pagamento.
+Os demais atributos registram a data, o valor e a situação do pagamento.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_PAGAMENTO</td>
+<td>integer</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada registro de pagamento.
+</td>
+</tr>
+
+<tr>
+<td>DATA_PAGAMENTO</td>
+<td>date</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Data em que o pagamento foi realizado ou registrado no sistema.
+</td>
+</tr>
+
+<tr>
+<td>PRECO</td>
+<td>decimal(12,2)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Valor monetário efetivamente registrado para o pagamento associado ao pedido.
+</td>
+</tr>
+
+<tr>
+<td>STATUS_PAGAMENTO</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Situação do pagamento, utilizada para indicar seu estado dentro do processo financeiro.
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<!-- ENTREGA -->
 
 <div class="entity">
 
@@ -550,21 +748,21 @@ NOME_MOTORISTA + ID_CAMINHAO + CODIGO_RASTREIO
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_ENTREGA</span> é o identificador único;
-os cinco campos seguintes são obrigatórios e conectados por +,
-correspondendo à data, status, nome do motorista, identificador
-do caminhão e código de rastreio da entrega.
-O relacionamento GERA liga a entrega ao pedido.
+<b>LEITURA:</b>
+<span class="muted">@ID_ENTREGA</span> identifica exclusivamente a entrega.
+Os demais atributos registram quando a entrega ocorre, sua situação,
+o motorista, o caminhão e o código utilizado para rastreamento.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -573,105 +771,61 @@ O relacionamento GERA liga a entrega ao pedido.
 <tr>
 <td>ID_ENTREGA</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador da entrega.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada entrega registrada.
+</td>
 </tr>
 
 <tr>
 <td>DATA_ENTREGA</td>
 <td>date</td>
 <td>Sim</td>
-<td>Data da entrega.</td>
+<td>—</td>
+<td>
+Data prevista ou registrada para a realização da entrega.
+</td>
 </tr>
 
 <tr>
 <td>STATUS_ENTREGA</td>
 <td>varchar(30)</td>
 <td>Sim</td>
-<td>Status da entrega.</td>
+<td>—</td>
+<td>
+Situação atual da entrega dentro do processo logístico.
+</td>
 </tr>
 
 <tr>
 <td>NOME_MOTORISTA</td>
 <td>varchar(120)</td>
 <td>Sim</td>
-<td>Nome do motorista relacionado à entrega.</td>
+<td>—</td>
+<td>
+Nome do motorista relacionado à execução ou transporte da entrega.
+</td>
 </tr>
 
 <tr>
 <td>ID_CAMINHAO</td>
 <td>integer</td>
 <td>Sim</td>
-<td>Identificador do caminhão utilizado.</td>
+<td>—</td>
+<td>
+Identificador do caminhão utilizado no transporte da entrega.
+</td>
 </tr>
 
 <tr>
 <td>CODIGO_RASTREIO</td>
 <td>varchar(60)</td>
 <td>Sim</td>
-<td>Código utilizado para rastreio da entrega.</td>
-</tr>
-
-</tbody>
-</table>
-
-</div>
-
-
-<div class="entity">
-
-<h3>PAGAMENTO</h3>
-
-<div class="formula">
-PAGAMENTO = @ID_PAGAMENTO + DATA_PAGAMENTO + PRECO + STATUS_PAGAMENTO
-</div>
-
-<p>
-<b>Leitura:</b>
-<span class="muted">@ID_PAGAMENTO</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo à data, preço e status do pagamento.
-O relacionamento POSSUI conecta o pagamento ao pedido.
-</p>
-
-<table>
-<thead>
-<tr>
-<th>Atributo</th>
-<th>Tipo físico sugerido</th>
-<th>Obrigatório</th>
-<th>Significado</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td>ID_PAGAMENTO</td>
-<td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do pagamento.</td>
-</tr>
-
-<tr>
-<td>DATA_PAGAMENTO</td>
-<td>date</td>
-<td>Sim</td>
-<td>Data do pagamento.</td>
-</tr>
-
-<tr>
-<td>PRECO</td>
-<td>decimal(12,2)</td>
-<td>Sim</td>
-<td>Valor/preço registrado para o pagamento.</td>
-</tr>
-
-<tr>
-<td>STATUS_PAGAMENTO</td>
-<td>varchar(30)</td>
-<td>Sim</td>
-<td>Status do pagamento.</td>
+<td>—</td>
+<td>
+Código utilizado para acompanhar e localizar o andamento da entrega.
+</td>
 </tr>
 
 </tbody>
@@ -682,7 +836,117 @@ O relacionamento POSSUI conecta o pagamento ao pedido.
 </section>
 
 
+<!-- ========================================================= -->
+<!-- NOTA FISCAL / PRODUTO / MATERIAL -->
+<!-- ========================================================= -->
+
 <section class="page">
+
+<div class="entity">
+
+<h3>NOTA_FISCAL</h3>
+
+<div class="formula">
+NOTA_FISCAL = @ID_NOTA_FISCAL + NUMERO_NF + SERIE +
+STATUS_NF + DATA_EMISSAO + VALOR_TOTAL + CHAVE_ACESSO
+</div>
+
+<p>
+<b>LEITURA:</b>
+<span class="muted">@ID_NOTA_FISCAL</span> identifica exclusivamente a nota fiscal.
+Os demais atributos registram seus dados fiscais, situação, emissão,
+valor e chave de acesso.
+</p>
+
+<table>
+
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Tipo físico sugerido</th>
+<th>Obrigatório</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>ID_NOTA_FISCAL</td>
+<td>integer</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada nota fiscal registrada.
+</td>
+</tr>
+
+<tr>
+<td>NUMERO_NF</td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Número atribuído à nota fiscal para identificação do documento fiscal.
+</td>
+</tr>
+
+<tr>
+<td>SERIE</td>
+<td>varchar(10)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Série utilizada para complementar a identificação da nota fiscal.
+</td>
+</tr>
+
+<tr>
+<td>STATUS_NF</td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Situação da nota fiscal dentro do processo fiscal.
+</td>
+</tr>
+
+<tr>
+<td>DATA_EMISSAO</td>
+<td>date</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Data em que a nota fiscal foi emitida.
+</td>
+</tr>
+
+<tr>
+<td>VALOR_TOTAL</td>
+<td>decimal(12,2)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Valor monetário total registrado no documento fiscal.
+</td>
+</tr>
+
+<tr>
+<td>CHAVE_ACESSO</td>
+<td>varchar(44)</td>
+<td>Sim</td>
+<td>—</td>
+<td>
+Código utilizado para identificação e consulta da nota fiscal eletrônica.
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
 
 <div class="entity">
 
@@ -694,21 +958,20 @@ UNIDADE_PRODUTO + DESCRICAO_PRODUTO
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_PRODUTO</span> é o identificador único;
-os quatro campos seguintes são obrigatórios e conectados por +,
-correspondendo ao EAN, nome, unidade e descrição do produto.
-O produto participa dos relacionamentos POSSUI, É FEITO COM e
-É PRODUZIDO EM.
+<b>LEITURA:</b>
+<span class="muted">@ID_PRODUTO</span> identifica exclusivamente o produto.
+Os demais atributos registram seu código EAN, nome, unidade e descrição.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -717,36 +980,51 @@ O produto participa dos relacionamentos POSSUI, É FEITO COM e
 <tr>
 <td>ID_PRODUTO</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do produto.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada produto cadastrado.
+</td>
 </tr>
 
 <tr>
 <td>EAN_PRODUTO</td>
 <td>varchar(20)</td>
 <td>Sim</td>
-<td>Código EAN do produto.</td>
+<td>—</td>
+<td>
+Código EAN utilizado para identificar o produto por meio de seu padrão de código de barras.
+</td>
 </tr>
 
 <tr>
 <td>NOME_PRODUTO</td>
 <td>varchar(150)</td>
 <td>Sim</td>
-<td>Nome do produto.</td>
+<td>—</td>
+<td>
+Nome comercial utilizado para identificar o produto no cadastro.
+</td>
 </tr>
 
 <tr>
 <td>UNIDADE_PRODUTO</td>
 <td>varchar(30)</td>
 <td>Sim</td>
-<td>Unidade associada ao produto.</td>
+<td>—</td>
+<td>
+Unidade de medida ou comercialização utilizada para representar o produto.
+</td>
 </tr>
 
 <tr>
 <td>DESCRICAO_PRODUTO</td>
 <td>text</td>
 <td>Sim</td>
-<td>Descrição do produto.</td>
+<td>—</td>
+<td>
+Informações complementares utilizadas para caracterizar e detalhar o produto.
+</td>
 </tr>
 
 </tbody>
@@ -765,20 +1043,20 @@ ESTOQUE_MINIMO + UNIDADE_MATERIAL
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_MATERIAL</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo ao nome, estoque mínimo e unidade do material.
-O material relaciona-se com fornecedor, produto e produção.
+<b>LEITURA:</b>
+<span class="muted">@ID_MATERIAL</span> identifica exclusivamente o material.
+Os demais atributos registram nome, estoque mínimo e unidade.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -787,29 +1065,41 @@ O material relaciona-se com fornecedor, produto e produção.
 <tr>
 <td>ID_MATERIAL</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do material.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada material cadastrado.
+</td>
 </tr>
 
 <tr>
 <td>NOME_MATERIAL</td>
 <td>varchar(150)</td>
 <td>Sim</td>
-<td>Nome do material.</td>
+<td>—</td>
+<td>
+Nome utilizado para identificar o material utilizado no estoque e na produção.
+</td>
 </tr>
 
 <tr>
 <td>ESTOQUE_MINIMO</td>
 <td>decimal(12,3)</td>
 <td>Sim</td>
-<td>Quantidade mínima de estoque indicada no cadastro.</td>
+<td>—</td>
+<td>
+Quantidade mínima de material definida como referência para controle do estoque.
+</td>
 </tr>
 
 <tr>
 <td>UNIDADE_MATERIAL</td>
 <td>varchar(30)</td>
 <td>Sim</td>
-<td>Unidade utilizada para o material.</td>
+<td>—</td>
+<td>
+Unidade de medida utilizada para registrar e controlar as quantidades do material.
+</td>
 </tr>
 
 </tbody>
@@ -817,6 +1107,14 @@ O material relaciona-se com fornecedor, produto e produção.
 
 </div>
 
+</section>
+
+
+<!-- ========================================================= -->
+<!-- FORNECEDOR / PRODUÇÃO / EMBALAGEM -->
+<!-- ========================================================= -->
+
+<section class="page">
 
 <div class="entity">
 
@@ -828,20 +1126,20 @@ ENDERECO_FORNECEDOR + TELEFONE_FORNECEDOR + CNPJ_FORNECEDOR
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_FORNECEDOR</span> é o identificador único;
-os quatro campos seguintes são obrigatórios e conectados por +,
-correspondendo ao nome, endereço, telefone e CNPJ do fornecedor.
-O fornecedor participa do relacionamento FORNECE com MATERIAL.
+<b>LEITURA:</b>
+<span class="muted">@ID_FORNECEDOR</span> identifica exclusivamente o fornecedor.
+Os demais atributos registram seus dados de identificação, endereço e contato.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -850,36 +1148,51 @@ O fornecedor participa do relacionamento FORNECE com MATERIAL.
 <tr>
 <td>ID_FORNECEDOR</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador do fornecedor.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada fornecedor cadastrado.
+</td>
 </tr>
 
 <tr>
 <td>NOME_FORNECEDOR</td>
 <td>varchar(150)</td>
 <td>Sim</td>
-<td>Nome do fornecedor.</td>
+<td>—</td>
+<td>
+Nome utilizado para identificar o fornecedor responsável pelo fornecimento de materiais.
+</td>
 </tr>
 
 <tr>
 <td>ENDERECO_FORNECEDOR</td>
 <td>varchar(200)</td>
 <td>Sim</td>
-<td>Endereço do fornecedor.</td>
+<td>—</td>
+<td>
+Endereço utilizado para identificar a localização do fornecedor.
+</td>
 </tr>
 
 <tr>
 <td>TELEFONE_FORNECEDOR</td>
 <td>varchar(20)</td>
 <td>Sim</td>
-<td>Telefone do fornecedor.</td>
+<td>—</td>
+<td>
+Número utilizado para contato com o fornecedor.
+</td>
 </tr>
 
 <tr>
 <td>CNPJ_FORNECEDOR</td>
 <td>varchar(18)</td>
 <td>Sim</td>
-<td>CNPJ do fornecedor.</td>
+<td>—</td>
+<td>
+Documento de identificação fiscal utilizado para identificar o fornecedor.
+</td>
 </tr>
 
 </tbody>
@@ -887,10 +1200,6 @@ O fornecedor participa do relacionamento FORNECE com MATERIAL.
 
 </div>
 
-</section>
-
-
-<section class="page">
 
 <div class="entity">
 
@@ -902,21 +1211,20 @@ STATUS_PRODUCAO + DATA_EMISSAO
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_PRODUCAO</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo à quantidade, status e data de emissão da produção.
-A produção participa dos relacionamentos É UTILIZADO,
-É PRODUZIDO EM e UTILIZA.
+<b>LEITURA:</b>
+<span class="muted">@ID_PRODUCAO</span> identifica exclusivamente a produção.
+Os demais atributos registram quantidade, status e data de emissão.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -925,29 +1233,41 @@ A produção participa dos relacionamentos É UTILIZADO,
 <tr>
 <td>ID_PRODUCAO</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador da produção.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada registro de produção.
+</td>
 </tr>
 
 <tr>
 <td>QUANTIDADE_PRODUCAO</td>
 <td>decimal(12,3)</td>
 <td>Sim</td>
-<td>Quantidade produzida.</td>
+<td>—</td>
+<td>
+Quantidade de unidades ou medida efetivamente registrada como produzida.
+</td>
 </tr>
 
 <tr>
 <td>STATUS_PRODUCAO</td>
 <td>varchar(30)</td>
 <td>Sim</td>
-<td>Status da produção.</td>
+<td>—</td>
+<td>
+Situação atual do processo de produção, permitindo acompanhar seu andamento.
+</td>
 </tr>
 
 <tr>
 <td>DATA_EMISSAO</td>
 <td>date</td>
 <td>Sim</td>
-<td>Data de emissão registrada para a produção.</td>
+<td>—</td>
+<td>
+Data registrada para a emissão ou realização da produção.
+</td>
 </tr>
 
 </tbody>
@@ -965,20 +1285,20 @@ EMBALAGEM = @ID_EMBALAGEM + TIPO + CAPACIDADE + MATERIAL
 </div>
 
 <p>
-<b>Leitura:</b>
-<span class="muted">@ID_EMBALAGEM</span> é o identificador único;
-os três campos seguintes são obrigatórios e conectados por +,
-correspondendo ao tipo, capacidade e material da embalagem.
-A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
+<b>LEITURA:</b>
+<span class="muted">@ID_EMBALAGEM</span> identifica exclusivamente a embalagem.
+Os demais atributos registram seu tipo, capacidade e material.
 </p>
 
 <table>
+
 <thead>
 <tr>
 <th>Atributo</th>
 <th>Tipo físico sugerido</th>
 <th>Obrigatório</th>
-<th>Significado</th>
+<th>Chave</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -987,29 +1307,41 @@ A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
 <tr>
 <td>ID_EMBALAGEM</td>
 <td>integer</td>
-<td>Sim (PK)</td>
-<td>Identificador da embalagem.</td>
+<td>Sim</td>
+<td>PK</td>
+<td>
+Identificador único utilizado para distinguir cada embalagem cadastrada.
+</td>
 </tr>
 
 <tr>
 <td>TIPO</td>
 <td>varchar(60)</td>
 <td>Sim</td>
-<td>Tipo de embalagem.</td>
+<td>—</td>
+<td>
+Classificação utilizada para identificar o tipo de embalagem.
+</td>
 </tr>
 
 <tr>
 <td>CAPACIDADE</td>
 <td>decimal(12,3)</td>
 <td>Sim</td>
-<td>Capacidade da embalagem.</td>
+<td>—</td>
+<td>
+Capacidade suportada pela embalagem, registrada de acordo com a unidade utilizada no cadastro.
+</td>
 </tr>
 
 <tr>
 <td>MATERIAL</td>
 <td>varchar(100)</td>
 <td>Sim</td>
-<td>Material informado para a embalagem.</td>
+<td>—</td>
+<td>
+Material utilizado na composição ou fabricação da embalagem.
+</td>
 </tr>
 
 </tbody>
@@ -1017,16 +1349,25 @@ A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
 
 </div>
 
+</section>
+
+
+<!-- ========================================================= -->
+<!-- 4. RELACIONAMENTOS -->
+<!-- ========================================================= -->
+
+<section class="page">
 
 <h2>4. Relacionamentos e interpretação das cardinalidades</h2>
 
 <table>
+
 <thead>
 <tr>
 <th>Relacionamento</th>
 <th>Lado A</th>
 <th>Lado B</th>
-<th>Interpretação</th>
+<th>INTERPRETAÇÃO</th>
 </tr>
 </thead>
 
@@ -1036,70 +1377,91 @@ A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
 <td>FAZ</td>
 <td>CLIENTE (0,n)</td>
 <td>PEDIDO (1,n)</td>
-<td>Um cliente pode estar ligado a zero ou vários pedidos; cada pedido participa da relação com um ou vários clientes conforme o diagrama.</td>
+<td>
+Um cliente pode estar ligado a zero ou vários pedidos; cada pedido participa
+da relação conforme a cardinalidade indicada no modelo.
+</td>
 </tr>
 
 <tr>
 <td>CADASTRA</td>
 <td>REPRESENTANTE (0,n)</td>
 <td>CLIENTE (1,n)</td>
-<td>Um representante pode cadastrar zero ou vários clientes; cada cliente participa com um ou vários representantes conforme o diagrama.</td>
+<td>
+Um representante pode cadastrar zero ou vários clientes, conforme a cardinalidade do modelo.
+</td>
 </tr>
 
 <tr>
 <td>GERA</td>
 <td>PEDIDO (0,1)</td>
 <td>ENTREGA (1,1)</td>
-<td>Um pedido pode não gerar ou gerar uma entrega; cada entrega está ligada a exatamente um pedido.</td>
+<td>
+Um pedido pode não gerar ou gerar uma entrega; cada entrega está ligada a exatamente um pedido.
+</td>
 </tr>
 
 <tr>
 <td>POSSUI</td>
 <td>PEDIDO (0,n)</td>
 <td>PRODUTO (1,1)</td>
-<td>Um pedido pode possuir zero ou vários produtos; cada produto participa de uma ocorrência da relação segundo a cardinalidade indicada.</td>
+<td>
+Um pedido pode possuir zero ou vários produtos, conforme a cardinalidade apresentada no modelo.
+</td>
 </tr>
 
 <tr>
 <td>POSSUI</td>
 <td>PAGAMENTO (1,1)</td>
 <td>PEDIDO (0,1)</td>
-<td>Cada pagamento está ligado a um pedido; um pedido pode não possuir ou possuir um pagamento.</td>
+<td>
+Cada pagamento está ligado a um pedido; um pedido pode não possuir ou possuir um pagamento.
+</td>
 </tr>
 
 <tr>
 <td>FORNECE</td>
 <td>FORNECEDOR (0,n)</td>
 <td>MATERIAL (0,n)</td>
-<td>Fornecedor e material possuem participação opcional e múltipla na relação.</td>
+<td>
+Fornecedor e material possuem participação opcional e múltipla na relação.
+</td>
 </tr>
 
 <tr>
 <td>É FEITO COM</td>
 <td>MATERIAL (0,n)</td>
 <td>PRODUTO (1,n)</td>
-<td>Materiais podem estar associados a vários produtos; produtos participam com um ou vários materiais.</td>
+<td>
+Materiais podem estar associados a vários produtos; produtos participam com um ou vários materiais.
+</td>
 </tr>
 
 <tr>
 <td>É UTILIZADO</td>
 <td>MATERIAL (0,n)</td>
 <td>PRODUÇÃO (1,n)</td>
-<td>Um material pode participar de várias produções; cada produção utiliza um ou vários materiais.</td>
+<td>
+Um material pode participar de várias produções; cada produção utiliza um ou vários materiais.
+</td>
 </tr>
 
 <tr>
 <td>É PRODUZIDO EM</td>
 <td>PRODUTO (0,n)</td>
 <td>PRODUÇÃO (1,1)</td>
-<td>Um produto pode participar de várias produções; cada produção está associada a um produto.</td>
+<td>
+Um produto pode participar de várias produções; cada produção está associada a um produto.
+</td>
 </tr>
 
 <tr>
 <td>UTILIZA</td>
 <td>PRODUÇÃO (1,n)</td>
 <td>EMBALAGEM (0,n)</td>
-<td>Uma produção utiliza uma ou várias embalagens; uma embalagem pode participar de zero ou várias produções.</td>
+<td>
+Uma produção utiliza uma ou várias embalagens; uma embalagem pode participar de zero ou várias produções.
+</td>
 </tr>
 
 </tbody>
@@ -1108,189 +1470,236 @@ A embalagem participa do relacionamento UTILIZA com PRODUÇÃO.
 </section>
 
 
+<!-- ========================================================= -->
+<!-- 5. CONTROLE DE ACESSO -->
+<!-- ========================================================= -->
+
 <section class="page">
 
-<h2>6. Acesso por operação</h2>
+<h2>5. Controle de acesso às entidades</h2>
 
 <p>
-O controle de acesso apresentado no diagrama é estruturado em quatro entidades:
-<b>USUÁRIO</b>, <b>PERFIL</b>, <b>PERMISSÃO</b> e <b>RECURSO</b>.
-O usuário possui um perfil; o perfil possui permissões; e cada permissão
-é aplicada a um recurso. As operações de acesso representadas são
-<b>Consultar</b>, <b>Inserir</b>, <b>Alterar</b> e <b>Excluir</b>.
+O controle de acesso foi ajustado para utilizar <b>somente as entidades
+existentes no dicionário de dados</b>. Portanto, não são criadas entidades
+adicionais como USUÁRIO, PERFIL, PERMISSÃO ou RECURSO.
 </p>
 
-<h3>Estrutura de controle de acesso</h3>
+<p>
+O acesso é descrito diretamente sobre as entidades do modelo:
+<b>CLIENTE, REPRESENTANTE, PEDIDO, PAGAMENTO, ENTREGA, NOTA_FISCAL,
+PRODUTO, MATERIAL, FORNECEDOR, PRODUÇÃO e EMBALAGEM</b>.
+As operações consideradas são <b>Consultar</b>, <b>Inserir</b>,
+<b>Alterar</b> e <b>Excluir</b>.
+</p>
+
+<h3>LEITURA</h3>
+
+<p>
+Cada entidade possui operações de acesso compatíveis com sua finalidade
+dentro do processo. Entidades cadastrais, como CLIENTE, REPRESENTANTE,
+PRODUTO, MATERIAL e FORNECEDOR, admitem manutenção cadastral. Entidades
+transacionais, como PEDIDO, PAGAMENTO, ENTREGA, NOTA_FISCAL e PRODUÇÃO,
+possuem acesso voltado ao registro e acompanhamento de suas ocorrências.
+EMBALAGEM possui manutenção de seus dados cadastrais e utilização no
+processo de produção.
+</p>
+
+<h3>Regras de acesso por entidade</h3>
 
 <table>
 
 <thead>
 <tr>
 <th>Entidade</th>
-<th>Relacionamento</th>
-<th>Cardinalidade</th>
-<th>Interpretação</th>
+<th>Consultar</th>
+<th>Inserir</th>
+<th>Alterar</th>
+<th>Excluir</th>
+<th>LEITURA</th>
 </tr>
 </thead>
 
 <tbody>
 
 <tr>
-<td>USUÁRIO</td>
-<td>POSSUI — PERFIL</td>
-<td>Usuário (1,1) / Perfil (0,n)</td>
-<td>Cada usuário possui um perfil; um perfil pode estar associado a zero ou vários usuários.</td>
+<td>CLIENTE</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter os dados cadastrais dos clientes.
+</td>
 </tr>
 
 <tr>
-<td>PERFIL</td>
-<td>POSSUI — PERMISSÃO</td>
-<td>Perfil (0,n) / Permissão (0,n)</td>
-<td>Um perfil pode possuir zero ou várias permissões, e uma permissão pode estar associada a zero ou vários perfis.</td>
+<td>REPRESENTANTE</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter os dados cadastrais dos representantes.
+</td>
 </tr>
 
 <tr>
-<td>PERMISSÃO</td>
-<td>É APLICADA A — RECURSO</td>
-<td>Permissão (1,1) / Recurso (0,n)</td>
-<td>Cada permissão é aplicada a um recurso; um recurso pode receber zero ou várias permissões.</td>
+<td>PEDIDO</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Registrar, acompanhar e manter os pedidos realizados.
+</td>
+</tr>
+
+<tr>
+<td>PAGAMENTO</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Registrar e acompanhar os pagamentos vinculados aos pedidos.
+</td>
+</tr>
+
+<tr>
+<td>ENTREGA</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Registrar e acompanhar as informações relacionadas às entregas.
+</td>
+</tr>
+
+<tr>
+<td>NOTA_FISCAL</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter os registros das notas fiscais emitidas.
+</td>
+</tr>
+
+<tr>
+<td>PRODUTO</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter o cadastro dos produtos comercializados ou produzidos.
+</td>
+</tr>
+
+<tr>
+<td>MATERIAL</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter o cadastro dos materiais utilizados no processo.
+</td>
+</tr>
+
+<tr>
+<td>FORNECEDOR</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter o cadastro dos fornecedores de materiais.
+</td>
+</tr>
+
+<tr>
+<td>PRODUÇÃO</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Registrar, acompanhar e manter os registros do processo de produção.
+</td>
+</tr>
+
+<tr>
+<td>EMBALAGEM</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>
+Consultar e manter os dados das embalagens utilizadas na produção.
+</td>
 </tr>
 
 </tbody>
 </table>
 
+<div class="note">
 
-<h3>Acesso por operação</h3>
+<b>Observação:</b>
 
-<table>
+O modelo conceitual fornecido não apresenta entidades específicas de
+autenticação ou autorização. Por isso, o controle de acesso é documentado
+como regras de operações sobre as entidades existentes, sem introduzir
+novas entidades no dicionário.
 
-<thead>
-<tr>
-<th>Tabela / Recurso</th>
-<th>CONSULTAR</th>
-<th>INSERIR</th>
-<th>ALTERAR</th>
-<th>EXCLUIR</th>
-</tr>
-</thead>
+</div>
 
-<tbody>
-
-<tr>
-<td>RECURSO</td>
-<td>Controlado pela PERMISSÃO</td>
-<td>Controlado pela PERMISSÃO</td>
-<td>Controlado pela PERMISSÃO</td>
-<td>Controlado pela PERMISSÃO</td>
-</tr>
-
-<tr>
-<td>USUÁRIO</td>
-<td>Conforme PERMISSÃO do PERFIL</td>
-<td>Conforme PERMISSÃO do PERFIL</td>
-<td>Conforme PERMISSÃO do PERFIL</td>
-<td>Conforme PERMISSÃO do PERFIL</td>
-</tr>
-
-<tr>
-<td>PERFIL</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-</tr>
-
-<tr>
-<td>PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-<td>Conforme PERMISSÃO</td>
-</tr>
-
-</tbody>
-</table>
+</section>
 
 
-<h3>Dados das entidades de controle de acesso</h3>
+<!-- ========================================================= -->
+<!-- 6. MATRIZ DE OPERAÇÕES -->
+<!-- ========================================================= -->
+
+<section class="page">
+
+<h2>6. Matriz de operações das entidades</h2>
+
+<p>
+A matriz abaixo consolida o controle de acesso exclusivamente sobre as
+entidades que fazem parte do dicionário. Não são criados cargos, perfis ou
+entidades de segurança que não estejam representados no modelo conceitual.
+</p>
+
+<h3>LEITURA</h3>
+
+<p>
+As operações indicam quais ações podem ser realizadas sobre cada entidade:
+<b>Consultar</b> para leitura dos registros, <b>Inserir</b> para inclusão,
+<b>Alterar</b> para atualização e <b>Excluir</b> para remoção.
+A aplicação dessas operações a usuários ou grupos de usuários pode ser
+definida posteriormente pela regra de negócio ou pela implementação do
+sistema, sem alterar o dicionário conceitual.
+</p>
 
 <table>
 
 <thead>
 <tr>
 <th>Entidade</th>
-<th>Atributos identificados no diagrama</th>
-<th>Finalidade no controle de acesso</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td>USUÁRIO</td>
-<td>IdUsuario, Nome Completo, Email, Login, Senha, Status</td>
-<td>Identifica o usuário e mantém seus dados de autenticação e situação cadastral.</td>
-</tr>
-
-<tr>
-<td>PERFIL</td>
-<td>IdPerfil, Cargo</td>
-<td>Representa o perfil/cargo associado ao usuário e utilizado para agrupar permissões.</td>
-</tr>
-
-<tr>
-<td>PERMISSÃO</td>
-<td>IdPermissão, Consultar, Inserir, Alterar, Excluir</td>
-<td>Representa as operações que podem ser autorizadas para um recurso.</td>
-</tr>
-
-<tr>
-<td>RECURSO</td>
-<td>IdRecurso, Nome</td>
-<td>Identifica o recurso do sistema ao qual a permissão é aplicada.</td>
-</tr>
-
-</tbody>
-</table>
-
-<h2>7. Tabela de cargos, recursos e permissões</h2>
-
-<p>
-A tabela abaixo apresenta a distribuição das permissões entre os cargos
-(PERFIS) e os recursos do sistema, mantendo a estrutura:
-<b>USUÁRIO → PERFIL → PERMISSÃO → RECURSO</b>.
-</p>
-
-<h3>Leitura</h3>
-
-<p>
-O <b>USUÁRIO</b> é vinculado a um <b>PERFIL</b>; o <b>PERFIL</b> pode possuir
-várias <b>PERMISSÕES</b>; e cada <b>PERMISSÃO</b> é aplicada a um
-<b>RECURSO</b>. As permissões definem as operações representadas no diagrama —
-<b>Consultar</b>, <b>Inserir</b>, <b>Alterar</b> e <b>Excluir</b> —
-sobre os recursos do sistema.
-</p>
-
-<table>
-
-<thead>
-
-<tr>
-<th>Cargo / Perfil</th>
-<th>Recurso / Entidade</th>
 <th>Consultar</th>
 <th>Inserir</th>
 <th>Alterar</th>
 <th>Excluir</th>
 </tr>
-
 </thead>
 
 <tbody>
 
 <tr>
-<td>Administrador</td>
-<td>Cliente</td>
+<td>CLIENTE</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1298,8 +1707,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Representante</td>
+<td>REPRESENTANTE</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1307,8 +1715,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Pedido</td>
+<td>PEDIDO</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1316,8 +1723,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Entrega</td>
+<td>PAGAMENTO</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1325,8 +1731,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Produto</td>
+<td>ENTREGA</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1334,8 +1739,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Material</td>
+<td>NOTA_FISCAL</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1343,8 +1747,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Fornecedor</td>
+<td>PRODUTO</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1352,8 +1755,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Produção</td>
+<td>MATERIAL</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1361,8 +1763,7 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Pagamento</td>
+<td>FORNECEDOR</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
@@ -1370,211 +1771,38 @@ sobre os recursos do sistema.
 </tr>
 
 <tr>
-<td>Administrador</td>
-<td>Embalagem</td>
+<td>PRODUÇÃO</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
 </tr>
 
-
 <tr>
-<td>Vendedor</td>
-<td>Cliente</td>
+<td>EMBALAGEM</td>
 <td>✓</td>
 <td>✓</td>
 <td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Vendedor</td>
-<td>Representante</td>
 <td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Vendedor</td>
-<td>Pedido</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Vendedor</td>
-<td>Produto</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Vendedor</td>
-<td>Entrega</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-
-<tr>
-<td>Financeiro</td>
-<td>Cliente</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Financeiro</td>
-<td>Pedido</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Financeiro</td>
-<td>Pagamento</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Financeiro</td>
-<td>Entrega</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-
-<tr>
-<td>Estoque</td>
-<td>Produto</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Estoque</td>
-<td>Material</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Estoque</td>
-<td>Fornecedor</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Estoque</td>
-<td>Embalagem</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Estoque</td>
-<td>Produção</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-
-<tr>
-<td>Produção</td>
-<td>Produto</td>
-<td>✓</td>
-<td>—</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Produção</td>
-<td>Material</td>
-<td>✓</td>
-<td>—</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Produção</td>
-<td>Produção</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Produção</td>
-<td>Embalagem</td>
-<td>✓</td>
-<td>—</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-
-<tr>
-<td>Logística</td>
-<td>Pedido</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Logística</td>
-<td>Entrega</td>
-<td>✓</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-
-<tr>
-<td>Logística</td>
-<td>Cliente</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
 </tr>
 
 </tbody>
 </table>
 
+<div class="note">
+
+<b>Critério adotado:</b>
+
+Como o modelo conceitual não define perfis de acesso nem regras específicas
+por cargo, não foram inventadas permissões diferentes para cargos. A matriz
+representa as operações possíveis sobre cada entidade, mantendo o controle
+de acesso coerente com o dicionário de dados.
+
+</div>
+
+<div class="footer">
+Dicionário de Dados — Modelo Conceitual BRMW
+</div>
 
 </section>
 
