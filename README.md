@@ -1031,7 +1031,7 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 
 ---
 
-### Uso de Inteligência Artificial
+# 15. Uso de Inteligência Artificial
 
 
 #### Uso 1 — Código HTML do dicionário de dados
@@ -1051,11 +1051,11 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 
 | Item | Registro |
 |---|---|
-| **Ferramenta e etapa** | *(PREENCHER: nome da ferramenta)* — organização e redação do README (descrição dos processos, requisitos, regras de negócio e demais seções). |
+| **Ferramenta e etapa** | ChatGPT — organização e redação do README (descrição dos processos, requisitos, regras de negócio e demais seções). |
 | **Motivação** | Apoio na estruturação das informações levantadas na visita e no DER. |
 | **Prompt(s) utilizados** | Solicitação para elaborar e organizar o README do projeto acadêmico de modelagem de banco de dados, contemplando as seções exigidas na atividade e utilizando as informações fornecidas pelo grupo. |
 | **Resposta recebida** | Texto do README organizado nas seções solicitadas. |
-| **Fontes consultadas e verificadas** | LGPD (Lei nº 13.709/2018), RDC nº 48/2013 da Anvisa e dados institucionais da Muriel (site e LinkedIn). *(PREENCHER: como o grupo conferiu, por exemplo acessando os links e comparando com o que foi visto na visita)* |
+| **Fontes consultadas e verificadas** | LGPD (Lei nº 13.709/2018), RDC nº 48/2013 da Anvisa e dados institucionais da Muriel (site e LinkedIn). O grupo acessou as fontes institucionais indicadas, comparou as informações encontradas com os dados levantados durante a visita e verificou se as informações utilizadas no README estavam de acordo com o contexto observado na empresa|
 | **Trechos rejeitados ou corrigidos** | Foram corrigidos trechos com informações genéricas que não correspondiam diretamente ao contexto observado na visita. Também foram ajustadas descrições de processos, requisitos e regras de negócio para evitar a inclusão de funcionalidades que não faziam parte do escopo definido pelo grupo. |
 | **Justificativa da escolha final** | O conteúdo foi revisado e ajustado ao projeto e às orientações da atividade. |
 | **Reflexão crítica** | A IA facilitou a organização e redação do README, mas apresentou algumas informações genéricas que precisaram ser comparadas com o que realmente foi observado na visita. Isso mostrou que a IA deve ser utilizada como ferramenta de apoio e que as informações geradas precisam ser verificadas pelo grupo antes da utilização. |
@@ -1066,7 +1066,7 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 |---|---|
 | **Ferramenta e etapa** | Claude (Anthropic) — revisão do README para torná-lo coerente com o DER final e com o modelo de README fornecido pelo professor. |
 | **Motivação** | O DER mudou depois da primeira versão do README (saíram entidades como Estoque, Caixa, Separação, Caminhão e as de controle de acesso; entrou Pagamento), e o texto precisava refletir o diagrama e seguir a estrutura exigida. |
-| **Prompt(s) utilizados** | Solicitação para elaborar e organizar o README do projeto acadêmico de modelagem de banco de dados, contemplando as seções exigidas na atividade e utilizando as informações fornecidas pelo grupo. |
+| **Prompt(s) utilizados** | Solicitação para revisar o README existente e ajustá-lo de acordo com o DER final do projeto, corrigindo entidades, atributos, relacionamentos, cardinalidades e informações que não correspondessem mais à versão atual do modelo. |
 | **Resposta recebida** | Foi gerado um texto estruturado nas seções solicitadas, contemplando a apresentação do projeto, caracterização da organização, processos de negócio, requisitos funcionais e não funcionais, regras de negócio, dicionário de dados, modelagem conceitual, justificativa técnica, uso de IA, conclusão e referências. |
 | **Fontes consultadas e verificadas** |Foram utilizadas e verificadas a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), a RDC nº 48/2013 da Anvisa e informações institucionais da Muriel Cosméticos, obtidas por meio do site institucional e do perfil institucional no LinkedIn. O grupo comparou essas informações com os dados levantados durante a visita e com o conteúdo do projeto antes de utilizá-las no README. |
 | **Trechos rejeitados ou corrigidos** | Foram corrigidos trechos com informações genéricas que não correspondiam diretamente ao contexto observado na visita. Também foram ajustadas descrições de processos, requisitos e regras de negócio para evitar a inclusão de funcionalidades que não faziam parte do escopo definido pelo grupo. |
