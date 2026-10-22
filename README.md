@@ -1,6 +1,6 @@
 # Modelagem de Banco de Dados para a Muriel Cosméticos: Gestão de Pedidos, Pagamentos, Produção e Entregas
 
-*Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) — Entrega 1: Modelo Conceitual (DER)*
+*Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) 
 
 **Colaboradores do projeto**
 - Kevyn Deusdará Antônio (RGM 46970746)
@@ -10,405 +10,1024 @@
 
 ---
 
-## Introdução
+# 1. Introdução
 
-#### Problema, objetivos e delimitação
+Este projeto tem como objetivo desenvolver uma modelagem conceitual de banco de dados para representar processos da **Muriel Cosméticos**, abrangendo principalmente as áreas comercial, financeira, produtiva, fiscal e logística.
 
-A Muriel Cosméticos é uma empresa privada do setor de fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal. A empresa informa possuir mais de 60 anos de atuação e disponibiliza diferentes linhas e categorias de produtos, incluindo produtos para corpo e cabelo.
+O modelo foi desenvolvido a partir das informações levantadas durante a visita à empresa, da entrevista realizada com uma colaboradora e da análise dos processos relacionados ao cadastro de clientes e representantes, registro de pedidos, produtos, pagamentos, fornecedores, materiais, produção, embalagens, faturamento, notas fiscais e entregas.
 
-**Problema:** a operação da empresa envolve etapas comerciais, financeiras, industriais e logísticas que dependem de informações compartilhadas entre setores. Sem uma estrutura de dados única e consistente, torna-se difícil acompanhar um pedido desde o cadastro até o pagamento, a produção e a entrega.
+A proposta do banco de dados é organizar essas informações de maneira estruturada, permitindo que dados pertencentes a diferentes processos possam ser relacionados e consultados de maneira integrada.
 
-**Objetivo:** desenvolver uma modelagem conceitual de banco de dados que represente, de maneira integrada, o cadastro de clientes e representantes, o registro de pedidos e pagamentos, o cadastro de fornecedores, materiais e produtos, a produção (com materiais e embalagens) e a entrega, reduzindo redundâncias e facilitando as próximas etapas do projeto.
-
-**Delimitação:** o escopo está restrito à modelagem conceitual. Não fazem parte desta etapa a implementação física do banco, o desenvolvimento da aplicação, a definição completa dos tipos de dados, a criação das tabelas SQL ou a integração com sistemas corporativos existentes. Processos observados na visita, mas não incluídos nesta versão do modelo (controle de estoque por lote e validade, separação e acondicionamento de pedidos e controle de acesso), estão listados como trabalhos futuros.
+O projeto está delimitado à **modelagem conceitual e à documentação do modelo**. A implementação física do banco de dados, a criação definitiva das tabelas SQL, a definição dos tipos de dados e a integração com sistemas corporativos são consideradas etapas posteriores.
 
 ---
 
-## Desenvolvimento
+# 2. Caracterização da Organização
 
-### Caracterização da Organização
+## 2.1 Natureza, localização e porte
 
-- **Nome e natureza da organização:** Muriel Cosméticos, cuja razão social apresentada no site institucional é BEAUTY LAB DO BRASIL LTDA. Trata-se de uma empresa privada, com fins lucrativos, que atua na fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
+A organização estudada é a **Muriel Cosméticos**, cuja razão social apresentada institucionalmente é **BEAUTY LAB DO BRASIL LTDA.**
 
-- **Contexto e porte:** a empresa informa mais de 60 anos de atuação. Seu perfil institucional no LinkedIn a classifica como privada, sediada em São Paulo e na faixa de 201 a 500 funcionários. O portfólio inclui body splash, águas de banho, águas de colônia, sabonetes, óleos corporais, produtos capilares, shampoos, condicionadores, máscaras e produtos Muriel Baby, entre outros. A operação envolve fornecedores, uso de materiais e embalagens, produção industrial, representantes comerciais e entrega dos pedidos aos clientes.
+- **Natureza:** empresa privada com fins lucrativos.
+- **Atividade:** fabricação de cosméticos, produtos de perfumaria e produtos de higiene pessoal.
+- **Localização:** São Paulo, SP.
+- **Porte:** faixa de **201 a 500 funcionários**, conforme o perfil institucional consultado.
+- **Tempo de atuação informado:** mais de 60 anos.
 
-- **Problemas e necessidades identificados:** durante a visita, identificamos a falta de visibilidade em tempo real do status do pedido. O setor Comercial pode ter dificuldade para saber rapidamente se o pedido está aguardando material, em produção, pago, já expedido ou entregue, e o acompanhamento depende de planilhas e de comunicação manual entre setores.
-  - **Proposta (trabalho futuro):** painel de acompanhamento integrado ao Protheus (TOTVS), sistema de gestão utilizado pela empresa, com status do pedido por etapa, alertas de atraso e falta de materiais, rastreabilidade do pedido até a entrega e redução de planilhas. Está fora do escopo desta etapa, mas o modelo dá suporte a ela por meio das entidades Pedido, Pagamento, Produção e Entrega e seus campos de status.
+A empresa possui diferentes linhas de produtos relacionados a cuidados com o corpo, cabelos, perfumaria e higiene pessoal.
 
-- **Justificativa da escolha:** a Muriel possui atividade industrial, variedade de produtos, relacionamento com fornecedores, uso de materiais e embalagens, produção e processos de distribuição. Essa diversidade permite um modelo com diferentes níveis de relacionamento (comercial, financeiro, produtivo e logístico), sem ser inviável para esta primeira etapa. O grupo teve acesso à empresa por meio de visita guiada.
+Para que esses produtos cheguem aos clientes, existe uma cadeia de processos que envolve diferentes áreas da organização. Entre elas estão o relacionamento com fornecedores, aquisição e utilização de materiais, produção, utilização de embalagens, atuação de representantes comerciais, cadastro de clientes, realização de pedidos, pagamentos, faturamento, emissão de notas fiscais e entrega.
 
-- **Evidências da organização:**
-  - Site oficial: https://muriel.com.br/
-  - Perfil no LinkedIn: Muriel Cosméticos: https://br.linkedin.com/company/muriel-cosmeticos
-  - Google Maps / Meu Negócio: Rua Prefeito Takume Koike, 213 - Núcleo Itaim, Ferraz de Vasconcelos - SP, 08538-100
-  - Endereço: Rua Forte do Rio Branco, 854, Parque Industrial São Lourenço, São Paulo/SP, CEP 08340-140.
-  - Contato: SAC 0800 011 3846; e-mail sac@muriel.com.br; telefone +55 (11) 2010-1900; WhatsApp +55 (11) 97085-2921.
-  - Responsável/colaboradora que acompanhou a visita: *(PREENCHER: nome e setor, se autorizado)*. Data da visita: *(PREENCHER)*.
-  - Foto da visita, tirada com a colaboradora da Muriel que nos guiou pelo fluxo operacional:
+Essa diversidade de processos foi considerada na elaboração do modelo de dados, buscando representar as informações de maneira relacionada e evitar que cada processo seja tratado como uma informação isolada.
 
-<img width="465" height="573" alt="Captura de tela 2026-09-23 133139" src="https://github.com/user-attachments/assets/573742d8-7582-4d01-8f05-952a3dd262dd" />
+## 2.2 Participação de integrante do grupo
 
----
+Um dos integrantes do grupo **trabalha na empresa estudada**, o que facilitou o acesso às informações necessárias para compreender os processos representados no modelo.
 
-### Processos de Negócio
+A participação desse integrante possibilitou um contato mais próximo com a realidade da organização e contribuiu para a realização da visita, da entrevista e do levantamento das informações utilizadas na modelagem.
 
-#### Principais processos mapeados
-
-**Cadastro e gestão de clientes e representantes**
-- Cadastro das informações do cliente.
-- Cadastro dos representantes.
-- Associação entre representantes e pedidos.
-
-**Registro e gerenciamento de pedidos**
-- Identificação do cliente.
-- Registro do representante responsável.
-- Registro da data, do preço e do status do pedido.
-- Associação dos produtos ao pedido.
-- Registro de NF.
-
-**Controle de pagamentos**
-- Registro do pagamento do pedido.
-- Registro da data, do preço, do valor pago e do status do pagamento.
-
-**Gestão de fornecedores, materiais e produtos**
-- Cadastro de fornecedores e de materiais.
-- Associação entre fornecedores e materiais fornecidos.
-- Controle de unidade e estoque mínimo dos materiais.
-- Cadastro de produtos e associação dos materiais que os compõem.
-
-**Produção**
-- Registro da produção de um produto, com data de emissão, quantidade e status.
-- Associação dos materiais e das embalagens utilizados na produção.
-
-**Expedição e entrega**
-- Geração da entrega a partir do pedido.
-- Registro do motorista e do caminhão responsáveis.
-- Registro do código de rastreio, das datas de envio e entrega e do status.
-
-#### Fluxogramas
-
-O fluxograma abaixo representa os processos-chave e mostra como eles se integram: o pedido (com cliente, representante e pagamento) aciona a produção, que consome materiais e embalagens, e a produção culmina na entrega.
+As informações utilizadas no projeto foram analisadas pelo grupo e posteriormente relacionadas às entidades, atributos e relacionamentos representados no DER.
 
 ---
 
-<img width="1600" height="900" alt="WhatsApp Image 2026-10-14 at 11 43 23" src="https://github.com/user-attachments/assets/eef6aa40-d5b4-423d-9100-a53ceba410de" />
+# 3. Entrevista e evidências da visita
 
+A entrevista foi realizada no dia **02/09/2026**, em uma sala destinada ao tratamento de assuntos relacionados ao estoque, localizada na área de expedição da Muriel Cosméticos.
 
----
+- **Data:** 02/09/2026
+- **Local:** sala de assuntos relacionados ao estoque, localizada na área de expedição.
+- **Entrevistada:** Raquel Lira da Silva
+- **Cargo/setor:** Gerente geral
+- **Telefone:** (11)99464-1908
 
-### Requisitos do Sistema
+A entrevista teve como finalidade compreender como determinados processos são realizados na empresa e quais informações precisam ser registradas ou acompanhadas.
 
-#### Requisitos Funcionais
+As respostas obtidas foram utilizadas como uma das fontes para a identificação dos processos representados no banco de dados.
 
-O sistema deverá:
+A documentação da entrevista foi mantida separada das observações presenciais para deixar claro quais informações foram **relatadas pela entrevistada** e quais situações foram **observadas diretamente pela participante do grupo (Maria Eduarda)**.
 
-- RF01 — Permitir cadastrar, consultar, alterar e manter dados de clientes.
-- RF02 — Permitir cadastrar representantes.
-- RF03 — Permitir cadastrar e consultar pedidos.
-- RF04 — Permitir associar um pedido a um cliente.
-- RF05 — Permitir associar um pedido a um representante.
-- RF06 — Permitir associar produtos aos pedidos.
-- RF07 — Permitir controlar o status dos pedidos.
-- RF08 — Permitir registrar o pagamento de um pedido.
-- RF09 — Permitir registrar data, preço, valor pago e status do pagamento.
-- RF10 — Permitir cadastrar fornecedores.
-- RF11 — Permitir cadastrar materiais.
-- RF12 — Permitir associar fornecedores aos materiais fornecidos.
-- RF13 — Permitir cadastrar produtos e suas características.
-- RF14 — Permitir associar produtos aos materiais que os compõem.
-- RF15 — Permitir registrar a produção de um produto.
-- RF16 — Permitir registrar a quantidade produzida e a data de emissão da produção.
-- RF17 — Permitir acompanhar o status da produção.
-- RF18 — Permitir associar materiais e embalagens utilizados em cada produção.
-- RF19 — Permitir cadastrar embalagens.
-- RF21 — Permitir gerar e registrar notas fiscais relacionadas aos pedidos.
-- RF22 — Permitir registrar o número, série, data de emissão, chave de acesso, valor total e status da nota fiscal.
-- RF23 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
-- RF24 — Permitir consultar as notas fiscais vinculadas aos pedidos.
-- RF25 — Permitir gerar e registrar a entrega de um pedido.
-- RF26 — Permitir registrar código de rastreio, datas de envio e entrega e status da entrega.
-- RF27 — Permitir registrar o motorista e o caminhão responsáveis pela entrega.
-- RF28 — Permitir consultar informações de pedidos, pagamentos, produção, notas fiscais e entregas de forma integrada.
+### Documentação da entrevista
 
+[📄 Entrevista realizada com a empresa](documentacao/entrevista/entrevista-muriel.md)
 
-#### Requisitos Não Funcionais
+### Observações presenciais
 
-- RNF01 — Segurança: o acesso ao sistema deverá exigir autenticação de usuários.
-- RNF02 — Controle de acesso: o controle de perfis e permissões por usuário deverá ser definido na etapa de implementação, pois não faz parte do modelo conceitual desta versão.
-- RNF03 — Privacidade: informações pessoais deverão ser tratadas de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018).
-- RNF04 — Integridade: o sistema deverá impedir registros que violem chaves únicas, relacionamentos ou obrigatoriedades definidas pelo modelo.
-- RNF05 — Rastreabilidade: operações relevantes deverão poder ser identificadas e rastreadas por seus registros.
-- RNF06 — Disponibilidade: o sistema deverá estar disponível durante os períodos necessários às operações administrativas, produtivas e logísticas.
-- RNF07 — Desempenho: consultas de pedidos, pagamentos, notas fiscais, produção e entregas deverão apresentar resposta adequada mesmo com o crescimento do volume de registros.
-- RNF08 — Escalabilidade: o modelo deverá permitir o crescimento da quantidade de produtos, clientes, pedidos, fornecedores, produções, notas fiscais e entregas sem alteração estrutural frequente.
-- RNF09 — Usabilidade: as informações deverão ser apresentadas de forma clara e organizada para os usuários.
-- RNF10 — Backup: os dados deverão possuir mecanismos de cópia de segurança e recuperação.
-- RNF11 — Manutenibilidade: o modelo deverá permitir futuras alterações e integrações com outros sistemas, incluindo sistemas de emissão e consulta de notas fiscais.
-- RNF12 — Conformidade: o processo de fabricação deve considerar os requisitos regulatórios do setor. A Anvisa, por meio da RDC nº 48/2013, estabelece requisitos de Boas Práticas de Fabricação para produtos de higiene pessoal, cosméticos e perfumes, incluindo produção, armazenamento, documentação e controle da qualidade.
+[📄 Observações realizadas durante a visita](documentacao/observacoes-visita.md)
+
+### Evidências fotográficas
+
+[📁 Fotos e evidências da visita](documentacao/entrevista/fotos/)
 
 ---
 
-### Regras de Negócio
+# 4. Observações presenciais
 
-#### Regras operacionais
+Durante a visita realizada em **02/09**, foi observado um uso significativo de documentos e registros em papel para apoiar determinados processos relacionados ao estoque e à operação da empresa.
 
-- RN01: cada cliente pode possuir zero ou vários pedidos.
-- RN02: cada pedido deve estar associado a um único cliente.
-- RN03: cada pedido deve estar associado a um único representante.
-- RN04: um representante pode estar associado a zero ou vários pedidos.
-- RN05: um pedido deve conter um ou mais produtos; um produto pode estar em zero ou vários pedidos.
-- RN06: um pedido pode possuir zero ou vários pagamentos; cada pagamento deve pertencer a exatamente um pedido.
-- RN07: um pedido pode gerar no máximo uma entrega; cada entrega deve estar associada a exatamente um pedido.
-- RN08: um fornecedor pode fornecer zero ou vários materiais.
-- RN09: um material pode ser fornecido por zero ou vários fornecedores.
-- RN10: o CNPJ do fornecedor deve ser único.
-- RN11: cada material deve possuir identificação própria e estoque mínimo não negativo.
-- RN12: um produto deve ser feito com um ou mais materiais; um material pode compor zero ou vários produtos.
-- RN13: cada produção deve estar associada a exatamente um produto; um produto pode possuir zero ou várias produções.
-- RN14: uma produção deve utilizar um ou mais materiais; um material pode ser utilizado em zero ou várias produções.
-- RN15: uma produção deve utilizar uma ou mais embalagens; uma embalagem pode ser utilizada em zero ou várias produções.
-- RN16: uma produção deve possuir identificação, data de emissão, quantidade e status.
-- RN17: cada embalagem deve possuir identificação própria, tipo, capacidade e material.
-- RN18: a entrega deve possuir identificação e status.
-- RN19: a entrega pode possuir código de rastreio para permitir o acompanhamento logístico.
-- RN20: a data de entrega deve ser igual ou posterior à data de envio.
-- RN21: os status de pedido, pagamento, produção e entrega devem utilizar valores previamente definidos pelo sistema.
-- RN22: quantidades, preços e valores relacionados a pedidos, pagamentos, produção e embalagens não devem assumir valores negativos.
-- RN23: dados pessoais de clientes e representantes devem ser protegidos contra acesso não autorizado.
-- RN24: cada nota fiscal deve estar associada a exatamente um pedido; um pedido pode possuir zero ou várias notas fiscais.
-- RN25: cada nota fiscal deve possuir identificação, número, série, data de emissão, chave de acesso, valor total e status.
-- RN26: o número e a série da nota fiscal devem identificar a nota fiscal dentro do contexto definido pelo sistema.
-- RN27: o valor total da nota fiscal não deve assumir valor negativo.
-#### Restrições organizacionais
+Na área visitada, foram observados papéis utilizados para registrar ou evidenciar informações relacionadas a:
 
-- **Proteção de dados pessoais:** nome, telefone, e-mail e endereço devem ter acesso restrito e finalidade definida, conforme a LGPD. Importa porque o cadastro de clientes e representantes contém dados de contato.
-- **Normas sanitárias:** a RDC nº 48/2013 da Anvisa torna relevantes os controles de documentação, produção, armazenamento, qualidade e rastreabilidade. Por isso o modelo registra a produção com seus materiais e embalagens, permitindo identificar o que foi utilizado em cada fabricação.
-- **Rastreabilidade logística:** entrega, código de rastreio, motorista, caminhão, data de envio e data de entrega permitem acompanhar a movimentação dos pedidos.
-- **Controle financeiro:** a separação entre Pedido e Pagamento permite acompanhar a situação financeira de cada pedido (data, preço, valor pago e status).
-- **Integridade dos cadastros:** identificadores como o CNPJ do fornecedor são tratados como únicos no modelo.
+- movimentações de estoque;
+- devoluções;
+- pedidos cancelados;
+- acompanhamento de processos;
+- registros utilizados como evidência das atividades realizadas.
+
+Também foi possível observar que alguns processos dependiam da utilização de documentos físicos para registrar informações e comprovar determinadas movimentações.
+
+Essa observação foi relevante para o projeto porque demonstra a existência de informações que precisam ser registradas e posteriormente consultadas. A modelagem de banco de dados pode contribuir para estruturar essas informações de maneira organizada, permitindo relacionar dados de diferentes processos.
+
+É importante destacar que essa observação **não significa que todos os processos da empresa sejam realizados exclusivamente em papel**. A participante registrou especificamente aquilo que foi observado durante a visita.
 
 ---
 
-### Dicionário de Dados Conceitual (Preliminar)
+# 5. Problemas e dores identificados
 
-**Entidade: Cliente**
+A partir da entrevista e principalmente das observações realizadas durante a visita, foram identificados problemas relacionados à organização, integração, acompanhamento e rastreabilidade das informações.
 
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdCliente | Identificador do cliente | Chave da entidade |
-| Nome_Cliente | Nome do cliente | Obrigatório para cadastro completo |
-| Telefone_Cliente | Telefone de contato | Deve possuir formato válido |
-| Endereco_Cliente | Endereço do cliente | Obrigatório para cadastro completo |
-| UF_Cliente | Unidade federativa do cliente | Deve utilizar UF válida |
+Os problemas são apresentados no formato:
 
-**Entidade: Representante**
+**PROBLEMA → TABELA/ENTIDADE → CONSULTA**
 
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdRep | Identificador do representante | Chave da entidade |
-| Nome_Rep | Nome do representante | Obrigatório |
-| Telefone_Rep | Telefone de contato | Deve possuir formato válido |
-| Email_Rep | E-mail do representante | Deve possuir formato válido |
-
-**Entidade: Pedido**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdPedido | Identificador do pedido | Chave da entidade |
-| Data_Pedido | Data de criação do pedido | Obrigatória |
-| Preco_Pedido | Preço do pedido | Não deve ser negativo |
-| Status_Pedido | Situação atual do pedido | Deve utilizar valores previamente definidos |
-
-**Entidade: Pagamento**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdPagamento | Identificador do pagamento | Chave da entidade |
-| Data_Pagamento | Data do pagamento | Deve ser uma data válida |
-| Preco | Valor a ser pago pelo pedido | Não deve ser negativo |
-| Valor_Pago | Valor efetivamente pago | Não deve ser negativo |
-| Status_Pagamento | Situação do pagamento | Deve utilizar valores previamente definidos |
-
-**Entidade: Nota fiscal**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdNotaFiscal | Identificador da nota fiscal | Chave da entidade |
-| Numero_NF | Número da nota fiscal | Deve ser informado |
-| Serie | Série da nota fiscal | Deve ser informada |  
-| Data_Emissao | Data de emissão da nota fiscal | Deve ser uma data válida |
-| Chave_Acesso | Chave de acesso da nota fiscal | Deve possuir formato válido |
-| Valor_Total | Valor total da nota fiscal | Não deve ser negativo |
-| StatusNF | Situação da nota fiscal | Deve utilizar valores previamente definidos |
-
-**Entidade: Fornecedor**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdFornecedor | Identificador do fornecedor | Chave da entidade |
-| Nome_Fornecedor | Nome do fornecedor | Obrigatório |
-| CNPJ_Fornecedor | CNPJ do fornecedor | Deve ser único |
-| Telefone_Fornecedor | Telefone do fornecedor | Deve possuir formato válido |
-| Endereco_Fornecedor | Endereço do fornecedor | Obrigatório para cadastro completo |
-
-**Entidade: Material**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdMaterial | Identificador do material | Chave da entidade |
-| Nome_Material | Nome ou descrição do material | Obrigatório |
-| Unidade_Material | Unidade utilizada para controle do material | Deve utilizar unidade válida |
-| Estoque_minimo | Quantidade mínima desejada em estoque | Não deve ser negativa |
-
-**Entidade: Produto**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| Id_Produto | Identificador do produto | Chave da entidade |
-| Nome_Produto | Nome do produto | Obrigatório |
-| EAN_Produto | Código EAN do produto | Deve possuir formato válido quando utilizado |
-| Unidade_Produto | Unidade de comercialização/controle | Obrigatória |
-| Descricao_Produto | Características descritivas do produto | Campo textual |
-
-**Entidade: Produção**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdProducao | Identificador do registro de produção | Chave da entidade |
-| Data_emissao | Data de emissão da produção | Obrigatória |
-| Quantidade_Producao | Quantidade produzida/planejada | Deve ser positiva |
-| Status_Producao | Situação da produção | Deve utilizar valores definidos |
-
-**Entidade: Embalagem**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdEmbalagem | Identificador da embalagem | Chave da entidade |
-| Tipo | Tipo de embalagem | Obrigatório |
-| Capacidade | Capacidade da embalagem | Deve ser positiva |
-| Material | Material de que a embalagem é feita | Deve ser informado (atributo descritivo, distinto da entidade Material) |
-
-**Entidade: Entrega**
-
-| Atributo | Descrição | Regra de negócio associada |
-|---|---|---|
-| IdEntrega | Identificador da entrega | Chave da entidade |
-| Codigo_Rastreio | Código utilizado para rastreamento | Deve ser único quando utilizado |
-| Data_Envio | Data em que a entrega foi enviada | Deve ser válida |
-| Data_Entrega | Data efetiva da entrega | Deve ser igual ou posterior à data de envio |
-| Status_Entrega | Situação da entrega | Deve utilizar valores definidos |
-| Nome_Motorista | Nome do motorista responsável | Deve ser informado para operação de entrega |
-| IdCaminhao | Identificação do caminhão utilizado | Deve ser informado para operação de entrega |
+As consultas apresentadas demonstram como o banco de dados poderá apoiar a resolução ou o acompanhamento dos problemas identificados.
 
 ---
 
-### Modelagem Conceitual (Entidades, Atributos, Relacionamentos)
+## P1 — Informações operacionais registradas em diferentes documentos
 
-#### Entidades reconhecidas
+**Problema:**
 
-- **Cliente:** pessoas físicas que realizam pedidos; separado de Pedido porque um cliente faz vários pedidos ao longo do tempo.
-- **Representante:** responsável comercial que cadastra os pedidos.
-- **Pedido:** solicitação comercial feita pelo cliente; é o eixo que liga as áreas comercial, financeira e logística.
-- **Pagamento:** pagamento associado a um pedido, com ciclo de vida próprio (data, valor pago e status).
-- **Nota_Fiscal**: documento fiscal associado a um pedido, contendo informações como número, série, data de emissão, chave de acesso, valor total e status.
-- **Produto:** produtos comercializados pela organização.
-- **Fornecedor:** empresas que fornecem materiais.
-- **Material:** insumos usados na composição dos produtos e na produção.
-- **Produção:** registro da execução da fabricação de um produto.
-- **Embalagem:** tipos de embalagens utilizadas na produção.
-- **Entrega:** envio do pedido ao cliente, com rastreio, datas, status, motorista e caminhão.
+Durante a visita, foram observados diversos registros em papel relacionados a estoque, devoluções e pedidos cancelados.
 
-#### Atributos e classificações
+Quando informações relacionadas a um mesmo processo estão distribuídas em diferentes registros, o acompanhamento pode exigir a consulta de documentos distintos. Isso pode dificultar a obtenção de uma visão completa de determinada operação.
 
-**Atributos por entidade**
+O banco de dados pode contribuir para centralizar as informações relacionadas aos processos e permitir que elas sejam consultadas por meio de relacionamentos entre as entidades.
 
-| Entidade | Atributos (identificador em negrito) |
+**Tabelas/entidades relacionadas:**
+
+`Pedido`, `Produto`, `Pagamento`, `Nota_Fiscal` e `Entrega`.
+
+**Consulta:**
+
+```sql
+SELECT
+    p.IdPedido,
+    p.Data_Pedido,
+    p.Status_Pedido,
+    pag.Status_Pagamento,
+    nf.StatusNF,
+    e.Status_Entrega
+FROM Pedido p
+LEFT JOIN Pagamento pag
+    ON pag.IdPedido = p.IdPedido
+LEFT JOIN Nota_Fiscal nf
+    ON nf.IdPedido = p.IdPedido
+LEFT JOIN Entrega e
+    ON e.IdPedido = p.IdPedido;
+```
+
+Essa consulta permite reunir informações comerciais, financeiras, fiscais e logísticas de um pedido em uma única consulta.
+
+---
+
+## P2 — Dificuldade para acompanhar a situação dos pedidos
+
+**Problema:**
+
+Um pedido pode passar por diversas etapas. Depois de cadastrado, ele pode possuir produtos, pagamentos, nota fiscal e posteriormente uma entrega.
+
+Quando essas informações não estão relacionadas em uma estrutura única, pode ser mais difícil identificar rapidamente em qual situação o pedido se encontra.
+
+**Como o banco ajuda:**
+
+O relacionamento entre `Pedido`, `Pagamento`, `Nota_Fiscal` e `Entrega` permite consultar diferentes etapas utilizando o identificador do pedido como referência.
+
+**Tabelas/entidades relacionadas:**
+
+`Pedido`, `Pagamento`, `Nota_Fiscal` e `Entrega`.
+
+**Consulta:**
+
+```sql
+SELECT
+    p.IdPedido,
+    p.Status_Pedido,
+    pag.Status_Pagamento,
+    nf.StatusNF,
+    e.Status_Entrega
+FROM Pedido p
+LEFT JOIN Pagamento pag
+    ON pag.IdPedido = p.IdPedido
+LEFT JOIN Nota_Fiscal nf
+    ON nf.IdPedido = p.IdPedido
+LEFT JOIN Entrega e
+    ON e.IdPedido = p.IdPedido;
+```
+
+O resultado poderá fornecer uma visão integrada da situação de cada pedido.
+
+---
+
+## P3 — Dificuldade de acompanhar pagamentos
+
+**Problema:**
+
+Os pagamentos possuem informações próprias, como data, preço, valor pago e status.
+
+A existência de uma entidade específica para pagamento permite separar as informações financeiras das informações gerais do pedido, mantendo uma relação entre as duas.
+
+**Como o banco ajuda:**
+
+A relação entre `Pedido` e `Pagamento` permite identificar quais pagamentos estão associados a determinado pedido e consultar a situação financeira correspondente.
+
+**Tabelas/entidades relacionadas:**
+
+`Pedido` e `Pagamento`.
+
+**Consulta:**
+
+```sql
+SELECT
+    p.IdPedido,
+    p.Preco_Pedido,
+    pag.Data_Pagamento,
+    pag.Preco,
+    pag.Valor_Pago,
+    pag.Status_Pagamento
+FROM Pedido p
+JOIN Pagamento pag
+    ON pag.IdPedido = p.IdPedido;
+```
+
+A consulta pode auxiliar na identificação de valores pagos, valores registrados e status dos pagamentos associados aos pedidos.
+
+---
+
+## P4 — Dificuldade de rastrear materiais utilizados na produção
+
+**Problema:**
+
+A produção dos produtos depende de materiais e embalagens. Por isso, é importante conseguir relacionar um produto produzido aos materiais utilizados em sua produção.
+
+**Como o banco ajuda:**
+
+As entidades `Produto`, `Material` e `Produção` permitem organizar essas informações e estabelecer relações entre o produto fabricado, a produção realizada e os materiais utilizados.
+
+**Tabelas/entidades relacionadas:**
+
+`Produto`, `Material` e `Produção`.
+
+**Consulta:**
+
+```sql
+SELECT
+    prod.Id_Produto,
+    prod.Nome_Produto,
+    pr.IdProducao,
+    pr.Data_emissao,
+    pr.Quantidade_Producao,
+    pr.Status_Producao,
+    mat.IdMaterial,
+    mat.Nome_Material
+FROM Produto prod
+JOIN Produção pr
+    ON pr.Id_Produto = prod.Id_Produto
+JOIN Material mat
+    ON mat.IdMaterial = pr.IdMaterial;
+```
+
+A consulta permite obter informações sobre o produto, a produção e os materiais relacionados.
+
+---
+
+## P5 — Dificuldade de acompanhar as entregas
+
+**Problema:**
+
+Após a realização do pedido e das etapas financeiras e fiscais, existe a necessidade de acompanhar o processo de envio dos produtos.
+
+Informações como código de rastreio, data de envio, data de entrega e status permitem acompanhar o andamento logístico.
+
+**Como o banco ajuda:**
+
+A entidade `Entrega` está relacionada ao `Pedido`, permitindo consultar informações logísticas utilizando o identificador do pedido.
+
+**Tabelas/entidades relacionadas:**
+
+`Pedido` e `Entrega`.
+
+**Consulta:**
+
+```sql
+SELECT
+    p.IdPedido,
+    p.Status_Pedido,
+    e.Codigo_Rastreio,
+    e.Data_Envio,
+    e.Data_Entrega,
+    e.Status_Entrega,
+    e.Nome_Motorista,
+    e.IdCaminhao
+FROM Pedido p
+JOIN Entrega e
+    ON e.IdPedido = p.IdPedido;
+```
+
+A consulta permite acompanhar o status logístico dos pedidos e suas respectivas informações de entrega.
+
+---
+
+## P6 — Dificuldade de acompanhar informações fiscais
+
+**Problema:**
+
+As notas fiscais possuem informações específicas, como número, série, data de emissão, chave de acesso, valor total e status.
+
+Essas informações precisam estar relacionadas ao pedido ao qual a nota fiscal pertence para que seja possível identificar a origem de determinado documento fiscal.
+
+**Como o banco ajuda:**
+
+A relação entre `Pedido` e `Nota_Fiscal` permite consultar os dados fiscais associados a cada pedido.
+
+**Tabelas/entidades relacionadas:**
+
+`Pedido` e `Nota_Fiscal`.
+
+**Consulta:**
+
+```sql
+SELECT
+    p.IdPedido,
+    nf.IdNotaFiscal,
+    nf.Numero_NF,
+    nf.Serie,
+    nf.Data_Emissao,
+    nf.Chave_Acesso,
+    nf.Valor_Total,
+    nf.StatusNF
+FROM Pedido p
+JOIN Nota_Fiscal nf
+    ON nf.IdPedido = p.IdPedido;
+```
+
+---
+
+# 6. Processos de negócio
+
+## 6.1 Cadastro de clientes e representantes
+
+O cadastro de clientes e representantes permite identificar as pessoas ou organizações envolvidas nas operações comerciais.
+
+A entidade `Cliente` concentra as informações necessárias para identificar o cliente e possibilitar seu relacionamento com os pedidos.
+
+Já a entidade `Representante` permite identificar o profissional responsável pelo cadastro ou acompanhamento dos pedidos.
+
+### Cliente
+
+O cliente é a entidade responsável por representar quem realiza uma solicitação comercial à empresa.
+
+Seus atributos permitem armazenar:
+
+- **IdCliente:** identifica unicamente cada cliente cadastrado.
+- **Nome_Cliente:** registra o nome utilizado para identificar o cliente.
+- **Telefone_Cliente:** armazena um meio de contato telefônico.
+- **Endereco_Cliente:** registra o endereço relacionado ao cliente.
+- **UF_Cliente:** identifica a unidade federativa do endereço.
+
+### Representante
+
+O representante é responsável pela relação comercial associada aos pedidos.
+
+Seus atributos permitem armazenar:
+
+- **IdRep:** identifica unicamente o representante.
+- **Nome_Rep:** registra o nome do representante.
+- **Telefone_Rep:** permite armazenar seu contato telefônico.
+- **Email_Rep:** registra seu endereço eletrônico.
+
+---
+
+## 6.2 Registro de pedidos
+
+A entidade `Pedido` representa uma solicitação comercial realizada por um cliente e cadastrada por um representante.
+
+O pedido funciona como um dos principais pontos de integração do modelo, pois se relaciona com outras entidades, como:
+
+- Cliente;
+- Representante;
+- Produto;
+- Pagamento;
+- Nota Fiscal;
+- Entrega.
+
+### Informações do pedido
+
+- **IdPedido:** identifica unicamente cada pedido.
+- **Data_Pedido:** registra a data em que o pedido foi realizado ou cadastrado.
+- **Preco_Pedido:** registra o preço associado ao pedido.
+- **Status_Pedido:** registra a situação atual do pedido.
+
+A partir do `IdPedido`, é possível relacionar as informações comerciais às etapas financeira, fiscal e logística.
+
+---
+
+## 6.3 Pagamentos
+
+A entidade `Pagamento` representa a informação financeira associada a um pedido.
+
+Ela foi separada da entidade `Pedido` porque possui atributos próprios e representa uma etapa específica do processo.
+
+### Informações registradas
+
+- **IdPagamento:** identifica unicamente o pagamento.
+- **Data_Pagamento:** registra quando o pagamento foi realizado ou registrado.
+- **Preco:** representa o preço ou valor associado ao pagamento.
+- **Valor_Pago:** registra o valor efetivamente pago.
+- **Status_Pagamento:** indica a situação do pagamento.
+
+A separação permite que as informações financeiras sejam consultadas independentemente das demais informações do pedido.
+
+---
+
+## 6.4 Produtos
+
+A entidade `Produto` representa os produtos comercializados pela empresa.
+
+Cada produto possui informações próprias que permitem identificá-lo, descrevê-lo e relacioná-lo às vendas e à produção.
+
+### Informações registradas
+
+- **Id_Produto:** identificador único do produto.
+- **Nome_Produto:** nome utilizado para identificar o produto.
+- **EAN_Produto:** código utilizado para identificação comercial do produto.
+- **Unidade_Produto:** unidade utilizada para representar o produto.
+- **Descricao_Produto:** descrição complementar das características do produto.
+
+Os produtos podem aparecer em diferentes pedidos e também estar relacionados a diferentes registros de produção.
+
+---
+
+## 6.5 Materiais
+
+A entidade `Material` representa os materiais utilizados nos processos produtivos.
+
+Esses materiais são diferentes dos produtos acabados. Enquanto o produto representa aquilo que será comercializado, o material representa um recurso utilizado para a produção.
+
+### Informações registradas
+
+- **IdMaterial:** identificador único do material.
+- **Nome_Material:** nome utilizado para identificar o material.
+- **Unidade_Material:** unidade de medida utilizada para o material.
+- **Estoque_minimo:** quantidade mínima de estoque considerada para o material.
+
+A entidade pode ser relacionada tanto aos fornecedores quanto aos produtos e às produções.
+
+---
+
+## 6.6 Fornecedores
+
+A entidade `Fornecedor` representa empresas ou organizações responsáveis pelo fornecimento dos materiais utilizados pela empresa.
+
+### Informações registradas
+
+- **IdFornecedor:** identifica unicamente o fornecedor.
+- **Nome_Fornecedor:** nome do fornecedor.
+- **CNPJ_Fornecedor:** identifica o fornecedor juridicamente.
+- **Telefone_Fornecedor:** registra um contato telefônico.
+- **Endereco_Fornecedor:** registra o endereço do fornecedor.
+
+O relacionamento com `Material` permite representar quais materiais podem ser obtidos de cada fornecedor.
+
+---
+
+## 6.7 Pedido de materiais
+
+A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto aos fornecedores.
+
+Ela é importante porque o processo de aquisição de materiais possui características diferentes do pedido comercial realizado pelo cliente.
+
+### Informações registradas
+
+- **ID_PEDIDO_MATERIAL:** identifica a solicitação de materiais.
+- **DT_PEDIDO:** registra a data em que a solicitação foi realizada.
+- **DT_PREVISTA:** indica a data prevista para atendimento.
+- **STATUS:** registra a situação atual do pedido.
+- **PREÇO_TOTAL:** representa o valor total relacionado à solicitação.
+
+---
+
+## 6.8 Produção
+
+A entidade `Produção` representa uma ocorrência de fabricação de determinado produto.
+
+Um mesmo produto pode possuir diferentes registros de produção, representando diferentes momentos ou lotes de fabricação.
+
+### Informações registradas
+
+- **IdProducao:** identifica a produção.
+- **Data_emissao:** registra a data associada à produção.
+- **Quantidade_Producao:** registra a quantidade produzida.
+- **Status_Producao:** registra a situação da produção.
+
+A produção também se relaciona com os materiais e as embalagens utilizados no processo.
+
+---
+
+## 6.9 Embalagens
+
+A entidade `Embalagem` representa os recipientes ou estruturas utilizados para acondicionar os produtos durante a produção.
+
+Ela foi representada separadamente de `Material` porque possui características específicas relacionadas à sua função de embalagem.
+
+### Informações registradas
+
+- **IdEmbalagem:** identifica a embalagem.
+- **Tipo:** indica o tipo de embalagem.
+- **Capacidade:** registra a capacidade da embalagem.
+- **Material:** indica o material utilizado para fabricação da embalagem.
+
+---
+
+## 6.10 Faturamento
+
+A entidade `Faturamento` representa informações relacionadas ao processo de faturamento.
+
+### Informações registradas
+
+- **ID_FATURAMENTO:** identifica o faturamento.
+- **DT_FATURAMENTO:** registra a data em que o faturamento foi realizado.
+- **VALOR_TOTAL:** representa o valor total faturado.
+- **STATUS:** indica a situação do faturamento.
+- **FORMA_PAGAMENTO:** identifica a forma de pagamento relacionada.
+- **DT_VENCIMENTO:** registra a data de vencimento quando aplicável.
+
+O faturamento está relacionado à documentação fiscal representada pela entidade `Nota_Fiscal`.
+
+---
+
+## 6.11 Notas fiscais
+
+A entidade `Nota_Fiscal` representa o documento fiscal relacionado ao pedido.
+
+### Informações registradas
+
+- **IdNotaFiscal:** identificador da nota fiscal.
+- **Numero_NF:** número da nota fiscal.
+- **Serie:** série utilizada na identificação fiscal.
+- **Data_Emissao:** data de emissão da nota.
+- **Chave_Acesso:** chave utilizada para identificação e consulta do documento fiscal.
+- **Valor_Total:** valor total registrado na nota.
+- **StatusNF:** situação atual da nota fiscal.
+
+A relação com `Pedido` permite identificar qual operação comercial originou determinada nota fiscal.
+
+---
+
+## 6.12 Entrega
+
+A entidade `Entrega` representa o processo logístico de envio do pedido.
+
+### Informações registradas
+
+- **IdEntrega:** identifica unicamente a entrega.
+- **Codigo_Rastreio:** registra o código utilizado para acompanhamento da entrega.
+- **Data_Envio:** registra quando o pedido foi enviado.
+- **Data_Entrega:** registra quando ocorreu a entrega.
+- **Status_Entrega:** informa a situação atual da entrega.
+- **Nome_Motorista:** identifica o motorista associado à entrega.
+- **IdCaminhao:** identifica o caminhão utilizado.
+
+A entidade permite acompanhar a etapa posterior ao processamento do pedido.
+
+---
+
+# 7. Regras de negócio
+
+As principais regras consideradas na construção do modelo são:
+
+RN1. Cada pedido deve estar associado a um cliente.
+RN2. Cada pedido deve estar associado a um representante.
+RN3. Um cliente pode realizar vários pedidos.
+RN4. Um representante pode cadastrar vários pedidos.
+RN5. Cada pedido possui pelo menos um produto.
+RN6. Um produto pode aparecer em vários pedidos.
+RN7. Um pedido pode possuir zero ou vários pagamentos.
+RN8. Cada pagamento pertence a um pedido.
+RN9. Um pedido pode gerar zero ou uma nota fiscal.
+RN10. Cada nota fiscal está associada a um pedido.
+RN11. Um pedido pode possuir zero ou várias entregas conforme a cardinalidade representada no DER.
+RN12. Cada entrega está associada a um pedido.
+RN13. Um fornecedor pode fornecer vários materiais.
+RN14. Um material pode ser fornecido por vários fornecedores.
+RN15. Um produto pode estar relacionado a diferentes materiais.
+RN16. Uma produção deve estar associada a um produto.
+RN17. Uma produção utiliza materiais.
+RN18. Uma produção utiliza embalagens.
+RN19. Um mesmo produto pode possuir diferentes registros de produção.
+RN20. Os valores monetários devem possuir validação para evitar valores negativos.
+RN21. Quantidades devem possuir validação para evitar valores inválidos.
+RN22. Dados pessoais devem possuir mecanismos de proteção contra acesso não autorizado.
+
+---
+
+# 8. Dicionário de dados conceitual
+
+O dicionário de dados apresenta a finalidade de cada entidade e de seus principais atributos dentro do modelo.
+
+## 8.1 Cliente
+
+A entidade `Cliente` representa a pessoa ou organização que realiza pedidos junto à empresa.
+
+| Atributo | Descrição detalhada |
 |---|---|
-| Cliente | **IdCliente**, Nome_Cliente, Telefone_Cliente, Endereco_Cliente, UF_Cliente |
-| Representante | **IdRep**, Nome_Rep, Telefone_Rep, Email_Rep |
-| Pedido | **IdPedido**, Data_Pedido, Preco_Pedido, Status_Pedido |
-| Pagamento | **IdPagamento**, Data_Pagamento, Preco, Valor_Pago, Status_Pagamento |
-| Nota_Fiscal |	**IdNotaFiscal**, NumeroNF, Serie, DataEmissao, ChaveAcesso, ValorTotal, StatusNF |
-| Fornecedor | **IdFornecedor**, Nome_Fornecedor, CNPJ_Fornecedor, Telefone_Fornecedor, Endereco_Fornecedor |
-| Material | **IdMaterial**, Nome_Material, Unidade_Material, Estoque_minimo |
-| Produto | **Id_Produto**, Nome_Produto, EAN_Produto, Unidade_Produto, Descricao_Produto |
-| Produção | **IdProducao**, Data_emissao, Quantidade_Producao, Status_Producao |
-| Embalagem | **IdEmbalagem**, Tipo, Capacidade, Material |
-| Entrega | **IdEntrega**, Codigo_Rastreio, Data_Envio, Data_Entrega, Status_Entrega, Nome_Motorista, IdCaminhao |
-
-**Classificação dos atributos**
-
-- **Identificadores:** IdCliente, IdRep, IdPedido, IdPagamento, IdNotaFiscal, IdFornecedor, IdMaterial, Id_Produto, IdProducao, IdEmbalagem e IdEntrega.
-- **Descritivos:** nomes, descrições, endereços, tipos, material da embalagem e demais informações textuais.
-- **Quantitativos:** Preco_Pedido, Preco, Valor_Pago, Quantidade_Producao, Capacidade e Estoque_minimo.
-- **Temporais:** Data_Pedido, Data_Pagamento, Data_emissao, Data_Envio e Data_Entrega.
-- **De controle:** Status_Pedido, Status_Pagamento, Status_Producao e Status_Entrega.
-- **De identificação externa:** CNPJ_Fornecedor, EAN_Produto, Codigo_Rastreio e IdCaminhao.
-
-#### Relacionamentos pertinentes
-
-As cardinalidades seguem a notação (mínima, máxima) do DER.
-
-| Relacionamento | Entidades | Cardinalidade | Finalidade |
-|---|---|---|---|
-| Faz | Cliente (0,n) — Pedido (1,1) | 1:N | Um cliente realiza zero ou vários pedidos; cada pedido pertence a um cliente |
-| Cadastra | Representante (0,n) — Pedido (1,1) | 1:N | Um representante cadastra zero ou vários pedidos; cada pedido tem um representante |
-| Possui | Pedido (1,n) — Produto (0,n) | N:N | Um pedido contém um ou mais produtos; um produto pode estar em vários pedidos |
-| Possui | Pedido (0,N) — Pagamento (1,1) | 1:1 | um pedido pode ter vários pagamentos por causa do parcelamento |
-| Gera | Pedido (0,1) — Entrega (1,1) | 1:1 | Um pedido gera no máximo uma entrega; cada entrega pertence a um pedido |
-| Possui |	Pedido (0,n) — Nota_Fiscal (1,1) |	1:N	| Um pedido pode possuir zero ou várias notas fiscais; cada nota fiscal pertence a um pedido |
-| Fornece | Fornecedor (0,n) — Material (0,n) | N:N | Um fornecedor fornece vários materiais; um material pode ter vários fornecedores |
-| É feito com | Material (0,n) — Produto (1,n) | N:N | Relaciona o produto aos materiais que o compõem (mínimo de um) |
-| É utilizado | Material (0,n) — Produção (1,n) | N:N | Relaciona os materiais utilizados em cada produção (mínimo de um) |
-| É produzido em | Produto (0,n) — Produção (1,1) | 1:N | Um produto pode ter várias produções; cada produção é de um único produto |
-| Utiliza | Produção (1,n) — Embalagem (0,n) | N:N | Uma produção utiliza uma ou mais embalagens; uma embalagem pode ser usada em várias produções |
-
-#### Restrições e políticas organizacionais aplicadas ao modelo
-
-- identificação única dos principais registros e unicidade do CNPJ do fornecedor;
-- controle de status dos processos (pedido, pagamento, produção e entrega) com valores pré-definidos;
-- rastreabilidade das entregas (código de rastreio, datas, motorista e caminhão);
-- rastreabilidade da produção (produto, materiais e embalagens utilizados);
-- rastreabilidade das notas fiscais (número, série, data de emissão, chave de acesso, valor total e status);
-- integridade referencial entre entidades;
-- proteção dos dados pessoais (LGPD);
-- possibilidade de expansão futura para outros processos da organização.
+| `IdCliente` | Identificador único utilizado para diferenciar cada cliente dos demais registros existentes no banco de dados. |
+| `Nome_Cliente` | Nome utilizado para identificar o cliente no cadastro e nas operações comerciais. |
+| `Telefone_Cliente` | Número de telefone utilizado como informação de contato do cliente. |
+| `Endereco_Cliente` | Endereço relacionado ao cliente, utilizado para identificar sua localização cadastral. |
+| `UF_Cliente` | Unidade federativa correspondente ao endereço cadastrado do cliente. |
 
 ---
 
-### Diagrama Entidade-Relacionamento (DER)
+## 8.2 Representante
 
-O DER foi construído no BRModelo Web e representa entidades, atributos, relacionamentos e cardinalidades (mínima, máxima). Link para visualização: https://app.brmodeloweb.com/publicview/6ab340cd664f8629cdf4e2ef
+A entidade `Representante` representa o profissional responsável pela relação comercial e pelo cadastro dos pedidos.
 
-
-<img width="917" height="585" alt="Captura de tela 2026-10-14 092831" src="https://github.com/user-attachments/assets/36f49aaf-81c9-4019-bdaf-c999aeca25f0" />
-
-
-O modelo é consistente com o dicionário de dados e com as regras de negócio, e já prevê integração e escalabilidade: as entidades Pedido, Pagamento, Produção e Entrega, com seus campos de status, sustentam o painel proposto, e novos processos (estoque, separação, controle de acesso) podem ser acrescentados sem reestruturar o que já existe.
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdRep` | Identificador único utilizado para diferenciar cada representante cadastrado. |
+| `Nome_Rep` | Nome completo utilizado para identificação do representante. |
+| `Telefone_Rep` | Número de telefone utilizado para contato com o representante. |
+| `Email_Rep` | Endereço de e-mail utilizado como canal de comunicação com o representante. |
 
 ---
 
-### Justificativa Técnica
+## 8.3 Pedido
 
-**Por que separar as entidades.** Cada entidade representa um conceito específico da operação, o que evita concentrar informações diferentes em uma única estrutura. Cliente e Representante ficam fora de Pedido porque ambos se repetem em vários pedidos; guardar seus dados dentro do pedido geraria redundância.
+A entidade `Pedido` representa a solicitação comercial realizada pelo cliente.
 
-**Pagamento como entidade, e não atributos de Pedido.** A alternativa seria colocar data, valor pago e status do pagamento dentro de Pedido. Optamos por uma entidade própria porque o pagamento tem ciclo de vida independente do pedido (um pedido pode ser aprovado e ainda não pago, por exemplo). A cardinalidade (0,N)–(1,1) reflete que o pedido pode ainda não ter pagamento registrado, mas todo pedido pode ter vários pagamentos por causa do parcelamento.
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdPedido` | Identificador único do pedido, utilizado para relacioná-lo aos produtos, pagamentos, notas fiscais e entregas. |
+| `Data_Pedido` | Data em que o pedido foi realizado ou cadastrado no sistema. |
+| `Preco_Pedido` | Valor associado ao pedido, representando seu preço total conforme a regra definida para o modelo. |
+| `Status_Pedido` | Situação atual do pedido, permitindo identificar se ele está, por exemplo, em andamento, cancelado ou concluído. |
 
-**Nota Fiscal como entidade própria**. A Nota Fiscal foi separada de Pedido porque possui informações próprias, como número, série, data de emissão, chave de acesso, valor total e status. Dessa forma, é possível manter o registro e o acompanhamento das informações fiscais relacionadas aos pedidos sem concentrá-las diretamente na entidade Pedido.
+---
 
-**Entrega com relacionamento 1:1 opcional com Pedido.** Uma alternativa seria uma entrega agrupar vários pedidos. Adotamos uma entrega por pedido porque simplifica o rastreio nesta etapa e corresponde ao fluxo observado; a cardinalidade (0,1) do lado do pedido indica que o pedido pode existir antes de a entrega ser gerada.
+## 8.4 Pagamento
 
-**Motorista e caminhão como atributos da Entrega.** Poderiam ser entidades próprias. Como nesta etapa precisamos apenas identificar quem e o que realizou a entrega, mantê-los como atributos reduz a complexidade. A criação de entidades específicas (com placa única) está nos trabalhos futuros.
+A entidade `Pagamento` representa o registro financeiro relacionado ao pedido.
 
-**Pedido e Produto em N:N.** Um pedido tem vários produtos e um produto aparece em vários pedidos, então a relação é naturalmente N:N. Ela será resolvida em uma tabela associativa no modelo lógico, onde entrarão quantidade e preço unitário.
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdPagamento` | Identificador único do registro de pagamento. |
+| `Data_Pagamento` | Data em que o pagamento foi realizado ou registrado. |
+| `Preco` | Valor associado ao pagamento ou valor previsto para a operação. |
+| `Valor_Pago` | Quantia efetivamente registrada como paga. |
+| `Status_Pagamento` | Situação do pagamento, permitindo acompanhar se está pendente, realizado ou em outra situação definida pela empresa. |
 
-**Produto, Produção e materiais.** Separamos o cadastro permanente do produto (Produto) do registro de cada fabricação (Produção), o que permite várias produções do mesmo produto ao longo do tempo. A relação Produto–Material (N:N) descreve a composição; a relação Material–Produção (N:N) registra o que foi realmente usado em cada fabricação, importante para a rastreabilidade exigida pela RDC nº 48/2013. Optamos por uma única entidade Produção, que concentra emissão, quantidade e status, em vez de separar "ordem" e "execução", por ser suficiente para o escopo desta etapa.
+---
 
-**Embalagem separada de Material.** Embalagem tem atributos próprios (tipo e capacidade) e uma relação própria com a Produção (N:N), por isso não foi tratada como mais um material.
+## 8.5 Produto
 
-**Fornecedor–Material em N:N.** Um mesmo material pode ser comprado de fornecedores diferentes, e um fornecedor atende vários materiais; a relação 1:N impediria representar essa realidade.
+A entidade `Produto` representa os produtos comercializados pela empresa.
 
-**Escopo.** Estoque, separação/acondicionamento e controle de acesso foram observados, mas ficaram fora desta versão para manter o modelo viável nesta primeira etapa. O atributo Estoque_minimo em Material mantém o controle mínimo dos insumos.
+| Atributo | Descrição detalhada |
+|---|---|
+| `Id_Produto` | Identificador único utilizado para diferenciar cada produto cadastrado. |
+| `Nome_Produto` | Nome comercial utilizado para identificar o produto. |
+| `EAN_Produto` | Código EAN utilizado como identificador do produto em processos comerciais. |
+| `Unidade_Produto` | Unidade utilizada para representar a quantidade ou comercialização do produto. |
+| `Descricao_Produto` | Texto utilizado para registrar características ou informações complementares sobre o produto. |
+
+---
+
+## 8.6 Material
+
+A entidade `Material` representa recursos utilizados nos processos produtivos.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdMaterial` | Identificador único utilizado para diferenciar cada material cadastrado. |
+| `Nome_Material` | Nome utilizado para identificar o material utilizado pela empresa. |
+| `Unidade_Material` | Unidade utilizada para controlar ou representar a quantidade do material. |
+| `Estoque_minimo` | Quantidade mínima de estoque definida como referência para o acompanhamento do material. |
+
+---
+
+## 8.7 Fornecedor
+
+A entidade `Fornecedor` representa a organização responsável por fornecer materiais.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdFornecedor` | Identificador único do fornecedor dentro do banco de dados. |
+| `Nome_Fornecedor` | Nome utilizado para identificar o fornecedor. |
+| `CNPJ_Fornecedor` | Cadastro Nacional da Pessoa Jurídica utilizado para identificação fiscal do fornecedor. |
+| `Telefone_Fornecedor` | Número utilizado para contato com o fornecedor. |
+| `Endereco_Fornecedor` | Endereço cadastrado do fornecedor. |
+
+---
+
+## 8.8 Pedido_Material
+
+A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto a um fornecedor.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `ID_PEDIDO_MATERIAL` | Identificador único da solicitação de materiais. |
+| `DT_PEDIDO` | Data em que o pedido de materiais foi realizado. |
+| `DT_PREVISTA` | Data prevista para recebimento ou atendimento da solicitação. |
+| `STATUS` | Situação atual do pedido de materiais. |
+| `PREÇO_TOTAL` | Valor total associado aos materiais solicitados no pedido. |
+
+---
+
+## 8.9 Produção
+
+A entidade `Produção` representa uma ocorrência de fabricação.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdProducao` | Identificador único da produção realizada. |
+| `Data_emissao` | Data associada ao registro da produção. |
+| `Quantidade_Producao` | Quantidade do produto fabricada naquela ocorrência de produção. |
+| `Status_Producao` | Situação atual do processo produtivo registrado. |
+
+---
+
+## 8.10 Embalagem
+
+A entidade `Embalagem` representa os elementos utilizados para acondicionar os produtos.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdEmbalagem` | Identificador único da embalagem cadastrada. |
+| `Tipo` | Classificação ou tipo da embalagem utilizada. |
+| `Capacidade` | Capacidade de armazenamento ou acondicionamento da embalagem. |
+| `Material` | Material utilizado para fabricação da embalagem. |
+
+---
+
+## 8.11 Nota_Fiscal
+
+A entidade `Nota_Fiscal` representa o documento fiscal associado ao pedido.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdNotaFiscal` | Identificador único do registro da nota fiscal no banco. |
+| `Numero_NF` | Número utilizado para identificar a nota fiscal. |
+| `Serie` | Série fiscal à qual a nota pertence. |
+| `Data_Emissao` | Data em que a nota fiscal foi emitida. |
+| `Chave_Acesso` | Chave utilizada para identificar e consultar eletronicamente a nota fiscal. |
+| `Valor_Total` | Valor total registrado no documento fiscal. |
+| `StatusNF` | Situação atual da nota fiscal. |
+
+---
+
+## 8.12 Entrega
+
+A entidade `Entrega` representa a etapa logística relacionada ao envio do pedido.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `IdEntrega` | Identificador único utilizado para diferenciar cada entrega. |
+| `Codigo_Rastreio` | Código utilizado para acompanhar o deslocamento ou situação da entrega. |
+| `Data_Envio` | Data em que os produtos foram enviados para entrega. |
+| `Data_Entrega` | Data em que a entrega foi efetivamente realizada, quando concluída. |
+| `Status_Entrega` | Situação atual da entrega, permitindo acompanhar seu andamento. |
+| `Nome_Motorista` | Nome do motorista relacionado ao transporte da entrega. |
+| `IdCaminhao` | Identificador do caminhão utilizado no transporte. |
+
+---
+
+## 8.13 Faturamento
+
+A entidade `Faturamento` representa informações relacionadas ao processo financeiro/fiscal de faturamento.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `ID_FATURAMENTO` | Identificador único do registro de faturamento. |
+| `DT_FATURAMENTO` | Data em que o faturamento foi realizado. |
+| `VALOR_TOTAL` | Valor total associado ao faturamento. |
+| `STATUS` | Situação atual do faturamento. |
+| `FORMA_PAGAMENTO` | Forma definida para realização do pagamento. |
+| `DT_VENCIMENTO` | Data prevista para vencimento do pagamento, quando aplicável. |
+
+---
+
+## 8.14 Atendimento_SAC
+
+A entidade `Atendimento_SAC` representa um atendimento realizado ao cliente.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `ID_ATENDIMENTO` | Identificador único do atendimento realizado. |
+| `PROTOCOLO` | Número ou código utilizado para identificar o atendimento e facilitar seu acompanhamento. |
+| `DT_ATENDIMENTO` | Data em que o atendimento foi realizado. |
+| `STATUS` | Situação atual do atendimento. |
+| `TIPO_ATENDIMENTO` | Classificação utilizada para identificar o tipo de solicitação ou atendimento. |
+| `DESCRICAO` | Texto utilizado para registrar informações detalhadas sobre o atendimento. |
+
+---
+
+## 8.15 Devolução
+
+A entidade `Devolução` representa o registro de um processo de devolução relacionado a um pedido.
+
+| Atributo | Descrição detalhada |
+|---|---|
+| `ID_DEVOLUCAO` | Identificador único da devolução. |
+| `DT_DEVOLUCAO` | Data em que a devolução foi registrada ou realizada. |
+| `MOTIVO` | Motivo informado para realização da devolução. |
+| `STATUS` | Situação atual do processo de devolução. |
+| `REEMBOLSO` | Informação relacionada à existência ou situação de eventual reembolso. |
+| `QUANTIDADE` | Quantidade de produtos relacionada à devolução. |
+
+---
+
+# 9. Relacionamentos e cardinalidades do DER
+
+As cardinalidades devem ser interpretadas exatamente de acordo com o DER atualizado.
+
+| Relacionamento | Cardinalidade | Descrição |
+|---|---|---|
+| `Cliente — Faz — Pedido` | Cliente `(0,n)` / Pedido `(1,1)` | Um cliente pode realizar nenhum ou vários pedidos, enquanto cada pedido está associado a exatamente um cliente. |
+| `Representante — Cadastra — Pedido` | Representante `(0,n)` / Pedido `(1,1)` | Um representante pode cadastrar nenhum ou vários pedidos, enquanto cada pedido está associado a exatamente um representante. |
+| `Pedido — Possui — Pagamento` | Pedido `(0,n)` / Pagamento `(1,1)` | Um pedido pode possuir nenhum ou vários pagamentos, enquanto cada pagamento pertence a exatamente um pedido. |
+| `Pedido — Possui — Produto` | Pedido `(1,n)` / Produto `(0,n)` | Cada pedido possui pelo menos um produto, enquanto um produto pode estar presente em nenhum ou vários pedidos. |
+| `Pedido — Gera — Nota_Fiscal` | Pedido `(0,1)` / Nota_Fiscal `(1,1)` | Um pedido pode não gerar ou gerar uma nota fiscal, enquanto cada nota fiscal está vinculada a exatamente um pedido. |
+| `Pedido — Tem — Entrega` | Pedido `(0,n)` / Entrega `(1,1)` | Um pedido pode possuir nenhuma ou várias entregas, enquanto cada entrega está vinculada a exatamente um pedido. |
+| `Fornecedor — Fornece — Material` | Fornecedor `(0,n)` / Material `(0,n)` | Um fornecedor pode fornecer nenhum ou vários materiais, e um material pode ser fornecido por nenhum ou vários fornecedores. |
+| `Fornecedor — Recebe — Pedido_Material` | Fornecedor `(0,n)` / Pedido_Material `(1,1)` | Um fornecedor pode receber nenhum ou vários pedidos de materiais, enquanto cada pedido de material está relacionado a exatamente um fornecedor. |
+| `Material — Contém — Pedido_Material` | Material `(0,n)` / Pedido_Material `(1,n)` | Um material pode estar associado a nenhum ou vários pedidos de materiais, enquanto um pedido de material contém um ou vários materiais. |
+| `Material — é feito com — Produto` | Material `(0,n)` / Produto `(1,n)` | Um material pode estar associado a nenhum ou vários produtos, enquanto cada produto possui pelo menos um material relacionado. |
+| `Material — é utilizado — Produção` | Material `(0,n)` / Produção `(1,n)` | Um material pode ser utilizado em nenhuma ou várias produções, enquanto cada produção utiliza pelo menos um material. |
+| `Produto — é produzido em — Produção` | Produto `(0,n)` / Produção `(1,1)` | Um produto pode possuir nenhum ou vários registros de produção, enquanto cada produção está relacionada a exatamente um produto. |
+| `Embalagem — Utiliza — Produção` | Embalagem `(0,n)` / Produção `(1,n)` | Uma embalagem pode estar relacionada a nenhuma ou várias produções, enquanto cada produção utiliza pelo menos uma embalagem. |
+| `Atendimento_SAC — Solicita — Cliente` | Atendimento `(1,1)` / Cliente `(0,n)` | Cada atendimento está relacionado a exatamente um cliente, enquanto um cliente pode possuir nenhum ou vários atendimentos. |
+| `Atendimento_SAC — Registra — Devolução` | Atendimento `(0,1)` / Devolução `(1,1)` | Um atendimento pode registrar nenhuma ou uma devolução, enquanto cada devolução está relacionada a exatamente um atendimento. |
+| `Devolução — Tem — Pedido` | Devolução `(1,1)` / Pedido `(0,n)` | Cada devolução está relacionada a exatamente um pedido, enquanto um pedido pode possuir nenhuma ou várias devoluções. |
+| `Nota_Fiscal — Documenta — Faturamento` | Nota_Fiscal `(1,1)` / Faturamento `(0,1)` | Cada nota fiscal está relacionada a um faturamento, enquanto um faturamento pode estar relacionado a nenhuma ou uma nota fiscal. |
+
+---
+
+# 10. Modelo Conceitual
+
+O Diagrama Entidade-Relacionamento foi desenvolvido utilizando o BRModelo Web.
+
+[🔗 Visualizar DER no BRModelo Web](https://app.brmodeloweb.com/publicview/6ab340cd664f8629cdf4e2ef)
+
+O arquivo do modelo conceitual também está disponível neste repositório:
+
+[🖼️ Modelo Conceitual](modelo_conceitual.jpg)
+
+O DER representa as entidades, atributos, relacionamentos e respectivas cardinalidades identificadas durante o levantamento dos processos.
+
+A estrutura foi construída para permitir que informações de diferentes áreas sejam relacionadas por meio de entidades e relacionamentos.
+
+---
+
+# 11. Transformação do modelo conceitual para o modelo lógico
+
+Durante a transformação do modelo conceitual para o lógico, os relacionamentos com cardinalidade muitos-para-muitos precisam ser representados por estruturas associativas.
+
+Essas tabelas são necessárias porque, no modelo relacional, uma relação N:N não deve ser implementada diretamente entre duas tabelas sem uma estrutura intermediária.
+
+## 11.1 Pedido × Produto
+
+O relacionamento `Possui` apresenta:
+
+- `Pedido (1,n)`
+- `Produto (0,n)`
+
+Como um pedido pode possuir vários produtos e um produto pode aparecer em vários pedidos, foi necessária uma estrutura associativa, como:
+
+`Pedido_Produto`
+
+Essa tabela pode armazenar as referências ao pedido e ao produto e, posteriormente, atributos específicos da relação, como quantidade e preço unitário.
+
+---
+
+## 11.2 Fornecedor × Material
+
+O relacionamento `Fornece` apresenta:
+
+- `Fornecedor (0,n)`
+- `Material (0,n)`
+
+Como um fornecedor pode fornecer vários materiais e um material pode ser fornecido por vários fornecedores, foi necessária uma estrutura associativa:
+
+`Fornecedor_Material`
+
+Essa tabela permite registrar quais materiais são fornecidos por cada fornecedor.
+
+---
+
+## 11.3 Material × Produto
+
+O relacionamento `é feito com` apresenta:
+
+- `Material (0,n)`
+- `Produto (1,n)`
+
+Como existe uma relação N:N, foi necessária uma estrutura intermediária:
+
+`Produto_Material`
+
+Ela permite registrar quais materiais estão associados à composição de cada produto.
+
+---
+
+## 11.4 Material × Produção
+
+O relacionamento `é utilizado` apresenta:
+
+- `Material (0,n)`
+- `Produção (1,n)`
+
+Como uma produção pode utilizar vários materiais e um mesmo material pode participar de várias produções, foi criada uma estrutura associativa:
+
+`Material_Producao`
+
+Essa estrutura permite registrar a relação entre cada produção e os materiais utilizados.
+
+---
+
+## 11.5 Material × Pedido_Material
+
+O relacionamento `Contém` apresenta:
+
+- `Material (0,n)`
+- `Pedido_Material (1,n)`
+
+Como um pedido de material pode conter diversos materiais e um material pode aparecer em diferentes pedidos, a relação necessita de uma estrutura intermediária.
+
+---
+
+## 11.6 Produção × Embalagem
+
+O relacionamento `Utiliza` apresenta:
+
+- `Embalagem (0,n)`
+- `Produção (1,n)`
+
+Uma produção pode utilizar várias embalagens e uma embalagem pode ser utilizada em diferentes produções.
+
+Por esse motivo, a relação também deverá ser representada por uma estrutura associativa no modelo lógico.
+
+---
+
+# 12. Justificativa técnica da modelagem
+
+A separação das entidades foi realizada para representar conceitos diferentes e reduzir a duplicação de informações.
+
+Por exemplo, `Cliente` não foi colocado diretamente dentro de `Pedido` como um conjunto de informações repetidas. O cliente possui cadastro próprio porque pode realizar vários pedidos.
+
+O mesmo princípio é aplicado ao `Representante`, que possui seus próprios dados e pode estar associado a diferentes pedidos.
+
+`Pagamento` foi definido como entidade própria porque possui atributos específicos, como data, valor pago e status.
+
+`Nota_Fiscal` também possui entidade própria porque representa uma informação fiscal que possui número, série, chave de acesso, valor e status.
+
+`Produção` foi separada de `Produto` porque um mesmo produto pode ser produzido várias vezes.
+
+`Material` foi separado de `Produto` porque o material representa um recurso utilizado na fabricação, enquanto o produto representa aquilo que será comercializado.
+
+`Embalagem` também possui entidade própria porque apresenta atributos específicos, como tipo e capacidade.
+
+Essa separação facilita a manutenção dos dados e possibilita que diferentes processos sejam relacionados sem que todas as informações precisem ser repetidas.
+
+---
+
+# 13. BI — Business Intelligence
+
+O modelo possui potencial para apoiar futuras soluções de **Business Intelligence (BI)**.
+
+A estrutura permite reunir informações de diferentes áreas da empresa e transformá-las em indicadores para acompanhamento gerencial.
+
+Por exemplo, utilizando a entidade `Pedido`, seria possível calcular:
+
+- quantidade de pedidos realizados por período;
+- quantidade de pedidos cancelados;
+- quantidade de pedidos por status;
+- valor total dos pedidos;
+- produtos mais solicitados;
+- pedidos por representante.
+
+Relacionando `Pedido` e `Pagamento`, seria possível analisar:
+
+- valores pagos;
+- valores pendentes;
+- quantidade de pagamentos;
+- situação financeira dos pedidos.
+
+Relacionando `Pedido`, `Nota_Fiscal` e `Entrega`, seria possível analisar:
+
+- quantidade de pedidos faturados;
+- quantidade de pedidos enviados;
+- quantidade de entregas concluídas;
+- entregas pendentes;
+- tempo entre envio e entrega.
+
+Na área produtiva, as entidades `Produto`, `Produção` e `Material` poderiam fornecer indicadores como:
+
+- quantidade produzida;
+- produção por período;
+- produtos mais produzidos;
+- materiais utilizados;
+- frequência de utilização dos materiais.
+
+Dessa forma, o banco pode funcionar como uma fonte estruturada para construção de dashboards.
+
+---
+
+# 14. Inteligência Artificial
+
+O banco de dados também poderá servir como fonte estruturada para futuras aplicações de **Inteligência Artificial**.
+
+Com um histórico suficiente de dados, poderiam ser desenvolvidas soluções para:
+
+### Previsão de demanda
+
+Os dados históricos de pedidos e produtos poderiam ser utilizados para identificar padrões de consumo e estimar futuras demandas.
+
+### Planejamento de materiais
+
+As informações de produção e materiais poderiam auxiliar na estimativa de quais materiais poderão ser necessários em períodos futuros.
+
+### Análise de entregas
+
+Dados históricos de entrega poderiam ser utilizados para identificar padrões relacionados a atrasos ou dificuldades logísticas.
+
+### Identificação de padrões
+
+A IA poderia analisar grandes volumes de pedidos e identificar comportamentos que não seriam facilmente percebidos por meio de consultas manuais.
+
+### Apoio à produção
+
+Informações históricas sobre produção e pedidos poderiam auxiliar na identificação de produtos com maior demanda e apoiar decisões futuras relacionadas ao planejamento produtivo.
+
+Essas aplicações são possibilidades futuras. O projeto atual não implementa modelos de Inteligência Artificial.
 
 ---
 
@@ -454,40 +1073,85 @@ O modelo é consistente com o dicionário de dados e com as regras de negócio, 
 | **Justificativa da escolha final** | O conteúdo final foi mantido após revisão do grupo, pois apresentava as informações necessárias para documentar o projeto e estava mais adequado às informações coletadas na visita, ao DER e às orientações da atividade. |
 | **Reflexão crítica** | A IA interpreta o diagrama a partir de uma imagem e pode errar a leitura de cardinalidades ou nomes de atributos; por isso o grupo precisa conferir tudo com o DER original. Também apontou pontos que precisam de decisão humana (ex.: possível redundância entre Preco_Pedido e Preco). |
 
----
+# 16. Conclusão
 
-## Conclusão
+O projeto permitiu transformar processos observados na Muriel Cosméticos em uma estrutura conceitual de banco de dados.
 
-**Síntese.** O projeto apresentou uma modelagem conceitual de banco de dados direcionada à realidade operacional da Muriel Cosméticos, contemplando processos comerciais, financeiros, produtivos e logísticos. O DER relaciona clientes, representantes, pedidos, produtos e pagamentos com a entrega, além de fornecedores, materiais, produção e embalagens, representando o fluxo de informações desde o fornecimento de materiais e a fabricação até a entrega do pedido.
+O modelo contempla processos relacionados a clientes, representantes, pedidos, produtos, pagamentos, fornecedores, materiais, produção, embalagens, faturamento, notas fiscais, entregas, atendimento e devoluções.
 
-**Contribuições.** O modelo documenta as cardinalidades mínimas e máximas de todos os relacionamentos e fornece a base para o acompanhamento integrado de pedido, pagamento, produção e entrega, apoiando a proposta de painel de acompanhamento identificada na visita.
+A visita realizada em 02/09 também permitiu observar a utilização de registros físicos relacionados a estoque, devoluções e pedidos cancelados.
 
-**Aprendizados.** O projeto permitiu compreender como transformar processos organizacionais em entidades, atributos e relacionamentos, considerando regras de negócio, cardinalidades, integridade, segurança e expansão futura, além da importância de manter a documentação coerente com o diagrama.
+Essa observação contribuiu para identificar a necessidade de organizar e relacionar informações que participam de diferentes processos.
 
-**Trabalhos futuros.**
-- incluir o controle de estoque, com lote, validade, quantidade e endereço, relacionado a Produto;
-- incluir a separação de pedidos e o acondicionamento em caixas, relacionados ao estoque (lote), para garantir a rastreabilidade completa do lote até a entrega;
-- incluir o controle de acesso, por meio de entidades como Usuário, Perfil, Permissão e Recurso;
-- avaliar entidades próprias para Caminhão (com placa única) e Motorista, hoje atributos da Entrega;
-- detalhar os relacionamentos com atributos próprios, como quantidade e preço unitário em Pedido — Produto e quantidade de cada material na composição do produto;
-- revisar a redundância entre Preco_Pedido (Pedido) e Preco (Pagamento), avaliando o valor do pedido como atributo derivado dos itens;
-- elaborar o modelo lógico e físico, com tipos de dados e criação das tabelas em SQL;
-- implementar o painel de acompanhamento integrado ao Protheus.
+A modelagem proposta permite que informações comerciais, financeiras, produtivas, fiscais e logísticas sejam relacionadas por meio das entidades e relacionamentos definidos no DER.
+
+Além de atender aos processos analisados no projeto, o modelo fornece uma base para futuras implementações de banco de dados, consultas SQL, dashboards de BI e aplicações de Inteligência Artificial.
 
 ---
 
-## Referências Bibliográficas
+# 17. Trabalhos futuros
 
-MURIEL COSMÉTICOS. Muriel Cosméticos — site institucional. Disponível em: https://muriel.com.br/. Acesso em: 21 set. 2026.
+Como possíveis evoluções do projeto, poderão ser considerados:
 
-MURIEL COSMÉTICOS. Quem somos. Disponível em: <COLE-AQUI-A-URL>. Acesso em: 21 set. 2026.
+- implementação física do banco de dados;
+- criação das tabelas SQL;
+- definição dos tipos de dados;
+- definição das chaves primárias e estrangeiras;
+- criação das tabelas associativas;
+- criação de índices;
+- implementação de restrições de integridade;
+- detalhamento do controle de estoque;
+- controle de lote e validade;
+- controle de movimentações de estoque;
+- detalhamento das devoluções;
+- detalhamento do atendimento ao cliente;
+- criação de entidades próprias para motorista e caminhão;
+- criação de dashboards de BI;
+- criação de relatórios gerenciais;
+- integração com sistemas corporativos;
+- desenvolvimento de soluções de IA para previsão e análise.
 
-MURIEL COSMÉTICOS. Fale conosco. Disponível em: <COLE-AQUI-A-URL>. Acesso em: 21 set. 2026.
+---
 
-MURIEL COSMÉTICOS. Perfil institucional. LinkedIn. Disponível em: <COLE-AQUI-A-URL>. Acesso em: 21 set. 2026.
+# 18. Documentação e evidências
 
-BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, DF. Disponível em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm. Acesso em: 21 set. 2026.
+Toda a documentação relacionada à visita e à entrevista está organizada dentro do repositório.
 
-BRASIL. Agência Nacional de Vigilância Sanitária (ANVISA). Resolução RDC nº 48, de 25 de outubro de 2013. Regulamento Técnico de Boas Práticas de Fabricação para Produtos de Higiene Pessoal, Cosméticos e Perfumes. Disponível em: https://goias.gov.br/saude/wp-content/uploads/sites/34/2016/03/rdc-48-de-25-de-outubro-de-2013-a36.pdf. Acesso em: 21 set. 2026.
+```text
+documentacao/
+├── observacoes-visita.md
+│
+└── entrevista/
+    ├── entrevista-muriel.md
+    │
+    └── fotos/
+        ├── foto-01.jpg
+        ├── foto-02.jpg
+        └── ...
+```
 
-GRUPO DO PROJETO. Modelo Conceitual definitivo. BRModelo Web, 2026. Disponível em: https://app.brmodeloweb.com/publicview/6ab340cd664f8629cdf4e2ef. Acesso em: 23 set. 2026.
+### Arquivos
+
+- [📄 Entrevista](documentacao/entrevista/entrevista-muriel.md)
+- [📄 Observações presenciais](documentacao/observacoes-visita.md)
+- [📁 Evidências fotográficas](documentacao/entrevista/fotos/)
+
+A documentação da entrevista contém as informações relatadas pela entrevistada.
+
+O arquivo de observações registra aquilo que foi observado diretamente pelo grupo durante a visita.
+
+As fotografias, quando autorizadas, funcionam como evidências visuais da visita realizada.
+
+---
+
+# 19. Referências
+
+**MURIEL COSMÉTICOS.** Muriel Cosméticos — site institucional.
+
+**MURIEL COSMÉTICOS.** Perfil institucional. LinkedIn.
+
+**BRASIL.** Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD).
+
+**ANVISA.** Resolução RDC nº 48, de 25 de outubro de 2013. Regulamento Técnico de Boas Práticas de Fabricação para Produtos de Higiene Pessoal, Cosméticos e Perfumes.
+
+**GRUPO DO PROJETO.** Modelo Conceitual — BRModelo Web.
