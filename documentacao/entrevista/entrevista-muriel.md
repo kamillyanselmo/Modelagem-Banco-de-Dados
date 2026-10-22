@@ -6,8 +6,8 @@
 - **Data:** 02/09
 - **Local:** Sala responsável por assuntos relacionados ao estoque, localizada na área de expedição da empresa Muriel Cosméticos.
 - **Entrevistada:** Raquel Lira da Silva
-- **Cargo/Setor:** Auxiliar de escritório
-- **Telefone:** 11 967227629
+- **Cargo/Setor:** Gerente geral
+- **Telefone:** (11)99464-1908
 
 > **Observação:** As respostas abaixo foram organizadas e reconstruídas pelo grupo a partir das informações obtidas durante a visita e da compreensão dos processos da empresa. Não constituem uma transcrição literal da fala da entrevistada.
 
