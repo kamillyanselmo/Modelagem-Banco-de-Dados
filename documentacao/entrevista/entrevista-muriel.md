@@ -3,13 +3,14 @@
 ## 1. Identificação da entrevista
 
 - **Empresa:** Muriel Cosméticos
-- **Data:** 02/09
+- **Data:** 02/09/2026
 - **Local:** Sala responsável por assuntos relacionados ao estoque, localizada na área de expedição da empresa Muriel Cosméticos.
 - **Entrevistada:** Raquel Lira da Silva
 - **Cargo/Setor:** Gerente geral
-- **Telefone:** (11)99464-1908
+- **Número para contato:** (11)99464-1908
+- **Participante entrevistador:** Maria Eduarda da Silva Costa RGM: 46939563
 
-> **Observação:** As respostas abaixo foram organizadas e reconstruídas pelo grupo a partir das informações obtidas durante a visita e da compreensão dos processos da empresa. Não constituem uma transcrição literal da fala da entrevistada.
+**Observação:** As respostas abaixo foram organizadas e reconstruídas pelo grupo a partir das informações obtidas durante a visita e da compreensão dos processos da empresa. Não constituem uma transcrição literal da fala da entrevistada.
 
 ---
 
@@ -17,236 +18,264 @@
 
 ## Pergunta 1 — Como funciona o cadastro dos clientes?
 
-**Resposta:**  
-A entrevistada explicou que os clientes precisam ser identificados e cadastrados para que os pedidos possam ser relacionados corretamente a cada cliente. Entre as informações utilizadas estão nome, telefone, endereço e unidade federativa.
+**Resposta:**
 
-Essas informações foram representadas no modelo pela entidade **Cliente**, permitindo que um mesmo cliente esteja relacionado a diferentes pedidos ao longo do tempo.
+Os clientes precisam ser identificados e cadastrados para que os pedidos possam ser relacionados corretamente a cada um. Entre as informações consideradas estão nome, CPF, telefone e endereço.
+
+Essas informações foram representadas no modelo pela entidade **Cliente**, permitindo relacionar os clientes aos pedidos realizados.
 
 ---
 
-## Pergunta 2 — Como funciona o trabalho dos representantes comerciais?
+## Pergunta 2 — Como funciona o trabalho dos funcionários nos processos da empresa?
 
-**Resposta:**  
-A entrevistada informou que os representantes possuem participação no processo comercial, principalmente no registro e acompanhamento dos pedidos realizados pelos clientes.
+**Resposta:**
 
-O modelo representa essa função por meio da entidade **Representante**, contendo informações como nome, telefone e e-mail. Cada pedido fica associado ao representante responsável pelo seu cadastro.
+Os funcionários participam de atividades administrativas e operacionais, de acordo com suas responsabilidades. No processo comercial, os colaboradores responsáveis realizam o registro dos pedidos dos clientes por meio do sistema TOTVS Protheus.
+
+No modelo atualizado, a entidade **Funcionário** representa os colaboradores da empresa e reúne informações como identificação, nome, telefone, e-mail, cargo e data de admissão. Essa alteração permite representar os funcionários de forma mais abrangente, sem limitar a entidade apenas aos representantes comerciais.
 
 ---
 
 ## Pergunta 3 — Como os pedidos são registrados?
 
-**Resposta:**  
-A entrevistada relatou que o pedido reúne as principais informações da venda, como o cliente responsável, o representante, a data, o preço e a situação atual do pedido.
+**Resposta:**
 
-No modelo conceitual, o **Pedido** funciona como uma das principais entidades do processo comercial, relacionando-se com cliente, representante, produtos, pagamentos, faturamento e entrega.
+Os pedidos são registrados pelos responsáveis pelo processo comercial por meio do sistema TOTVS Protheus, utilizando o código e a descrição dos produtos solicitados pelos clientes.
+
+No modelo conceitual, a entidade **Pedido** reúne informações como identificação do pedido, data, preço e status. Ela se relaciona com o **Cliente** que realizou a solicitação e com o **Funcionário** responsável pelo registro.
 
 ---
 
 ## Pergunta 4 — Um pedido pode possuir mais de um produto?
 
-**Resposta:**  
-A entrevistada explicou que um pedido pode conter diferentes produtos. Da mesma forma, um mesmo produto pode aparecer em diversos pedidos realizados por diferentes clientes.
+**Resposta:**
 
-Por esse motivo, o relacionamento entre **Pedido** e **Produto** foi representado como muitos-para-muitos, sendo necessária uma tabela associativa durante a transformação para o modelo lógico.
+Um pedido pode conter diferentes produtos e quantidades, conforme a solicitação do cliente. Um mesmo produto também pode estar presente em diferentes pedidos.
+
+No DER, o relacionamento entre **Pedido** e **Produto** representa essa ligação. O pedido possui o atributo de quantidade pedida, enquanto o produto reúne suas informações de identificação e descrição.
 
 ---
 
 ## Pergunta 5 — Como são controlados os produtos comercializados?
 
-**Resposta:**  
-A entrevistada informou que os produtos precisam ser identificados individualmente para facilitar seu cadastro, comercialização e rastreabilidade.
+**Resposta:**
 
-No modelo, a entidade **Produto** contém informações como identificação, nome, código EAN, unidade e descrição. No modelo atualizado também foram considerados os dados de **lote e validade**, permitindo ampliar a rastreabilidade dos produtos.
+Os produtos precisam ser identificados para facilitar o cadastro, a comercialização e o acompanhamento durante os processos da empresa.
+
+No modelo, a entidade **Produto** reúne informações como identificação, nome, descrição e unidade. Também foi incluída a entidade **Lote**, que permite registrar informações relacionadas aos lotes dos produtos fabricados, como número, data de fabricação, data de validade e quantidade.
+
+Essa estrutura contribui para relacionar os produtos aos seus lotes e facilitar o acompanhamento das informações de fabricação e validade.
 
 ---
 
 ## Pergunta 6 — Como são controlados os materiais utilizados na produção?
 
-**Resposta:**  
-A entrevistada explicou que a fabricação dos produtos depende de diferentes materiais e insumos. Esses materiais precisam ser identificados e relacionados aos produtos e às produções em que são utilizados.
+**Resposta:**
 
-Por isso, o modelo possui a entidade **Material**, com informações como nome, unidade e estoque mínimo.
+A fabricação dos produtos depende de diferentes materiais e insumos, que precisam ser identificados e relacionados aos produtos em que são utilizados.
+
+Por isso, o modelo possui a entidade **Material**, com informações como identificação, nome, unidade e estoque mínimo. O relacionamento entre **Produto** e **Material** representa a utilização desses materiais na fabricação dos produtos.
 
 ---
 
 ## Pergunta 7 — Como funciona o relacionamento com os fornecedores?
 
-**Resposta:**  
-A entrevistada informou que os materiais utilizados pela empresa são obtidos de fornecedores. Um fornecedor pode disponibilizar diferentes materiais e um mesmo material pode possuir mais de um fornecedor.
+**Resposta:**
 
-Essa situação foi representada pelo relacionamento entre **Fornecedor** e **Material**, com cardinalidade muitos-para-muitos.
+Os materiais necessários para as atividades da empresa são obtidos de fornecedores. Um fornecedor pode disponibilizar diferentes materiais, de acordo com as necessidades da operação.
+
+No DER, a entidade **Fornecedor** reúne informações cadastrais, como identificação, nome, CNPJ, telefone, CEP e endereço. O relacionamento entre **Fornecedor** e **Material** representa a associação entre os fornecedores e os materiais que disponibilizam.
 
 ---
 
 ## Pergunta 8 — Como é realizado o pedido de materiais?
 
-**Resposta:**  
-A entrevistada explicou que existe uma necessidade de solicitar materiais aos fornecedores para atender às demandas da operação.
+**Resposta:**
 
-Para representar esse processo de forma separada do pedido realizado pelo cliente, foi criada no modelo atualizado a entidade **Pedido_Material**.
+Após o registro dos pedidos comerciais, é realizado o planejamento das compras conforme as necessidades identificadas. As solicitações de materiais são realizadas por meio do sistema TOTVS Protheus.
 
-Essa entidade permite registrar informações como data do pedido, data prevista, status e preço total, relacionando a solicitação ao fornecedor e aos materiais solicitados.
+Para representar esse processo no modelo, foi utilizada a entidade **Pedido_Material**, separada do pedido realizado pelo cliente. Ela permite registrar informações como identificação do pedido de material, data do pedido, previsão de recebimento, status e preço total.
+
+O pedido de material se relaciona com o fornecedor e com os materiais solicitados, permitindo organizar as informações referentes às compras.
 
 ---
 
 ## Pergunta 9 — Como funciona a produção dos produtos?
 
-**Resposta:**  
-A entrevistada explicou que a produção registra a fabricação dos produtos e envolve o controle da quantidade produzida e da situação da produção.
+**Resposta:**
 
-No modelo, a entidade **Produção** possui informações como data, quantidade produzida e status. Cada produção está relacionada a um produto e também aos materiais utilizados durante sua execução.
+Após a chegada dos materiais necessários, é realizada a programação da produção. Em seguida, são emitidas as ordens de produção no sistema TOTVS Protheus e começa o processo de fabricação, que envolve a manipulação dos produtos, o envase nos frascos e o acondicionamento nas caixas.
+
+No DER, a entidade **Produção** reúne informações como data de início, quantidade produzida e status. Ela se relaciona com os produtos fabricados, os materiais utilizados, as embalagens empregadas e os funcionários que participam do processo.
 
 ---
 
-## Pergunta 10 — Como as embalagens são relacionadas à produção?
+## Pergunta 10 — Como as embalagens são utilizadas na produção?
 
-**Resposta:**  
-A entrevistada informou que diferentes tipos de embalagens podem ser utilizados durante a fabricação dos produtos.
+**Resposta:**
 
-O modelo possui a entidade **Embalagem**, com informações como tipo, capacidade e material. Uma produção pode utilizar diferentes embalagens, enquanto uma embalagem pode ser utilizada em diferentes produções.
+Durante o processo produtivo, os produtos passam por etapas de envase e acondicionamento em embalagens, como frascos e caixas. Esses materiais precisam ser considerados conforme o tipo de produto fabricado.
 
-Por isso, esse relacionamento também será transformado em uma estrutura associativa no modelo lógico.
+No modelo, a entidade **Embalagem** possui informações como identificação, tipo, capacidade e material utilizado. O relacionamento entre **Produção** e **Embalagem** permite representar as embalagens utilizadas durante a fabricação.
 
 ---
 
 ## Pergunta 11 — Como funciona o pagamento dos pedidos?
 
-**Resposta:**  
-A entrevistada explicou que o pagamento precisa ser acompanhado separadamente do pedido, pois existem situações em que um pedido pode estar registrado e o pagamento ainda não ter sido concluído.
+**Resposta:**
 
-O modelo possui a entidade **Pagamento**, que registra data, preço, valor pago e status do pagamento.
+As informações de pagamento precisam ser organizadas para permitir o acompanhamento dos valores e da situação financeira dos pedidos.
 
-A separação entre pedido e pagamento permite acompanhar a situação financeira de cada operação.
+No DER, a entidade **Pagamento** registra informações como identificação, data, valor, forma de pagamento e status. O relacionamento com **Pedido** permite associar os pagamentos aos pedidos correspondentes.
 
 ---
 
 ## Pergunta 12 — Como funciona o faturamento?
 
-**Resposta:**  
-A entrevistada explicou que o faturamento representa uma etapa posterior ao registro do pedido e possui informações próprias relacionadas ao valor, à forma de pagamento, ao vencimento e ao status.
+**Resposta:**
 
-Por esse motivo, o modelo atualizado possui a entidade **Faturamento**, separando essa etapa do simples registro do pedido.
+O faturamento faz parte do processo de atendimento dos pedidos comerciais e possui informações próprias para o acompanhamento dos valores e das situações relacionadas a essa etapa.
 
-O faturamento também está relacionado à documentação fiscal correspondente.
+No modelo, a entidade **Faturamento** reúne informações como identificação, data de faturamento, valor total, status e data de vencimento. Ela se relaciona com a documentação fiscal por meio do relacionamento representado no DER.
 
 ---
 
 ## Pergunta 13 — Como são registradas as notas fiscais?
 
-**Resposta:**  
-A entrevistada informou que as notas fiscais precisam possuir informações próprias para identificação e acompanhamento.
+**Resposta:**
 
-No modelo, a entidade **Nota_Fiscal** registra dados como número, série, data de emissão, chave de acesso, valor total e status.
+As notas fiscais precisam possuir informações que permitam sua identificação e consulta durante os processos da empresa.
 
-A separação da nota fiscal em uma entidade própria permite manter as informações fiscais organizadas e relacionadas ao pedido ou faturamento correspondente.
+No modelo, a entidade **Nota Fiscal** reúne dados como identificação, número, série, chave de acesso, data de emissão, valor total e status. O relacionamento com **Pedido** representa a associação entre o pedido comercial e sua documentação fiscal, enquanto o relacionamento com **Faturamento** representa a ligação com o processo de faturamento.
 
 ---
 
 ## Pergunta 14 — Como funciona o processo de entrega?
 
-**Resposta:**  
-A entrevistada explicou que, após as etapas necessárias do pedido, ocorre a expedição e entrega dos produtos ao cliente.
+**Resposta:**
 
-A entidade **Entrega** foi utilizada para registrar informações como código de rastreio, data de envio, data de entrega, status, motorista, caminhão e transportadora.
+Depois que os produtos são preparados para a expedição, os pedidos são separados conforme as quantidades solicitadas, os volumes são carregados nos veículos e encaminhados aos clientes em diferentes regiões do Brasil.
 
-Dessa forma, o banco pode permitir o acompanhamento da situação da entrega e sua relação com o pedido.
+No DER, a entidade **Entrega** reúne informações como identificação, data de envio, data prevista de entrega, status, código de rastreio, motorista, placa do caminhão e transportadora. Essa entidade permite representar o acompanhamento do transporte e da entrega dos pedidos.
 
 ---
 
 ## Pergunta 15 — Como são tratados os problemas ou solicitações dos clientes após a venda?
 
-**Resposta:**  
-A entrevistada explicou que podem ocorrer situações em que o cliente precisa entrar em contato com a empresa depois da realização do pedido ou recebimento do produto.
+**Resposta:**
 
-Para representar esse processo, o modelo atualizado possui a entidade **Atendimento_SAC**, que permite registrar protocolo, data do atendimento, tipo de atendimento, descrição e status.
+Podem ocorrer situações em que os clientes precisam entrar em contato com a empresa para apresentar solicitações ou relatar algum problema relacionado aos produtos ou aos pedidos.
 
-O atendimento fica relacionado ao cliente, permitindo manter um histórico das solicitações realizadas.
+Para representar esse processo, o modelo possui a entidade **Atendimento_SAC**, que permite registrar informações como identificação do atendimento, protocolo, data, tipo de atendimento, descrição e status.
+
+O atendimento se relaciona com o cliente e com o funcionário responsável, permitindo organizar as informações das solicitações registradas.
 
 ---
 
 ## Pergunta 16 — Como são registradas as devoluções?
 
-**Resposta:**  
-A entrevistada informou que determinados atendimentos podem resultar na necessidade de devolução de produtos.
+**Resposta:**
 
-Para representar essa situação, foi criada a entidade **Devolução**, relacionada ao atendimento do SAC.
+Em algumas situações, um atendimento realizado pelo SAC pode estar relacionado à necessidade de devolução de produtos. Por isso, é importante manter informações que permitam identificar e acompanhar essas ocorrências.
 
-A devolução possui informações próprias, como data, motivo, status, quantidade devolvida e reembolso.
+No modelo, a entidade **Devolução** reúne dados como identificação, data, motivo, status e informações de reembolso. Ela se relaciona com o **Atendimento_SAC**, enquanto o relacionamento entre **Devolução** e **Produto** permite registrar os produtos e as quantidades devolvidas.
 
-Dessa forma, o modelo consegue diferenciar o simples atendimento ao cliente de uma ocorrência que efetivamente resultou em devolução.
-
----
-
-## Pergunta 17 — Como são acompanhados os pedidos cancelados?
-
-**Resposta:**  
-A entrevistada relatou que existem registros relacionados a pedidos que podem ser cancelados e que parte desse acompanhamento ainda depende de registros físicos utilizados pelos setores.
-
-Essa situação foi considerada pelo grupo na definição do atributo de **status do pedido**, permitindo diferenciar pedidos em diferentes situações e facilitar consultas futuras.
+Dessa forma, o modelo diferencia o atendimento realizado ao cliente da devolução registrada.
 
 ---
 
-## Pergunta 18 — Como são controladas as informações de estoque?
+## Pergunta 17 — Como são acompanhados os horários dos funcionários?
 
-**Resposta:**  
-A entrevistada explicou que o estoque envolve registros relacionados aos materiais e aos produtos utilizados nos processos da empresa.
+**Resposta:**
 
-Durante a visita, o grupo observou a utilização de documentos físicos para registrar informações relacionadas ao estoque. Também foram observados papéis utilizados como evidência para processos relacionados a devoluções e pedidos cancelados.
+É importante manter organizadas as informações relacionadas aos horários dos funcionários para possibilitar o acompanhamento dos registros de jornada.
 
-A partir dessa observação, o grupo considerou importante estruturar as informações em entidades relacionadas, reduzindo a dependência de registros físicos e permitindo consultas integradas.
+Para representar esse controle no DER, foi adicionada a entidade **Registro_Ponto**, que contém informações como identificação do registro, data, horário e tipo de registro. Ela se relaciona com a entidade **Funcionário**, permitindo associar cada marcação ao colaborador correspondente.
+
+A estrutura permite organizar os registros de entrada, saída e outros tipos de marcação que sejam adotados pela empresa. Os procedimentos específicos de controle de ponto devem ser confirmados com a empresa.
+
+---
+
+## Pergunta 18 — Como funciona o controle dos lotes dos produtos?
+
+**Resposta:**
+
+O acompanhamento dos lotes permite identificar os produtos fabricados e organizar informações relacionadas à fabricação, à quantidade e à validade.
+
+No modelo atualizado, a entidade **Lote** possui informações como número do lote, data de fabricação, data de validade e quantidade. Ela se relaciona com **Produto** e **Produção**, permitindo associar o lote ao produto correspondente e à produção em que foi fabricado.
+
+Essa estrutura pode auxiliar no acompanhamento dos produtos ao longo dos processos de fabricação e armazenamento.
 
 ---
 
 ## Pergunta 19 — Quais informações seriam importantes para acompanhar melhor os processos?
 
-**Resposta:**  
-A entrevistada indicou que seria importante conseguir acompanhar as informações relacionadas aos pedidos, estoque, produção, pagamentos, faturamento, entregas e ocorrências posteriores à venda.
+**Resposta:**
 
-Com base nisso, o grupo estruturou o modelo para relacionar essas áreas e permitir consultas que apresentem o histórico das operações.
+É importante organizar as informações relacionadas aos clientes, pedidos, funcionários, materiais, fornecedores, produção, lotes, pagamentos, faturamento, entregas e atendimentos realizados após a venda.
+
+Com base nos processos estudados, o grupo estruturou o DER para relacionar essas informações e facilitar consultas sobre as operações da empresa.
 
 ---
 
 ## Pergunta 20 — Como o banco de dados poderia ajudar a empresa?
 
-**Resposta:**  
-A partir dos processos apresentados, o grupo identificou que um banco de dados integrado poderia centralizar as informações e facilitar a consulta dos registros.
+**Resposta:**
 
-O modelo permite relacionar clientes, representantes, pedidos, produtos, pagamentos, fornecedores, materiais, produção, faturamento, notas fiscais, entregas, atendimentos do SAC e devoluções.
+Um banco de dados integrado pode ajudar a organizar as informações e facilitar a consulta dos registros relacionados às atividades da empresa.
 
-Com essas informações estruturadas, seria possível futuramente utilizar ferramentas de **Business Intelligence (BI)** para gerar indicadores e dashboards, além de utilizar técnicas de **Inteligência Artificial (IA)** para identificar padrões, apoiar previsões e auxiliar na tomada de decisões.
+O modelo atualizado contempla as entidades **Cliente**, **Funcionário**, **Registro_Ponto**, **Pedido**, **Produto**, **Lote**, **Material**, **Fornecedor**, **Pedido_Material**, **Produção**, **Embalagem**, **Pagamento**, **Faturamento**, **Nota Fiscal**, **Entrega**, **Atendimento_SAC** e **Devolução**, além dos relacionamentos representados no DER.
+
+Com essas informações estruturadas, o banco de dados poderá apoiar consultas integradas e, futuramente, permitir o uso de ferramentas de **Business Intelligence (BI)** para gerar indicadores e dashboards. Técnicas de **Inteligência Artificial (IA)** também poderão ser avaliadas para identificar padrões, apoiar previsões e auxiliar na tomada de decisões.
 
 ---
 
 # 3. Relação da entrevista com o DER
 
-As informações levantadas durante a entrevista contribuíram para a definição das principais entidades do modelo.
+As informações levantadas durante a entrevista e os processos estudados pelo grupo contribuíram para a definição das entidades do modelo conceitual atualizado.
 
-| Processo identificado | Entidade no DER |
+| Processo identificado | Entidades relacionadas no DER |
 |---|---|
 | Cadastro de clientes | Cliente |
-| Atuação comercial | Representante |
-| Venda | Pedido |
-| Produtos vendidos | Produto |
-| Pagamentos | Pagamento |
-| Faturamento | Faturamento |
-| Documentação fiscal | Nota_Fiscal |
-| Fornecimento de insumos | Fornecedor |
-| Controle de insumos | Material |
-| Solicitação de materiais | Pedido_Material |
-| Fabricação | Produção |
-| Embalagens | Embalagem |
-| Transporte e expedição | Entrega |
-| Atendimento pós-venda | Atendimento_SAC |
-| Retorno de produtos | Devolução |
+| Atuação dos colaboradores | Funcionário |
+| Controle de jornada | Funcionário, Registro_Ponto |
+| Registro comercial dos pedidos | Cliente, Funcionário, Pedido |
+| Produtos comercializados | Pedido, Produto |
+| Controle de lotes e validade | Produto, Lote |
+| Controle de materiais | Produto, Material |
+| Relacionamento com fornecedores | Fornecedor, Material |
+| Solicitação de materiais | Fornecedor, Pedido_Material, Material |
+| Fabricação dos produtos | Produção, Produto, Material |
+| Utilização de embalagens | Produção, Embalagem |
+| Pagamentos | Pedido, Pagamento |
+| Faturamento | Pedido, Faturamento |
+| Documentação fiscal | Pedido, Faturamento, Nota_Fiscal |
+| Transporte e entrega | Pedido, Entrega |
+| Atendimento pós-venda | Cliente, Funcionário, Atendimento_SAC |
+| Devolução de produtos | Atendimento_SAC, Devolução, Produto |
 
-A entrevista também ajudou a justificar a separação entre os diferentes processos. Por exemplo, **Pagamento** possui informações próprias e não foi tratado apenas como um atributo de Pedido; da mesma forma, **Nota_Fiscal** possui informações fiscais específicas e **Entrega** possui informações próprias de rastreamento.
+A estrutura do DER separa as informações de acordo com suas finalidades. Por exemplo, **Pedido** representa o registro comercial, enquanto **Pedido_Material** representa a solicitação de materiais aos fornecedores. Da mesma forma, **Atendimento_SAC** registra uma ocorrência de atendimento e **Devolução** representa a ocorrência de retorno de produtos.
+
+A inclusão de **Funcionário**, **Registro_Ponto** e **Lote** amplia a representação dos processos relacionados aos colaboradores, aos registros de jornada e à identificação dos produtos fabricados.
 
 ---
 
 # 4. Observação presencial relacionada à entrevista
 
-Durante a visita realizada em 02/09, na sala responsável por assuntos relacionados ao estoque, localizada na área de expedição da Muriel Cosméticos, foram observados diversos registros físicos em papel.
+Durante a visita realizada em 02/09/2026, na sala responsável por assuntos relacionados ao estoque, localizada na área de expedição da Muriel Cosméticos, foram observados registros físicos em papel relacionados a diferentes processos da empresa.
 
-Entre os documentos observados estavam registros relacionados a estoque, devoluções e pedidos cancelados, entre outros processos. Também foi observado que os papéis eram utilizados como forma de evidenciar e acompanhar determinados processos.
+Essa observação foi considerada pelo grupo na análise da organização das informações e na proposta de estruturar os dados em um modelo integrado.
 
-Essa observação presencial foi considerada separadamente das informações relatadas na entrevista e contribuiu para a identificação da necessidade de organizar os processos em uma estrutura de dados integrada.
+---
+
+# 5. Considerações finais (mundaças que tiveram ao longo do processo de realização do modelo conceitual)
+
+As alterações realizadas no DER tiveram como objetivo representar de forma mais abrangente os processos estudados na Muriel Cosméticos.
+
+A substituição de **Representante** por **Funcionário** permite representar os colaboradores de maneira mais ampla. A inclusão de **Registro_Ponto** contempla a organização dos registros de jornada, enquanto a entidade **Lote** permite associar os produtos fabricados às informações de fabricação e validade.
+
+As entidades **Pedido_Material**, **Atendimento_SAC** e **Devolução** também permitem separar processos com finalidades diferentes, organizando as solicitações de materiais, os atendimentos posteriores à venda e os registros de devolução.
+
+Dessa forma, o modelo atualizado busca integrar as informações comerciais, administrativas, produtivas e logísticas, facilitando a consulta e o acompanhamento dos processos representados no DER.
+
+**Nota metodológica:** as descrições das entidades e dos relacionamentos representam a estrutura proposta pelo grupo com base no DER. Os detalhes operacionais que não foram confirmados durante a entrevista devem ser validados com a empresa antes de serem apresentados como procedimentos efetivamente adotados.
