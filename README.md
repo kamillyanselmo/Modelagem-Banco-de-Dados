@@ -769,37 +769,37 @@ Esse processo está ligado às devoluções observadas em registros de papel dur
 
 As principais regras consideradas na construção do modelo são:
 
-RN1. Cada pedido deve estar associado a um cliente.
-RN2. Cada pedido deve estar associado a um funcionário.
-RN3. Um cliente pode realizar vários pedidos.
-RN4. Um funcionário pode cadastrar vários pedidos.
-RN5. Cada pedido possui pelo menos um produto.
-RN6. Um produto pode aparecer em vários pedidos.
-RN7. Um pedido pode possuir zero ou vários pagamentos.
-RN8. Cada pagamento pertence a um pedido.
-RN9. Um pedido pode gerar zero ou uma nota fiscal.
-RN10. Cada nota fiscal está associada a um pedido.
-RN11. Um pedido pode possuir zero ou uma entrega, conforme a cardinalidade representada no DER.
-RN12. Cada entrega está associada a um pedido.
-RN13. Um fornecedor pode fornecer vários materiais.
-RN14. Um material pode ser fornecido por vários fornecedores.
-RN15. Cada produto está relacionado a pelo menos um material, e um material pode estar relacionado a diferentes produtos.
-RN16. Uma produção deve estar associada a um produto.
-RN17. Uma produção utiliza materiais.
-RN18. Uma produção utiliza embalagens.
-RN19. Um mesmo produto pode possuir diferentes registros de produção.
-RN20. Os valores monetários devem possuir validação para evitar valores negativos.
-RN21. Quantidades devem possuir validação para evitar valores inválidos.
-RN22. Dados pessoais devem possuir mecanismos de proteção contra acesso não autorizado.
-RN23. Cada lote pertence a exatamente um produto, e um produto pode possuir zero ou vários lotes.
-RN24. Cada registro de ponto pertence a exatamente um funcionário, e um funcionário pode possuir zero ou vários registros de ponto.
-RN25. Um funcionário pode participar de zero ou várias produções, e cada produção possui pelo menos um funcionário participante.
-RN26. Cada atendimento (SAC) está associado a exatamente um cliente e é realizado por exatamente um funcionário.
-RN27. Um atendimento pode registrar zero ou uma devolução, e cada devolução está relacionada a exatamente um atendimento.
-RN28. Cada devolução está relacionada a exatamente um pedido, e um pedido pode possuir zero ou várias devoluções.
-RN29. Cada devolução contém pelo menos um produto, com a respectiva quantidade devolvida.
-RN30. Cada pedido de material está relacionado a exatamente um fornecedor e contém pelo menos um material.
-RN31. Cada nota fiscal documenta um faturamento, e um faturamento pode estar relacionado a zero ou uma nota fiscal.
+- RN1. Cada pedido deve estar associado a um cliente.
+- RN2. Cada pedido deve estar associado a um funcionário.
+- RN3. Um cliente pode realizar vários pedidos.
+- RN4. Um funcionário pode cadastrar vários pedidos.
+- RN5. Cada pedido possui pelo menos um produto.
+- RN6. Um produto pode aparecer em vários pedidos.
+- RN7. Um pedido pode possuir zero ou vários pagamentos.
+- RN8. Cada pagamento pertence a um pedido.
+- RN9. Um pedido pode gerar zero ou uma nota fiscal.
+- RN10. Cada nota fiscal está associada a um pedido.
+- RN11. Um pedido pode possuir zero ou uma entrega, conforme a cardinalidade representada no DER.
+- RN12. Cada entrega está associada a um pedido.
+- RN13. Um fornecedor pode fornecer vários materiais.
+- RN14. Um material pode ser fornecido por vários fornecedores.
+- RN15. Cada produto está relacionado a pelo menos um material, e um material pode estar relacionado a diferentes produtos.
+- RN16. Uma produção deve estar associada a um produto.
+- RN17. Uma produção utiliza materiais.
+- RN18. Uma produção utiliza embalagens.
+- RN19. Um mesmo produto pode possuir diferentes registros de produção.
+- RN20. Os valores monetários devem possuir validação para evitar valores negativos.
+- RN21. Quantidades devem possuir validação para evitar valores inválidos.
+- RN22. Dados pessoais devem possuir mecanismos de proteção contra acesso não autorizado.
+- RN23. Cada lote pertence a exatamente um produto, e um produto pode possuir zero ou vários lotes.
+- RN24. Cada registro de ponto pertence a exatamente um funcionário, e um funcionário pode possuir zero ou vários registros de ponto.
+- RN25. Um funcionário pode participar de zero ou várias produções, e cada produção possui pelo menos um funcionário participante.
+- RN26. Cada atendimento (SAC) está associado a exatamente um cliente e é realizado por exatamente um funcionário.
+- RN27. Um atendimento pode registrar zero ou uma devolução, e cada devolução está relacionada a exatamente um atendimento.
+- RN28. Cada devolução está relacionada a exatamente um pedido, e um pedido pode possuir zero ou várias devoluções.
+- RN29. Cada devolução contém pelo menos um produto, com a respectiva quantidade devolvida.
+- RN30. Cada pedido de material está relacionado a exatamente um fornecedor e contém pelo menos um material.
+- RN31. Cada nota fiscal documenta um faturamento, e um faturamento pode estar relacionado a zero ou uma nota fiscal.
 
 > **Observação para a implementação:** no modelo lógico, uma chave estrangeira isoladamente não impede que haja vários registros relacionados. Para garantir os limites de "zero ou uma" (RN9, RN11 e RN27), a implementação em SQL deverá utilizar restrições `UNIQUE` em `Nota_Fiscal.ID_PEDIDO`, `Entrega.ID_PEDIDO` e `Devolução.ID_ATENDIMENTO`. Os mínimos "um ou mais" (por exemplo, RN5, RN17 e RN29) não são impostos pela estrutura das tabelas e deverão ser garantidos por validações na aplicação ou por triggers.
 
