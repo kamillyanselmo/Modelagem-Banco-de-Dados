@@ -52,7 +52,7 @@ No modelo conceitual, a entidade **Pedido** reúne informações como identifica
 
 Um pedido pode conter diferentes produtos e quantidades, conforme a solicitação do cliente. Um mesmo produto também pode estar presente em diferentes pedidos.
 
-No DER, o relacionamento entre **Pedido** e **Produto** representa essa ligação. O pedido possui o atributo de quantidade pedida, enquanto o produto reúne suas informações de identificação e descrição.
+No DER, o relacionamento entre **Pedido** e **Produto** representa essa ligação. O relacionamento entre Pedido e produto, possui o atributo a quantidade pedida. 
 
 ---
 
@@ -202,7 +202,7 @@ A estrutura permite organizar os registros de entrada, saída e outros tipos de 
 
 O acompanhamento dos lotes permite identificar os produtos fabricados e organizar informações relacionadas à fabricação, à quantidade e à validade.
 
-No modelo atualizado, a entidade **Lote** possui informações como número do lote, data de fabricação, data de validade e quantidade. Ela se relaciona com **Produto** e **Produção**, permitindo associar o lote ao produto correspondente e à produção em que foi fabricado.
+No modelo atualizado, a entidade **Lote** possui informações como número do lote, data de fabricação, data de validade e quantidade. Ela se relaciona com **Produto**, permitindo associar o lote ao produto correspondente.
 
 Essa estrutura pode auxiliar no acompanhamento dos produtos ao longo dos processos de fabricação e armazenamento.
 
