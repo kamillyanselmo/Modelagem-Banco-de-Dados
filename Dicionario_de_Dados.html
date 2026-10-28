@@ -178,7 +178,12 @@
                 <tr>
                     <td>DEVOLUÇÃO</td>
                     <td>NOTA_FISCAL</td>
-                    <td>CONTÉM — DEVOLUÇÃO (0,N) / NOTA_FISCAL (1,1)</td>
+                    <td>CONTÉM — DEVOLUÇÃO (1,1) / NOTA_FISCAL (0,N)</td>
+                </tr>
+                <tr>
+                    <td>DEVOLUÇÃO</td>
+                    <td>PRODUTO</td>
+                    <td>REFERE-SE A — DEVOLUÇÃO (1,1) / PRODUTO (0,N)</td>
                 </tr>
                 <tr>
                     <td>NOTA_FISCAL</td>
@@ -288,7 +293,7 @@
                 </tr>
                 <tr>
                     <td>DEVOLUÇÃO</td>
-                    <td>Registra devoluções associadas a pedidos, atendimentos do SAC e notas fiscais.</td>
+                    <td>Registra devoluções de produtos associadas a pedidos, atendimentos do SAC e notas fiscais.</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
@@ -878,10 +883,10 @@
     <section class="page">
         <div class="entity">
             <h3>DEVOLUCAO</h3>
-            <div class="formula">DEVOLUCAO = @ID_DEVOLUCAO + ID_NF + ID_PEDIDO + ID_ATENDIMENTO + DT_DEVOLUCAO + MOTIVO
+            <div class="formula">DEVOLUCAO = @ID_DEVOLUCAO + ID_NF + ID_PEDIDO + ID_ATENDIMENTO + ID_PRODUTO + DT_DEVOLUCAO + MOTIVO
                 + STATUS_DEVOLUCAO + REEMBOLSO_DEVOLUCAO + QUANTIDADE_DEVOLVIDA</div>
-            <p><b>LEITURA:</b> Registra as devoluções vinculadas a um pedido, a um atendimento do SAC e a uma nota
-                fiscal, incluindo a quantidade devolvida.</p>
+            <p><b>LEITURA:</b> Registra as devoluções de um produto vinculadas a um pedido, a um atendimento do SAC e a uma nota
+                fiscal, incluindo a quantidade devolvida do produto.</p>
             <table>
                 <thead>
                     <tr>
@@ -930,6 +935,15 @@
                         <td>Sim</td>
                         <td>Sim</td>
                         <td>Identificador do atendimento do SAC que registrou a devolução.</td>
+                    </tr>
+                    <tr>
+                        <td>ID_PRODUTO</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>FK</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Identificador do produto ao qual a devolução se refere.</td>
                     </tr>
                     <tr>
                         <td>DT_DEVOLUCAO</td>
@@ -2155,10 +2169,16 @@
                 </tr>
                 <tr>
                     <td>CONTÉM</td>
-                    <td>DEVOLUCAO (0,N)</td>
-                    <td>NOTA_FISCAL (1,1)</td>
+                    <td>DEVOLUCAO (1,1)</td>
+                    <td>NOTA_FISCAL (0,N)</td>
                     <td>Uma nota fiscal pode estar relacionada a várias devoluções; cada devolução se vincula a uma nota
                         fiscal.</td>
+                </tr>
+                <tr>
+                    <td>REFERE-SE A</td>
+                    <td>DEVOLUCAO (1,1)</td>
+                    <td>PRODUTO (0,N)</td>
+                    <td>Cada devolução se refere a um produto; um produto pode estar relacionado a várias devoluções.</td>
                 </tr>
                 <tr>
                     <td>GERA</td>
