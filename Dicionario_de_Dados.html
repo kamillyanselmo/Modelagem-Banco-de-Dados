@@ -126,7 +126,8 @@
         <h1>Dicionário de Dados do Modelo Conceitual e Lógico</h1>
         <div class="subtitle">Modelos de referência: DER_REVISADO e MODELO_LOGICO_REVISADO — BRMW.</div>
         <h2>1. Modelo conceitual</h2>
-        <p>O modelo representa o cadastro de clientes e funcionários, pedidos, pagamentos, atendimento SAC, devoluções,
+        <p>O modelo representa o cadastro de clientes (pessoa física e jurídica) e funcionários (SAC, vendas e
+            produção), pedidos, pagamentos, atendimento SAC, devoluções,
             entrega, nota fiscal, faturamento, produtos, lotes, fornecedores, materiais, pedidos de materiais, produção,
             registro de ponto e embalagens.</p>
         <h3>Relacionamentos / Cardinalidades</h3>
@@ -145,19 +146,19 @@
                     <td>FAZ — CLIENTE (0,N) / PEDIDO (1,1)</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNC_VENDAS</td>
                     <td>PEDIDO</td>
-                    <td>CADASTRA — FUNCIONÁRIO (0,N) / PEDIDO (1,1)</td>
+                    <td>CADASTRA — FUNC_VENDAS (0,N) / PEDIDO (1,1)</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNCIONARIO</td>
                     <td>REGISTRO_PONTO</td>
                     <td>REGISTRA — FUNCIONÁRIO (0,N) / REGISTRO_PONTO (1,1)</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNC_SAC</td>
                     <td>ATENDIMENTO_SAC</td>
-                    <td>REALIZA — FUNCIONÁRIO (0,N) / ATENDIMENTO_SAC (1,1)</td>
+                    <td>REALIZA — FUNC_SAC (0,N) / ATENDIMENTO_SAC (1,1)</td>
                 </tr>
                 <tr>
                     <td>CLIENTE</td>
@@ -167,7 +168,7 @@
                 <tr>
                     <td>ATENDIMENTO_SAC</td>
                     <td>DEVOLUÇÃO</td>
-                    <td>REGISTRA — ATENDIMENTO_SAC (0,1) / DEVOLUÇÃO (1,1)</td>
+                    <td>REGISTRA — ATENDIMENTO_SAC (0,1) / DEVOLUÇÃOO (1,1)</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
@@ -176,13 +177,13 @@
                 </tr>
                 <tr>
                     <td>DEVOLUÇÃO</td>
-                    <td>PRODUTO</td>
-                    <td>CONTÉM — DEVOLUÇÃO (1,N) / PRODUTO (0,N)</td>
+                    <td>NOTA_FISCAL</td>
+                    <td>CONTÉM — DEVOLUÇÃO (0,N) / NOTA_FISCAL (1,1)</td>
                 </tr>
                 <tr>
-                    <td>PEDIDO</td>
+                    <td>NOTA_FISCAL</td>
                     <td>ENTREGA</td>
-                    <td>GERA — PEDIDO (0,1) / ENTREGA (1,1)</td>
+                    <td>GERA — NOTA_FISCAL (1,1) / ENTREGA (1,1)</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
@@ -220,14 +221,9 @@
                     <td>É PRODUZIDO EM — PRODUTO (0,N) / PRODUÇÃO (1,1)</td>
                 </tr>
                 <tr>
-                    <td>MATERIAL</td>
-                    <td>PRODUÇÃO</td>
-                    <td>É UTILIZADO — MATERIAL (0,N) / PRODUÇÃO (1,N)</td>
-                </tr>
-                <tr>
-                    <td>PRODUÇÃO</td>
+                    <td>PRODUTO</td>
                     <td>EMBALAGEM</td>
-                    <td>UTILIZA — PRODUÇÃO (1,N) / EMBALAGEM (0,N)</td>
+                    <td>UTILIZA — PRODUTO (0,N) / EMBALAGEM (1,N)</td>
                 </tr>
                 <tr>
                     <td>FORNECEDOR</td>
@@ -235,19 +231,9 @@
                     <td>FORNECE — FORNECEDOR (0,N) / MATERIAL (0,N)</td>
                 </tr>
                 <tr>
-                    <td>FORNECEDOR</td>
-                    <td>PEDIDO_MATERIAL</td>
-                    <td>RECEBE — FORNECEDOR (0,N) / PEDIDO_MATERIAL (1,1)</td>
-                </tr>
-                <tr>
-                    <td>PEDIDO_MATERIAL</td>
-                    <td>MATERIAL</td>
-                    <td>CONTÉM — PEDIDO_MATERIAL (1,N) / MATERIAL (0,N)</td>
-                </tr>
-                <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNC_PRODUCAO</td>
                     <td>PRODUÇÃO</td>
-                    <td>PARTICIPA — FUNCIONÁRIO (0,N) / PRODUÇÃO (1,N)</td>
+                    <td>PARTICIPA — FUNC_PRODUCAO (0,N) / PRODUÇÃO (1,N)</td>
                 </tr>
             </tbody>
         </table>
@@ -268,9 +254,29 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>CLIENTEPF</td>
+                    <td>Identifica clientes pessoa física a partir do cadastro em Cliente.</td>
+                </tr>
+                <tr>
+                    <td>PESSOA_JURIDICA</td>
+                    <td>Identifica clientes pessoa jurídica e seu CNPJ, a partir do cadastro em Cliente.</td>
+                </tr>
+                <tr>
                     <td>FUNCIONÁRIO</td>
-                    <td>Representa os funcionários responsáveis por pedidos, atendimento, registros de ponto e
-                        participação na produção.</td>
+                    <td>Representa funcionários responsáveis por pedidos, atendimento, registros de ponto e participação
+                        na produção.</td>
+                </tr>
+                <tr>
+                    <td>FUNC_SAC</td>
+                    <td>Especialização de Funcionário responsável pelos atendimentos do SAC.</td>
+                </tr>
+                <tr>
+                    <td>FUNC_VENDAS</td>
+                    <td>Especialização de Funcionário responsável pelo cadastro de pedidos.</td>
+                </tr>
+                <tr>
+                    <td>FUNC_PRODUCAO</td>
+                    <td>Especialização de Funcionário participante de processos produtivos.</td>
                 </tr>
                 <tr>
                     <td>REGISTRO_PONTO</td>
@@ -278,17 +284,16 @@
                 </tr>
                 <tr>
                     <td>ATENDIMENTO_SAC</td>
-                    <td>Documenta os atendimentos solicitados por clientes e realizados por funcionários.</td>
+                    <td>Documenta atendimentos solicitados por clientes e realizados por funcionários do SAC.</td>
                 </tr>
                 <tr>
                     <td>DEVOLUÇÃO</td>
-                    <td>Registra solicitações de devolução associadas ao pedido e ao atendimento do SAC. Os produtos
-                        devolvidos são detalhados em Contém1.</td>
+                    <td>Registra devoluções associadas a pedidos, atendimentos do SAC e notas fiscais.</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
-                    <td>Representa um pedido do cliente, cadastrado por um funcionário. Seus produtos e quantidades
-                        aparecem na tabela Possui.</td>
+                    <td>Representa um pedido do cliente, cadastrado por funcionário de vendas. Seus produtos e
+                        quantidades constam na tabela Possui.</td>
                 </tr>
                 <tr>
                     <td>PAGAMENTO</td>
@@ -296,21 +301,23 @@
                 </tr>
                 <tr>
                     <td>ENTREGA</td>
-                    <td>Registra o transporte e a entrega correspondente a um pedido, com informações de envio e
+                    <td>Registra o transporte e a entrega associados a uma nota fiscal, com informações de envio e
                         rastreamento.</td>
                 </tr>
                 <tr>
                     <td>NOTA_FISCAL</td>
-                    <td>Representa a nota fiscal relativa a um pedido e um faturamento.</td>
+                    <td>Representa a nota fiscal relativa a um pedido, relacionada a entrega, devolução e faturamento.
+                    </td>
                 </tr>
                 <tr>
                     <td>FATURAMENTO</td>
-                    <td>Representa informações do faturamento, incluindo o valor, as datas e a situação.</td>
+                    <td>Representa informações do faturamento vinculado à nota fiscal, incluindo valor, datas e
+                        situação.</td>
                 </tr>
                 <tr>
                     <td>PRODUTO</td>
-                    <td>Identifica os produtos cadastrados para venda e produção. As informações de lotes e validade
-                        estão na entidade Lote.</td>
+                    <td>Identifica produtos cadastrados para venda e produção. Informações de lotes e validade constam
+                        em Lote.</td>
                 </tr>
                 <tr>
                     <td>LOTE</td>
@@ -318,7 +325,8 @@
                 </tr>
                 <tr>
                     <td>MATERIAL</td>
-                    <td>Representa os materiais utilizados na composição de produtos e no processo produtivo.</td>
+                    <td>Representa materiais utilizados na composição de produtos e nas aquisições junto a fornecedores.
+                    </td>
                 </tr>
                 <tr>
                     <td>FORNECEDOR</td>
@@ -326,8 +334,7 @@
                 </tr>
                 <tr>
                     <td>PEDIDO_MATERIAL</td>
-                    <td>Registra os pedidos de compra realizados pela empresa aos fornecedores. Os itens são detalhados
-                        em Contém.</td>
+                    <td>Registra cada aquisição de material de um fornecedor, incluindo quantidade, valor e datas.</td>
                 </tr>
                 <tr>
                     <td>PRODUÇÃO</td>
@@ -335,8 +342,7 @@
                 </tr>
                 <tr>
                     <td>EMBALAGEM</td>
-                    <td>Cadastra as embalagens utilizadas nos processos de produção, com capacidade, material e tipo.
-                    </td>
+                    <td>Cadastra embalagens utilizadas por produtos, com capacidade, material e tipo.</td>
                 </tr>
             </tbody>
         </table>
@@ -389,9 +395,9 @@
             <b>DECIMAL</b> substitui <b>FLOAT</b>, alteração que foi feita por conta da limitação da ferramenta
             BRmodelo. Nos relacionamentos N:N, a combinação das duas colunas identificadoras forma uma PK composta,
             mesmo quando cada coluna isoladamente não é UNIQUE. O tipo <b>VARCHAR</b> presente em ATENDIMENTO_SAC foi
-            substituído por <b>TEXT</b> também devido a limitação da ferramenta BRmodelo.</div>
+            substituído por <b>TEXT</b> também devido a limitação da ferramenta BRmodelo.
+        </div>
     </section>
-    <!-- 3. ENTIDADES -->
     <section class="page">
         <h2>3. Dicionário de dados por entidade</h2>
         <div class="entity">
@@ -480,9 +486,9 @@
             </table>
         </div>
         <div class="entity">
-            <h3>FUNCIONÁRIO</h3>
-            <div class="formula">FUNCIONÁRIO = @ID_FUNCIONARIO + TEL_FUNCIONARIO + NM_FUNCIONARIO + CARGO + DT_ADMISSAO
-                + EMAIL_FUNCIONARIO</div>
+            <h3>FUNCIONARIO</h3>
+            <div class="formula">FUNCIONARIO = @ID_FUNCIONARIO + TEL_FUNCIONARIO + NM_FUNCIONARIO + DT_ADMISSAO +
+                EMAIL_FUNCIONARIO</div>
             <p><b>LEITURA:</b> Representa os funcionários responsáveis por pedidos, atendimento, registros de ponto e
                 participação na produção.</p>
             <table>
@@ -525,15 +531,7 @@
                         <td>Não</td>
                         <td>Nome completo utilizado para identificar o funcionário.</td>
                     </tr>
-                    <tr>
-                        <td>CARGO</td>
-                        <td>VARCHAR</td>
-                        <td>100</td>
-                        <td>—</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Cargo ou função exercida pelo funcionário na empresa.</td>
-                    </tr>
+
                     <tr>
                         <td>DT_ADMISSAO</td>
                         <td>DATE</td>
@@ -551,6 +549,164 @@
                         <td>Não</td>
                         <td>Não</td>
                         <td>Endereço eletrônico utilizado para comunicação com o funcionário.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="page">
+        <div class="entity">
+            <h3>CLIENTEPF</h3>
+            <div class="formula">CLIENTEPF = @ID_CLIENTE</div>
+            <p><b>LEITURA:</b> Especialização de Cliente para pessoa física; compartilha a chave primária da tabela
+                Cliente.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>PK/FK</th>
+                        <th>Obrigatório</th>
+                        <th>UNIQUE</th>
+                        <th>INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID_CLIENTE</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>PK, FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador do cliente pessoa física, vinculado ao cadastro em Cliente.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="entity">
+            <h3>PESSOA_JURIDICA</h3>
+            <div class="formula">PESSOA_JURIDICA = @ID_CLIENTE + CNPJ</div>
+            <p><b>LEITURA:</b> Especialização de Cliente para pessoa jurídica; compartilha a chave primária da tabela
+                Cliente.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>PK/FK</th>
+                        <th>Obrigatório</th>
+                        <th>UNIQUE</th>
+                        <th>INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID_CLIENTE</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>PK, FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador do cliente pessoa jurídica, vinculado ao cadastro em Cliente.</td>
+                    </tr>
+                    <tr>
+                        <td>CNPJ</td>
+                        <td>CHAR</td>
+                        <td>14</td>
+                        <td>—</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Número do CNPJ utilizado para identificar a pessoa jurídica.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="entity">
+            <h3>FUNC_SAC</h3>
+            <div class="formula">FUNC_SAC = @ID_FUNCIONARIO</div>
+            <p><b>LEITURA:</b> Especialização de Funcionário para atendimento do SAC.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>PK/FK</th>
+                        <th>Obrigatório</th>
+                        <th>UNIQUE</th>
+                        <th>INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID_FUNCIONARIO</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>PK, FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="entity">
+            <h3>FUNC_VENDAS</h3>
+            <div class="formula">FUNC_VENDAS = @ID_FUNCIONARIO</div>
+            <p><b>LEITURA:</b> Especialização de Funcionário para atividades de vendas.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>PK/FK</th>
+                        <th>Obrigatório</th>
+                        <th>UNIQUE</th>
+                        <th>INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID_FUNCIONARIO</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>PK, FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="entity">
+            <h3>FUNC_PRODUCAO</h3>
+            <div class="formula">FUNC_PRODUCAO = @ID_FUNCIONARIO</div>
+            <p><b>LEITURA:</b> Especialização de Funcionário para atividades de produção.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>PK/FK</th>
+                        <th>Obrigatório</th>
+                        <th>UNIQUE</th>
+                        <th>INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ID_FUNCIONARIO</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>PK, FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
                     </tr>
                 </tbody>
             </table>
@@ -628,7 +784,8 @@
             <h3>ATENDIMENTO_SAC</h3>
             <div class="formula">ATENDIMENTO_SAC = @ID_ATENDIMENTO + ID_CLIENTE + ID_FUNCIONARIO + PROTOCOLO +
                 DT_ATENDIMENTO + TIPO_ATENDIMENTO + DESCRICAO_ATENDIMENTO + STATUS_ATENDIMENTO</div>
-            <p><b>LEITURA:</b> Documenta os atendimentos solicitados por clientes e realizados por funcionários.</p>
+            <p><b>LEITURA:</b> Documenta os atendimentos solicitados por clientes e realizados por funcionários do SAC.
+            </p>
             <table>
                 <thead>
                     <tr>
@@ -721,11 +878,11 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>DEVOLUÇÃO</h3>
-            <div class="formula">DEVOLUÇÃO = @ID_DEVOLUCAO + ID_PEDIDO + ID_ATENDIMENTO + DT_DEVOLUCAO + MOTIVO +
-                STATUS_DEVOLUCAO + REEMBOLSO_DEVOLUCAO</div>
-            <p><b>LEITURA:</b> Registra solicitações de devolução associadas ao pedido e ao atendimento do SAC. Os
-                produtos devolvidos são detalhados em Contém1.</p>
+            <h3>DEVOLUCAO</h3>
+            <div class="formula">DEVOLUCAO = @ID_DEVOLUCAO + ID_NF + ID_PEDIDO + ID_ATENDIMENTO + DT_DEVOLUCAO + MOTIVO
+                + STATUS_DEVOLUCAO + REEMBOLSO_DEVOLUCAO + QUANTIDADE_DEVOLVIDA</div>
+            <p><b>LEITURA:</b> Registra as devoluções vinculadas a um pedido, a um atendimento do SAC e a uma nota
+                fiscal, incluindo a quantidade devolvida.</p>
             <table>
                 <thead>
                     <tr>
@@ -747,6 +904,15 @@
                         <td>Sim</td>
                         <td>Sim</td>
                         <td>Identificador único utilizado para distinguir cada devolução cadastrada no sistema.</td>
+                    </tr>
+                    <tr>
+                        <td>ID_NF</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>FK</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Identificador da nota fiscal associada à devolução.</td>
                     </tr>
                     <tr>
                         <td>ID_PEDIDO</td>
@@ -802,6 +968,15 @@
                         <td>Não</td>
                         <td>Valor monetário previsto ou registrado como reembolso da devolução.</td>
                     </tr>
+                    <tr>
+                        <td>QUANTIDADE_DEVOLVIDA</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Quantidade de unidades devolvidas registrada na solicitação.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -809,7 +984,7 @@
             <h3>PEDIDO</h3>
             <div class="formula">PEDIDO = @ID_PEDIDO + ID_CLIENTE + ID_FUNCIONARIO + DT_PEDIDO + PRECO_PEDIDO +
                 STATUS_PEDIDO</div>
-            <p><b>LEITURA:</b> Representa um pedido do cliente, cadastrado por um funcionário. Seus produtos e
+            <p><b>LEITURA:</b> Representa um pedido do cliente, cadastrado por um funcionário de vendas. Seus produtos e
                 quantidades aparecem na tabela Possui.</p>
             <table>
                 <thead>
@@ -961,9 +1136,9 @@
         </div>
         <div class="entity">
             <h3>ENTREGA</h3>
-            <div class="formula">ENTREGA = @ID_ENTREGA + ID_PEDIDO + DT_ENVIO + DT_ENTREGA + STATUS_ENTREGA +
-                COD_RASTREIO + NM_MOTORISTA + PLACA_CAMINHAO + TRANSPORTADORA</div>
-            <p><b>LEITURA:</b> Registra o transporte e a entrega correspondente a um pedido, com informações de envio e
+            <div class="formula">ENTREGA = @ID_ENTREGA + ID_NF + DT_ENVIO + DT_ENTREGA + STATUS_ENTREGA + COD_RASTREIO +
+                NM_MOTORISTA + PLACA_CAMINHAO + TRANSPORTADORA</div>
+            <p><b>LEITURA:</b> Registra o transporte e a entrega vinculados à nota fiscal, com informações de envio e
                 rastreamento.</p>
             <table>
                 <thead>
@@ -988,13 +1163,13 @@
                         <td>Identificador único utilizado para distinguir cada entrega cadastrada no sistema.</td>
                     </tr>
                     <tr>
-                        <td>ID_PEDIDO</td>
+                        <td>ID_NF</td>
                         <td>INT</td>
                         <td>—</td>
                         <td>FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do pedido ao qual a entrega está associada.</td>
+                        <td>Identificador da nota fiscal à qual a entrega está vinculada.</td>
                     </tr>
                     <tr>
                         <td>DT_ENVIO</td>
@@ -1043,8 +1218,8 @@
                     </tr>
                     <tr>
                         <td>PLACA_CAMINHAO</td>
-                        <td>CHAR</td>
-                        <td>7</td>
+                        <td>VARCHAR</td>
+                        <td>10</td>
                         <td>—</td>
                         <td>Não</td>
                         <td>Não</td>
@@ -1066,9 +1241,10 @@
     <section class="page">
         <div class="entity">
             <h3>NOTA_FISCAL</h3>
-            <div class="formula">NOTA_FISCAL = @ID_NF + ID_FATURAMENTO + ID_PEDIDO + NUM_NF + SERIE_NF + STATUS_NF +
-                CHAVE_ACESSO + VALOR_TOTAL + DT_EMISSAO</div>
-            <p><b>LEITURA:</b> Representa a nota fiscal relativa a um pedido e um faturamento.</p>
+            <div class="formula">NOTA_FISCAL = @ID_NF + ID_PEDIDO + NUM_NF + SERIE_NF + STATUS_NF + CHAVE_ACESSO +
+                VALOR_TOTAL + DT_EMISSAO</div>
+            <p><b>LEITURA:</b> Representa a nota fiscal emitida para um pedido, vinculada ao faturamento por meio da
+                tabela Faturamento.</p>
             <table>
                 <thead>
                     <tr>
@@ -1091,15 +1267,7 @@
                         <td>Sim</td>
                         <td>Identificador único utilizado para distinguir cada nota fiscal cadastrada no sistema.</td>
                     </tr>
-                    <tr>
-                        <td>ID_FATURAMENTO</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>FK</td>
-                        <td>Sim</td>
-                        <td>Sim</td>
-                        <td>Identificador do faturamento ao qual a nota fiscal se refere.</td>
-                    </tr>
+
                     <tr>
                         <td>ID_PEDIDO</td>
                         <td>INT</td>
@@ -1111,8 +1279,8 @@
                     </tr>
                     <tr>
                         <td>NUM_NF</td>
-                        <td>INT</td>
-                        <td>—</td>
+                        <td>VARCHAR</td>
+                        <td>20</td>
                         <td>—</td>
                         <td>Sim</td>
                         <td>Não</td>
@@ -1120,8 +1288,8 @@
                     </tr>
                     <tr>
                         <td>SERIE_NF</td>
-                        <td>INT</td>
-                        <td>—</td>
+                        <td>VARCHAR</td>
+                        <td>10</td>
                         <td>—</td>
                         <td>Sim</td>
                         <td>Não</td>
@@ -1168,8 +1336,8 @@
         </div>
         <div class="entity">
             <h3>FATURAMENTO</h3>
-            <div class="formula">FATURAMENTO = @ID_FATURAMENTO + DT_FATURAMENTO + STATUS + DT_VENCIMENTO + VALOR_TOTAL
-            </div>
+            <div class="formula">FATURAMENTO = @ID_FATURAMENTO + ID_NF + DT_FATURAMENTO + STATUS + DT_VENCIMENTO +
+                VALOR_TOTAL</div>
             <p><b>LEITURA:</b> Representa informações do faturamento, incluindo o valor, as datas e a situação.</p>
             <table>
                 <thead>
@@ -1192,6 +1360,15 @@
                         <td>Sim</td>
                         <td>Sim</td>
                         <td>Identificador único utilizado para distinguir cada faturamento cadastrado no sistema.</td>
+                    </tr>
+                    <tr>
+                        <td>ID_NF</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>FK</td>
+                        <td>Sim</td>
+                        <td>Sim</td>
+                        <td>Identificador da nota fiscal relacionada ao faturamento.</td>
                     </tr>
                     <tr>
                         <td>DT_FATURAMENTO</td>
@@ -1437,7 +1614,7 @@
         <div class="entity">
             <h3>FORNECEDOR</h3>
             <div class="formula">FORNECEDOR = @ID_FORNECEDOR + TEL_FORNECEDOR + CNPJ_FORNECEDOR + ENDERECO_FORNECEDOR +
-                NM_FORNECEDOR + CEP_FORNECEDOR</div>
+                NM_FORNECEDOR + CEP_FONECEDOR</div>
             <p><b>LEITURA:</b> Contém dados cadastrais dos fornecedores de materiais e os relaciona às compras
                 realizadas.</p>
             <table>
@@ -1499,7 +1676,7 @@
                         <td>Nome utilizado para identificar o fornecedor no cadastro.</td>
                     </tr>
                     <tr>
-                        <td>CEP_FORNECEDOR</td>
+                        <td>CEP_FONECEDOR</td>
                         <td>CHAR</td>
                         <td>8</td>
                         <td>—</td>
@@ -1514,10 +1691,10 @@
     <section class="page">
         <div class="entity">
             <h3>PEDIDO_MATERIAL</h3>
-            <div class="formula">PEDIDO_MATERIAL = @ID_PEDIDO_MATERIAL + ID_FORNECEDOR + DT_PEDIDO + DT_PREVISTA +
-                PRECO_TOTAL + STATUS</div>
-            <p><b>LEITURA:</b> Registra os pedidos de compra realizados pela empresa aos fornecedores. Os itens são
-                detalhados em Contém.</p>
+            <div class="formula">PEDIDO_MATERIAL = @ID_PEDIDO_MATERIAL + ID_FORNECEDOR + ID_MATERIAL + DT_PEDIDO +
+                QUANTIDADE_SOLICITADA + PRECO_UNITARIO + DT_PREVISTA + PRECO_TOTAL + STATUS</div>
+            <p><b>LEITURA:</b> Registra a aquisição de um material de um fornecedor, com quantidade, preço unitário,
+                valor total, datas e situação.</p>
             <table>
                 <thead>
                     <tr>
@@ -1551,6 +1728,15 @@
                         <td>Identificador do fornecedor que recebe o pedido de materiais.</td>
                     </tr>
                     <tr>
+                        <td>ID_MATERIAL</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>FK</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Identificador do material adquirido junto ao fornecedor.</td>
+                    </tr>
+                    <tr>
                         <td>DT_PEDIDO</td>
                         <td>DATE</td>
                         <td>—</td>
@@ -1558,6 +1744,24 @@
                         <td>Sim</td>
                         <td>Não</td>
                         <td>Data em que o pedido de compra de materiais foi registrado.</td>
+                    </tr>
+                    <tr>
+                        <td>QUANTIDADE_SOLICITADA</td>
+                        <td>INT</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Quantidade do material solicitada no pedido de compra.</td>
+                    </tr>
+                    <tr>
+                        <td>PRECO_UNITARIO</td>
+                        <td>DECIMAL</td>
+                        <td>12,2</td>
+                        <td>—</td>
+                        <td>Sim</td>
+                        <td>Não</td>
+                        <td>Preço por unidade do material solicitado.</td>
                     </tr>
                     <tr>
                         <td>DT_PREVISTA</td>
@@ -1590,8 +1794,8 @@
             </table>
         </div>
         <div class="entity">
-            <h3>PRODUÇÃO</h3>
-            <div class="formula">PRODUÇÃO = @ID_PRODUCAO + ID_PRODUTO + QUANTIDADE_PRODUCAO + STATUS_PRODUCAO +
+            <h3>PRODUCAO</h3>
+            <div class="formula">PRODUCAO = @ID_PRODUCAO + ID_PRODUTO + QUANTIDADE_PRODUCAO + STATUS_PRODUCAO +
                 DT_INICIO_PRODUCAO</div>
             <p><b>LEITURA:</b> Registra o processo de produção e o produto fabricado, sua quantidade, data e situação.
             </p>
@@ -1647,12 +1851,12 @@
                     </tr>
                     <tr>
                         <td>DT_INICIO_PRODUCAO</td>
-                        <td>DATETIME</td>
+                        <td>DATE</td>
                         <td>—</td>
                         <td>—</td>
                         <td>Sim</td>
                         <td>Não</td>
-                        <td>Data e horário de início do processo de produção.</td>
+                        <td>Data de início do processo de produção.</td>
                     </tr>
                 </tbody>
             </table>
@@ -1720,7 +1924,7 @@
     </section>
     <section class="page">
         <h2>4. Tabelas associativas dos relacionamentos N:N</h2>
-        <p>As tabelas a seguir foram geradas no modelo lógico para representar os relacionamentos muitos-para-muitos.
+        <p>As tabelas a seguir representam os relacionamentos muitos-para-muitos do modelo lógico.
             Seus identificadores são simultaneamente chaves estrangeiras e componentes da chave primária composta.</p>
         <div class="entity">
             <h3>POSSUI</h3>
@@ -1771,114 +1975,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="entity">
-            <h3>CONTÉM</h3>
-            <div class="formula">CONTÉM = ID_PEDIDO_MATERIAL + ID_MATERIAL + QUANTIDADE_SOLICITADA + PRECO_UNITARIO
-            </div>
-            <p><b>LEITURA:</b> Tabela associativa entre Pedido_Material e Material; registra quantidade solicitada e
-                preço unitário.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Atributo</th>
-                        <th>Tipo</th>
-                        <th>Tamanho</th>
-                        <th>PK/FK</th>
-                        <th>Obrigatório</th>
-                        <th>UNIQUE</th>
-                        <th>INTERPRETAÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ID_PEDIDO_MATERIAL</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do pedido de materiais associado; integra a chave primária composta.</td>
-                    </tr>
-                    <tr>
-                        <td>ID_MATERIAL</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do material solicitado; integra a chave primária composta.</td>
-                    </tr>
-                    <tr>
-                        <td>QUANTIDADE_SOLICITADA</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Quantidade do material solicitada no pedido de compra.</td>
-                    </tr>
-                    <tr>
-                        <td>PRECO_UNITARIO</td>
-                        <td>DECIMAL</td>
-                        <td>12,2</td>
-                        <td>—</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Preço por unidade do material registrado neste pedido de compra.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </section>
     <section class="page">
-        <div class="entity">
-            <h3>CONTÉM1</h3>
-            <div class="formula">CONTÉM1 = ID_PRODUTO + ID_DEVOLUCAO + QUANTIDADE_DEVOLVIDA</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Devolução e Produto; registra a quantidade devolvida de cada
-                produto.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Atributo</th>
-                        <th>Tipo</th>
-                        <th>Tamanho</th>
-                        <th>PK/FK</th>
-                        <th>Obrigatório</th>
-                        <th>UNIQUE</th>
-                        <th>INTERPRETAÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ID_PRODUTO</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do produto devolvido; integra a chave primária composta.</td>
-                    </tr>
-                    <tr>
-                        <td>ID_DEVOLUCAO</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador da devolução correspondente; integra a chave primária composta.</td>
-                    </tr>
-                    <tr>
-                        <td>QUANTIDADE_DEVOLVIDA</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Quantidade deste produto devolvida no processo correspondente.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
         <div class="entity">
             <h3>PARTICIPA</h3>
             <div class="formula">PARTICIPA = ID_PRODUCAO + ID_FUNCIONARIO</div>
@@ -1921,45 +2019,6 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>FORNECE</h3>
-            <div class="formula">FORNECE = ID_FORNECEDOR + ID_MATERIAL</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Fornecedor e Material.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Atributo</th>
-                        <th>Tipo</th>
-                        <th>Tamanho</th>
-                        <th>PK/FK</th>
-                        <th>Obrigatório</th>
-                        <th>UNIQUE</th>
-                        <th>INTERPRETAÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ID_FORNECEDOR</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do fornecedor que disponibiliza o material; integra a chave primária composta.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>ID_MATERIAL</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do material fornecido; integra a chave primária composta.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="entity">
             <h3>É FEITO COM</h3>
             <div class="formula">É FEITO COM = ID_MATERIAL + ID_PRODUTO</div>
             <p><b>LEITURA:</b> Tabela associativa entre Material e Produto.</p>
@@ -2001,47 +2060,9 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>É UTILIZADO</h3>
-            <div class="formula">É UTILIZADO = ID_MATERIAL + ID_PRODUCAO</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Material e Produção.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Atributo</th>
-                        <th>Tipo</th>
-                        <th>Tamanho</th>
-                        <th>PK/FK</th>
-                        <th>Obrigatório</th>
-                        <th>UNIQUE</th>
-                        <th>INTERPRETAÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ID_MATERIAL</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador do material utilizado na produção; integra a chave primária composta.</td>
-                    </tr>
-                    <tr>
-                        <td>ID_PRODUCAO</td>
-                        <td>INT</td>
-                        <td>—</td>
-                        <td>PK, FK</td>
-                        <td>Sim</td>
-                        <td>Não</td>
-                        <td>Identificador da produção que utiliza o material; integra a chave primária composta.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="entity">
             <h3>UTILIZA</h3>
-            <div class="formula">UTILIZA = ID_PRODUCAO + ID_EMBALAGEM</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Produção e Embalagem.</p>
+            <div class="formula">UTILIZA = ID_PRODUTO + ID_EMBALAGEM</div>
+            <p><b>LEITURA:</b> Tabela associativa entre Produto e Embalagem.</p>
             <table>
                 <thead>
                     <tr>
@@ -2056,13 +2077,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>ID_PRODUCAO</td>
+                        <td>ID_PRODUTO</td>
                         <td>INT</td>
                         <td>—</td>
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Não</td>
-                        <td>Identificador da produção que utiliza a embalagem; integra a chave primária composta.</td>
+                        <td>Identificador do produto que utiliza a embalagem; integra a chave primária composta.</td>
                     </tr>
                     <tr>
                         <td>ID_EMBALAGEM</td>
@@ -2071,7 +2092,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Não</td>
-                        <td>Identificador da embalagem utilizada na produção; integra a chave primária composta.</td>
+                        <td>Identificador da embalagem utilizada pelo produto; integra a chave primária composta.</td>
                     </tr>
                 </tbody>
             </table>
@@ -2097,22 +2118,23 @@
                 </tr>
                 <tr>
                     <td>CADASTRA</td>
-                    <td>FUNCIONÁRIO (0,N)</td>
+                    <td>FUNC_VENDAS (0,N)</td>
                     <td>PEDIDO (1,1)</td>
-                    <td>Um funcionário pode cadastrar vários pedidos; cada pedido possui um funcionário responsável.
-                    </td>
+                    <td>Um funcionário de vendas pode cadastrar vários pedidos; cada pedido é cadastrado por um
+                        funcionário de vendas.</td>
                 </tr>
                 <tr>
                     <td>REGISTRA</td>
-                    <td>FUNCIONÁRIO (0,N)</td>
+                    <td>FUNCIONARIO (0,N)</td>
                     <td>REGISTRO_PONTO (1,1)</td>
                     <td>Cada registro de ponto pertence a um funcionário.</td>
                 </tr>
                 <tr>
                     <td>REALIZA</td>
-                    <td>FUNCIONÁRIO (0,N)</td>
+                    <td>FUNC_SAC (0,N)</td>
                     <td>ATENDIMENTO_SAC (1,1)</td>
-                    <td>Um funcionário pode atender vários chamados; cada chamado tem um responsável.</td>
+                    <td>Um funcionário do SAC pode realizar vários atendimentos; cada atendimento possui um responsável.
+                    </td>
                 </tr>
                 <tr>
                     <td>SOLICITA</td>
@@ -2123,26 +2145,27 @@
                 <tr>
                     <td>REGISTRA</td>
                     <td>ATENDIMENTO_SAC (0,1)</td>
-                    <td>DEVOLUÇÃO (1,1)</td>
+                    <td>DEVOLUCAO (1,1)</td>
                     <td>Um atendimento pode registrar uma devolução; cada devolução pertence a um atendimento.</td>
                 </tr>
                 <tr>
                     <td>TEM</td>
                     <td>PEDIDO (0,N)</td>
-                    <td>DEVOLUÇÃO (1,1)</td>
+                    <td>DEVOLUCAO (1,1)</td>
                     <td>Um pedido pode ter várias devoluções; cada devolução pertence a um pedido.</td>
                 </tr>
                 <tr>
                     <td>CONTÉM</td>
-                    <td>DEVOLUÇÃO (1,N)</td>
-                    <td>PRODUTO (0,N)</td>
-                    <td>Uma devolução contém produtos, com quantidade por produto.</td>
+                    <td>DEVOLUCAO (0,N)</td>
+                    <td>NOTA_FISCAL (1,1)</td>
+                    <td>Uma nota fiscal pode estar relacionada a várias devoluções; cada devolução se vincula a uma nota
+                        fiscal.</td>
                 </tr>
                 <tr>
                     <td>GERA</td>
-                    <td>PEDIDO (0,1)</td>
+                    <td>NOTA_FISCAL (1,1)</td>
                     <td>ENTREGA (1,1)</td>
-                    <td>Um pedido pode gerar uma entrega.</td>
+                    <td>Cada entrega é vinculada a uma nota fiscal.</td>
                 </tr>
                 <tr>
                     <td>GERA</td>
@@ -2178,49 +2201,32 @@
                     <td>POSSUI</td>
                     <td>PRODUTO (0,N)</td>
                     <td>LOTE (1,1)</td>
-                    <td>Um produto pode possuir vários lotes, cada lote pertence a um produto.</td>
+                    <td>Um produto pode possuir vários lotes; cada lote pertence a um produto.</td>
                 </tr>
                 <tr>
                     <td>É PRODUZIDO EM</td>
                     <td>PRODUTO (0,N)</td>
-                    <td>PRODUÇÃO (1,1)</td>
+                    <td>PRODUCAO (1,1)</td>
                     <td>Cada produção corresponde a um produto.</td>
                 </tr>
                 <tr>
-                    <td>É UTILIZADO</td>
-                    <td>MATERIAL (0,N)</td>
-                    <td>PRODUÇÃO (1,N)</td>
-                    <td>Uma produção utiliza um ou vários materiais.</td>
-                </tr>
-                <tr>
                     <td>UTILIZA</td>
-                    <td>PRODUÇÃO (1,N)</td>
-                    <td>EMBALAGEM (0,N)</td>
-                    <td>Uma produção utiliza embalagens.</td>
+                    <td>PRODUTO (0,N)</td>
+                    <td>EMBALAGEM (1,N)</td>
+                    <td>Um produto pode utilizar embalagens.</td>
                 </tr>
                 <tr>
                     <td>FORNECE</td>
                     <td>FORNECEDOR (0,N)</td>
                     <td>MATERIAL (0,N)</td>
-                    <td>Um fornecedor pode fornecer vários materiais.</td>
-                </tr>
-                <tr>
-                    <td>RECEBE</td>
-                    <td>FORNECEDOR (0,N)</td>
-                    <td>PEDIDO_MATERIAL (1,1)</td>
-                    <td>Cada pedido de material é direcionado a um fornecedor.</td>
-                </tr>
-                <tr>
-                    <td>CONTÉM</td>
-                    <td>PEDIDO_MATERIAL (1,N)</td>
-                    <td>MATERIAL (0,N)</td>
-                    <td>Um pedido de compra de materiais contém um ou vários materiais.</td>
+                    <td>Um fornecedor pode fornecer vários materiais. No modelo lógico, cada registro de Pedido_Material
+                        vincula um fornecedor a um material e registra os dados da compra.</td>
                 </tr>
                 <tr>
                     <td>PARTICIPA</td>
-                    <td>FUNCIONÁRIO (0,N)</td>
-                    <td>PRODUÇÃO (1,N)</td>
-                    <td>Um funcionário pode participar de várias produções.</td>
+                    <td>FUNC_PRODUCAO (0,N)</td>
+                    <td>PRODUCAO (1,N)</td>
+                    <td>Um funcionário da produção pode participar de várias produções.</td>
                 </tr>
             </tbody>
         </table>
@@ -2249,7 +2255,42 @@
                     <td>Nenhum papel — apenas anonimização ao fim da retenção</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>CLIENTEPF</td>
+                    <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
+                    <td>Vendas/Comercial, Atendimento_SAC</td>
+                    <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
+                    <td>Nenhum papel — apenas anonimização ao fim da retenção</td>
+                </tr>
+                <tr>
+                    <td>PESSOA_JURIDICA</td>
+                    <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
+                    <td>Vendas/Comercial, Atendimento_SAC</td>
+                    <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
+                    <td>Nenhum papel — apenas anonimização ao fim da retenção</td>
+                </tr>
+                <tr>
+                    <td>FUNCIONARIO</td>
+                    <td>Administrativo/RH, Gerência, Auditoria</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH (desligamento/encerramento cadastral)</td>
+                </tr>
+                <tr>
+                    <td>FUNC_SAC</td>
+                    <td>Administrativo/RH, Gerência, Auditoria</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH (desligamento/encerramento cadastral)</td>
+                </tr>
+                <tr>
+                    <td>FUNC_VENDAS</td>
+                    <td>Administrativo/RH, Gerência, Auditoria</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH</td>
+                    <td>Administrativo/RH (desligamento/encerramento cadastral)</td>
+                </tr>
+                <tr>
+                    <td>FUNC_PRODUCAO</td>
                     <td>Administrativo/RH, Gerência, Auditoria</td>
                     <td>Administrativo/RH</td>
                     <td>Administrativo/RH</td>
@@ -2270,7 +2311,7 @@
                     <td>Nenhum papel — manter histórico de atendimento</td>
                 </tr>
                 <tr>
-                    <td>DEVOLUÇÃO</td>
+                    <td>DEVOLUCAO</td>
                     <td>Atendimento_SAC, Logística, Financeiro</td>
                     <td>Atendimento_SAC</td>
                     <td>Atendimento_SAC, Logística</td>
@@ -2347,7 +2388,7 @@
                     <td>Compras — apenas antes do recebimento</td>
                 </tr>
                 <tr>
-                    <td>PRODUÇÃO</td>
+                    <td>PRODUCAO</td>
                     <td>Produção, Gerência</td>
                     <td>Produção</td>
                     <td>Produção</td>
@@ -2385,7 +2426,42 @@
                     <td>✗</td>
                 </tr>
                 <tr>
+                    <td>CLIENTEPF</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                </tr>
+                <tr>
+                    <td>PESSOA_JURIDICA</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                </tr>
+                <tr>
                     <td>FUNCIONÁRIO</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                </tr>
+                <tr>
+                    <td>FUNC_SAC</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                </tr>
+                <tr>
+                    <td>FUNC_VENDAS</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✗</td>
+                </tr>
+                <tr>
+                    <td>FUNC_PRODUCAO</td>
                     <td>✓</td>
                     <td>✓</td>
                     <td>✓</td>
