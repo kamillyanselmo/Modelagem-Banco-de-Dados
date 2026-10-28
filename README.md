@@ -602,7 +602,9 @@ A entidade `Pedido_Material` representa uma solicitação de materiais realizada
 
 Ela é importante porque o processo de aquisição de materiais possui características diferentes do pedido comercial realizado pelo cliente.
 
-Cada pedido de material está relacionado a exatamente um fornecedor e contém um ou vários materiais. Para cada material solicitado, são registrados a quantidade solicitada (`QUANTIDADE_SOLICITADA`) e o preço unitário (`PRECO_UNITARIO`), atributos do relacionamento `Contém`.
+Ótimo.
+
+Cada pedido de material corresponde à solicitação de um único tipo de material a um fornecedor. Caso a empresa precise adquirir diferentes materiais, deverão ser registrados pedidos separados. Para cada pedido solicitado, são registrados a quantidade solicitada (`QUANTIDADE_SOLICITADA`) e o preço unitário (`PRECO_UNITARIO`), atributos do relacionamento `Fornece`.
 
 ### Informações registradas
 
