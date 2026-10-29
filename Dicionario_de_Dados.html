@@ -153,7 +153,7 @@
                 <tr>
                     <td>FUNCIONARIO</td>
                     <td>REGISTRO_PONTO</td>
-                    <td>REGISTRA — FUNCIONÁRIO (0,N) / REGISTRO_PONTO (1,1)</td>
+                    <td>REGISTRA — FUNCIONARIO (0,N) / REGISTRO_PONTO (1,1)</td>
                 </tr>
                 <tr>
                     <td>FUNC_SAC</td>
@@ -167,23 +167,23 @@
                 </tr>
                 <tr>
                     <td>ATENDIMENTO_SAC</td>
-                    <td>DEVOLUÇÃO</td>
-                    <td>REGISTRA — ATENDIMENTO_SAC (0,1) / DEVOLUÇÃO (1,1)</td>
+                    <td>DEVOLUCAO</td>
+                    <td>REGISTRA — ATENDIMENTO_SAC (0,1) / DEVOLUCAO (1,1)</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
-                    <td>DEVOLUÇÃO</td>
-                    <td>TEM — PEDIDO (0,N) / DEVOLUÇÃO (1,1)</td>
+                    <td>DEVOLUCAO</td>
+                    <td>TEM — PEDIDO (0,N) / DEVOLUCAO (1,1)</td>
                 </tr>
                 <tr>
-                    <td>DEVOLUÇÃO</td>
+                    <td>DEVOLUCAO</td>
                     <td>NOTA_FISCAL</td>
-                    <td>CONTÉM — DEVOLUÇÃO (1,1) / NOTA_FISCAL (0,N)</td>
+                    <td>CONTÉM — DEVOLUCAO (1,1) / NOTA_FISCAL (0,N)</td>
                 </tr>
                 <tr>
-                    <td>DEVOLUÇÃO</td>
+                    <td>DEVOLUCAO</td>
                     <td>PRODUTO</td>
-                    <td>REFERE-SE A — DEVOLUÇÃO (1,1) / PRODUTO (0,N)</td>
+                    <td>REFERE-SE A — DEVOLUCAO (1,1) / PRODUTO (0,N)</td>
                 </tr>
                 <tr>
                     <td>NOTA_FISCAL</td>
@@ -222,8 +222,8 @@
                 </tr>
                 <tr>
                     <td>PRODUTO</td>
-                    <td>PRODUÇÃO</td>
-                    <td>É PRODUZIDO EM — PRODUTO (0,N) / PRODUÇÃO (1,1)</td>
+                    <td>PRODUCAO</td>
+                    <td>É PRODUZIDO EM — PRODUTO (0,N) / PRODUCAO (1,1)</td>
                 </tr>
                 <tr>
                     <td>PRODUTO</td>
@@ -237,8 +237,8 @@
                 </tr>
                 <tr>
                     <td>FUNC_PRODUCAO</td>
-                    <td>PRODUÇÃO</td>
-                    <td>PARTICIPA — FUNC_PRODUCAO (0,N) / PRODUÇÃO (1,N)</td>
+                    <td>PRODUCAO</td>
+                    <td>PARTICIPA — FUNC_PRODUCAO (0,N) / PRODUCAO (1,N)</td>
                 </tr>
             </tbody>
         </table>
@@ -259,29 +259,29 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>CLIENTEPF</td>
-                    <td>Identifica clientes pessoa física a partir do cadastro em Cliente.</td>
+                    <td>PESSOA_FISICA</td>
+                    <td>Identifica clientes pessoa física a partir do cadastro em CLIENTE.</td>
                 </tr>
                 <tr>
                     <td>PESSOA_JURIDICA</td>
-                    <td>Identifica clientes pessoa jurídica e seu CNPJ, a partir do cadastro em Cliente.</td>
+                    <td>Identifica clientes pessoa jurídica e seu CNPJ, a partir do cadastro em CLIENTE.</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNCIONARIO</td>
                     <td>Representa funcionários responsáveis por pedidos, atendimento, registros de ponto e participação
                         na produção.</td>
                 </tr>
                 <tr>
                     <td>FUNC_SAC</td>
-                    <td>Especialização de Funcionário responsável pelos atendimentos do SAC.</td>
+                    <td>Especialização de FUNCIONARIO responsável pelos atendimentos do SAC.</td>
                 </tr>
                 <tr>
                     <td>FUNC_VENDAS</td>
-                    <td>Especialização de Funcionário responsável pelo cadastro de pedidos.</td>
+                    <td>Especialização de FUNCIONARIO responsável pelo cadastro de pedidos.</td>
                 </tr>
                 <tr>
                     <td>FUNC_PRODUCAO</td>
-                    <td>Especialização de Funcionário participante de processos produtivos.</td>
+                    <td>Especialização de FUNCIONARIO participante de processos produtivos.</td>
                 </tr>
                 <tr>
                     <td>REGISTRO_PONTO</td>
@@ -292,13 +292,13 @@
                     <td>Documenta atendimentos solicitados por clientes e realizados por funcionários do SAC.</td>
                 </tr>
                 <tr>
-                    <td>DEVOLUÇÃO</td>
+                    <td>DEVOLUCAO</td>
                     <td>Registra devoluções de produtos associadas a pedidos, atendimentos do SAC e notas fiscais.</td>
                 </tr>
                 <tr>
                     <td>PEDIDO</td>
                     <td>Representa um pedido do cliente, cadastrado por funcionário de vendas. Seus produtos e
-                        quantidades constam na tabela Possui.</td>
+                        quantidades constam na tabela ITEM_PEDIDO.</td>
                 </tr>
                 <tr>
                     <td>PAGAMENTO</td>
@@ -322,7 +322,7 @@
                 <tr>
                     <td>PRODUTO</td>
                     <td>Identifica produtos cadastrados para venda e produção. Informações de lotes e validade constam
-                        em Lote.</td>
+                        em LOTE.</td>
                 </tr>
                 <tr>
                     <td>LOTE</td>
@@ -342,7 +342,7 @@
                     <td>Registra cada aquisição de material de um fornecedor, incluindo quantidade, valor e datas.</td>
                 </tr>
                 <tr>
-                    <td>PRODUÇÃO</td>
+                    <td>PRODUCAO</td>
                     <td>Registra o processo de produção e o produto fabricado, sua quantidade, data e situação.</td>
                 </tr>
                 <tr>
@@ -560,10 +560,10 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>CLIENTEPF</h3>
-            <div class="formula">CLIENTEPF = @ID_CLIENTE</div>
-            <p><b>LEITURA:</b> Especialização de Cliente para pessoa física; compartilha a chave primária da tabela
-                Cliente.</p>
+            <h3>PESSOA_FISICA</h3>
+            <div class="formula">PESSOA_FISICA = @ID_CLIENTE</div>
+            <p><b>LEITURA:</b> Especialização de CLIENTE para pessoa física; compartilha a chave primária da tabela
+                CLIENTE.</p>
             <table>
                 <thead>
                     <tr>
@@ -584,7 +584,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do cliente pessoa física, vinculado ao cadastro em Cliente.</td>
+                        <td>Identificador do cliente pessoa física, vinculado ao cadastro em CLIENTE.</td>
                     </tr>
                 </tbody>
             </table>
@@ -592,8 +592,8 @@
         <div class="entity">
             <h3>PESSOA_JURIDICA</h3>
             <div class="formula">PESSOA_JURIDICA = @ID_CLIENTE + CNPJ</div>
-            <p><b>LEITURA:</b> Especialização de Cliente para pessoa jurídica; compartilha a chave primária da tabela
-                Cliente.</p>
+            <p><b>LEITURA:</b> Especialização de CLIENTE para pessoa jurídica; compartilha a chave primária da tabela
+                CLIENTE.</p>
             <table>
                 <thead>
                     <tr>
@@ -614,7 +614,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do cliente pessoa jurídica, vinculado ao cadastro em Cliente.</td>
+                        <td>Identificador do cliente pessoa jurídica, vinculado ao cadastro em CLIENTE.</td>
                     </tr>
                     <tr>
                         <td>CNPJ</td>
@@ -631,7 +631,7 @@
         <div class="entity">
             <h3>FUNC_SAC</h3>
             <div class="formula">FUNC_SAC = @ID_FUNCIONARIO</div>
-            <p><b>LEITURA:</b> Especialização de Funcionário para atendimento do SAC.</p>
+            <p><b>LEITURA:</b> Especialização de FUNCIONARIO para atendimento do SAC.</p>
             <table>
                 <thead>
                     <tr>
@@ -652,7 +652,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em FUNCIONARIO.</td>
                     </tr>
                 </tbody>
             </table>
@@ -660,7 +660,7 @@
         <div class="entity">
             <h3>FUNC_VENDAS</h3>
             <div class="formula">FUNC_VENDAS = @ID_FUNCIONARIO</div>
-            <p><b>LEITURA:</b> Especialização de Funcionário para atividades de vendas.</p>
+            <p><b>LEITURA:</b> Especialização de FUNCIONARIO para atividades de vendas.</p>
             <table>
                 <thead>
                     <tr>
@@ -681,7 +681,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em FUNCIONARIO.</td>
                     </tr>
                 </tbody>
             </table>
@@ -689,7 +689,7 @@
         <div class="entity">
             <h3>FUNC_PRODUCAO</h3>
             <div class="formula">FUNC_PRODUCAO = @ID_FUNCIONARIO</div>
-            <p><b>LEITURA:</b> Especialização de Funcionário para atividades de produção.</p>
+            <p><b>LEITURA:</b> Especialização de FUNCIONARIO para atividades de produção.</p>
             <table>
                 <thead>
                     <tr>
@@ -710,7 +710,7 @@
                         <td>PK, FK</td>
                         <td>Sim</td>
                         <td>Sim</td>
-                        <td>Identificador do funcionário especializado, vinculado ao cadastro em Funcionário.</td>
+                        <td>Identificador do funcionário especializado, vinculado ao cadastro em FUNCIONARIO.</td>
                     </tr>
                 </tbody>
             </table>
@@ -998,7 +998,7 @@
             <div class="formula">PEDIDO = @ID_PEDIDO + ID_CLIENTE + ID_FUNCIONARIO + DT_PEDIDO + PRECO_PEDIDO +
                 STATUS_PEDIDO</div>
             <p><b>LEITURA:</b> Representa um pedido do cliente, cadastrado por um funcionário de vendas. Seus produtos e
-                quantidades aparecem na tabela Possui.</p>
+                quantidades aparecem na tabela ITEM_PEDIDO.</p>
             <table>
                 <thead>
                     <tr>
@@ -1257,7 +1257,7 @@
             <div class="formula">NOTA_FISCAL = @ID_NF + ID_PEDIDO + NUM_NF + SERIE_NF + STATUS_NF + CHAVE_ACESSO +
                 VALOR_TOTAL + DT_EMISSAO</div>
             <p><b>LEITURA:</b> Representa a nota fiscal emitida para um pedido, vinculada ao faturamento por meio da
-                tabela Faturamento.</p>
+                tabela FATURAMENTO.</p>
             <table>
                 <thead>
                     <tr>
@@ -1426,10 +1426,10 @@
     <section class="page">
         <div class="entity">
             <h3>PRODUTO</h3>
-            <div class="formula">PRODUTO = @ID_PRODUTO + DESCRIÇÃO_PRODUTO + UNIDADE_PRODUTO + NM_PRODUTO + EAN_PRODUTO
+            <div class="formula">PRODUTO = @ID_PRODUTO + DESCRICAO_PRODUTO + UNIDADE_PRODUTO + NM_PRODUTO + EAN_PRODUTO
             </div>
             <p><b>LEITURA:</b> Identifica os produtos cadastrados para venda e produção. As informações de lotes e
-                validade estão na entidade Lote.</p>
+                validade estão na entidade LOTE.</p>
             <table>
                 <thead>
                     <tr>
@@ -1453,7 +1453,7 @@
                         <td>Identificador único utilizado para distinguir cada produto cadastrado no sistema.</td>
                     </tr>
                     <tr>
-                        <td>DESCRIÇÃO_PRODUTO</td>
+                        <td>DESCRICAO_PRODUTO</td>
                         <td>VARCHAR</td>
                         <td>255</td>
                         <td>—</td>
@@ -1940,9 +1940,9 @@
         <p>As tabelas a seguir representam os relacionamentos muitos-para-muitos do modelo lógico.
             Seus identificadores são simultaneamente chaves estrangeiras e componentes da chave primária composta.</p>
         <div class="entity">
-            <h3>POSSUI</h3>
-            <div class="formula">POSSUI = ID_PEDIDO + ID_PRODUTO + QUANTIDADE_PEDIDA</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Pedido e Produto; registra a quantidade de cada produto em um
+            <h3>ITEM_PEDIDO</h3>
+            <div class="formula">ITEM_PEDIDO = ID_PEDIDO + ID_PRODUTO + QUANTIDADE_PEDIDA</div>
+            <p><b>LEITURA:</b> Tabela associativa entre PEDIDO e PRODUTO; registra a quantidade de cada produto em um
                 pedido.</p>
             <table>
                 <thead>
@@ -1991,9 +1991,9 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>PARTICIPA</h3>
-            <div class="formula">PARTICIPA = ID_PRODUCAO + ID_FUNCIONARIO</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Funcionário e Produção.</p>
+            <h3>FUNCIONARIO_PRODUCAO</h3>
+            <div class="formula">FUNCIONARIO_PRODUCAO = ID_PRODUCAO + ID_FUNCIONARIO</div>
+            <p><b>LEITURA:</b> Tabela associativa entre FUNCIONARIO e PRODUCAO.</p>
             <table>
                 <thead>
                     <tr>
@@ -2032,9 +2032,9 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>É FEITO COM</h3>
-            <div class="formula">É FEITO COM = ID_MATERIAL + ID_PRODUTO</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Material e Produto.</p>
+            <h3>PRODUTO_MATERIAL</h3>
+            <div class="formula">PRODUTO_MATERIAL = ID_MATERIAL + ID_PRODUTO</div>
+            <p><b>LEITURA:</b> Tabela associativa entre MATERIAL e PRODUTO.</p>
             <table>
                 <thead>
                     <tr>
@@ -2073,9 +2073,9 @@
     </section>
     <section class="page">
         <div class="entity">
-            <h3>UTILIZA</h3>
-            <div class="formula">UTILIZA = ID_PRODUTO + ID_EMBALAGEM</div>
-            <p><b>LEITURA:</b> Tabela associativa entre Produto e Embalagem.</p>
+            <h3>PRODUTO_EMBALAGEM</h3>
+            <div class="formula">PRODUTO_EMBALAGEM = ID_PRODUTO + ID_EMBALAGEM</div>
+            <p><b>LEITURA:</b> Tabela associativa entre PRODUTO e EMBALAGEM.</p>
             <table>
                 <thead>
                     <tr>
@@ -2238,7 +2238,7 @@
                     <td>FORNECE</td>
                     <td>FORNECEDOR (0,N)</td>
                     <td>MATERIAL (0,N)</td>
-                    <td>Um fornecedor pode fornecer vários materiais. No modelo lógico, cada registro de Pedido_Material
+                    <td>Um fornecedor pode fornecer vários materiais. No modelo lógico, cada registro de PEDIDO_MATERIAL
                         vincula um fornecedor a um material e registra os dados da compra.</td>
                 </tr>
                 <tr>
@@ -2274,7 +2274,7 @@
                     <td>Nenhum papel — apenas anonimização ao fim da retenção</td>
                 </tr>
                 <tr>
-                    <td>CLIENTEPF</td>
+                    <td>PESSOA_FISICA</td>
                     <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
                     <td>Vendas/Comercial, Atendimento_SAC</td>
                     <td>Vendas/Comercial, Atendimento_SAC, Administrativo</td>
@@ -2445,7 +2445,7 @@
                     <td>✗</td>
                 </tr>
                 <tr>
-                    <td>CLIENTEPF</td>
+                    <td>PESSOA_FISICA</td>
                     <td>✓</td>
                     <td>✓</td>
                     <td>✓</td>
@@ -2459,7 +2459,7 @@
                     <td>✗</td>
                 </tr>
                 <tr>
-                    <td>FUNCIONÁRIO</td>
+                    <td>FUNCIONARIO</td>
                     <td>✓</td>
                     <td>✓</td>
                     <td>✓</td>
@@ -2501,7 +2501,7 @@
                     <td>✗</td>
                 </tr>
                 <tr>
-                    <td>DEVOLUÇÃO</td>
+                    <td>DEVOLUCAO</td>
                     <td>✓</td>
                     <td>✓</td>
                     <td>✓</td>
@@ -2578,7 +2578,7 @@
                     <td>✓</td>
                 </tr>
                 <tr>
-                    <td>PRODUÇÃO</td>
+                    <td>PRODUCAO</td>
                     <td>✓</td>
                     <td>✓</td>
                     <td>✓</td>
