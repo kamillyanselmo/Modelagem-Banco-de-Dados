@@ -819,8 +819,6 @@ As principais regras consideradas na construção do modelo são:
 - RN33. Todo cliente é especializado em pessoa física e/ou pessoa jurídica (especialização total `(t, c)`); o CNPJ é registrado em `Pessoa_Juridica`.
 - RN34. Todo funcionário é especializado em `Func_Vendas`, `Func_SAC` e/ou `Func_Producao` (especialização total `(t, c)`).
 
-> **Observação para a implementação:** no modelo lógico, uma chave estrangeira isoladamente não impede que haja vários registros relacionados. Para garantir os limites de "zero ou uma" (RN9, RN11, RN27 e RN31), a implementação em SQL deverá utilizar restrições `UNIQUE` em `Nota_Fiscal.ID_PEDIDO`, `Entrega.ID_NF`, `Devolução.ID_ATENDIMENTO` e `Faturamento.ID_NF`. Os mínimos "um ou mais" (por exemplo, RN5 e RN25) não são impostos pela estrutura das tabelas e deverão ser garantidos por validações na aplicação ou por triggers.
-
 ---
 
 # 10. Modelo Conceitual
@@ -849,7 +847,7 @@ Durante a transformação do modelo conceitual para o lógico, os relacionamento
 
 Essas tabelas são necessárias porque, no modelo relacional, uma relação N:N não deve ser implementada diretamente entre duas tabelas sem uma estrutura intermediária.
 
-> **Observação sobre valores monetários:** Variáveis que representam valores em moeda estão no tipo FLOAT pela limitação do BRModelo. Na implementação do SQL serão alteradas para DECIMAL.
+> **Observação sobre valores monetários:** Variáveis que representam valores em moeda estão no tipo FLOAT pela limitação do BRModelo. Na implementação do SQL são alteradas para DECIMAL.
 
 > Os nomes das tabelas associativas abaixo seguem a nomenclatura deste documento; no BRModelo, essas tabelas foram geradas automaticamente com o nome do relacionamento correspondente (por exemplo, `Possui`, `é feito com`, `Utiliza`).
 
