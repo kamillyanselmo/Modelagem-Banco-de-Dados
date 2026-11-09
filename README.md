@@ -825,11 +825,9 @@ As principais regras consideradas na construção do modelo são:
 
 O Diagrama Entidade-Relacionamento foi desenvolvido utilizando o BRModelo Web.
 
-[🔗 Visualizar DER no BRModelo Web](https://app.brmodeloweb.com/publicview/6ab340cd664f8629cdf4e2ef)
-
 O arquivo do modelo conceitual também está disponível neste repositório:
 
-[🖼️ Modelo Conceitual](modelo_conceitual.jpg)
+[🖼️ Modelo Conceitual](diagramas/DER_REVISADO.jpg)
 
 O DER representa as entidades, atributos, relacionamentos e respectivas cardinalidades identificadas durante o levantamento dos processos.
 
@@ -837,7 +835,7 @@ A estrutura foi construída para permitir que informações de diferentes áreas
 
 O modelo lógico, derivado do DER conceitual, também foi desenvolvido no BRModelo Web e está disponível neste repositório:
 
-[🖼️ Modelo Lógico](modelo_logico.jpg)
+[🖼️ Modelo Lógico](diagramas/MODELO_LOGICO_REVISADO.jpg)
 
 ---
 
@@ -1065,7 +1063,7 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 
 | Item | Registro |
 |---|---|
-| **Ferramenta e etapa** | *ChatGPT* — geração do código HTML do dicionário de dados. |
+| **Ferramenta e etapa** | ChatGPT — geração do código HTML do dicionário de dados. |
 | **Motivação** | Agilizar a montagem do dicionário de dados em HTML. |
 | **Prompts utilizados** | 1º prompt: solicitação para gerar o código HTML do dicionário de dados a partir das informações do projeto. Prompt reformulado: solicitação para simplificar o código e apresentar o dicionário em formato de lista simples, seguindo as orientações do professor.|
 | **Resposta recebida** | O primeiro resultado trouxe uma estrutura mais elaborada do que a pedida pelo professor. Após a reformulação do prompt, a IA gerou o HTML em formato de lista simples. |
@@ -1108,7 +1106,7 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 | **Motivação** | Os diagramas foram revisados depois do Uso 3 (especializações de Cliente e Funcionário; `Pedido_Material` como tabela associativa do relacionamento `Fornece`; `Entrega` ligada à `Nota_Fiscal`; `Devolução` ligada a nota fiscal e a um produto; `Produto — Utiliza — Embalagem`; remoção do relacionamento `Material — Produção` e do atributo `CARGO`), e o README precisava ser ajustado sem ser refeito. |
 | **Prompt(s) utilizados** | Solicitação para, com base nos diagramas conceitual e lógico, ajustar apenas o que fosse necessário no README (novas entidades e regras de negócio), mantendo-o coerente com os diagramas. |
 | **Resposta recebida** | README com alterações pontuais nas seções 5, 6, 7, 8, 9, 11, 12, 13 e 15. |
-| **Fontes consultadas e verificadas** | DER conceitual e modelo lógico revisados (BRModelo Web) e a versão anterior do README. [O grupo deve registrar aqui a conferência feita com os diagramas originais.] |
+| **Fontes consultadas e verificadas** | DER conceitual e modelo lógico revisados (BRModelo Web) e a versão anterior do README.|
 | **Trechos rejeitados ou corrigidos** | Foram removidos os trechos que descreviam estruturas que não existem mais nos diagramas (`Pedido_Material_Item`, `Devolucao_Produto`, `Material_Producao` e `Fornecedor_Material`), além de um trecho solto ("Ótimo.") na seção 6.7. |
 | **Justificativa da escolha final** | Foi mantida a estrutura original do README, alterando apenas os trechos incoerentes com os diagramas. |
 | **Reflexão crítica** | A leitura de cardinalidades a partir de imagens pode conter erros; o ponto de maior dúvida foi a cardinalidade entre `Nota_Fiscal` e `Entrega`, que deve ser conferida no BRModelo. |
@@ -1119,7 +1117,7 @@ O projeto permitiu transformar processos observados na Muriel Cosméticos em uma
 
 O modelo contempla processos relacionados a clientes, funcionários, registro de ponto, pedidos, produtos, lotes, pagamentos, fornecedores, materiais, produção, embalagens, faturamento, notas fiscais, entregas, atendimento e devoluções.
 
-A visita realizada em 02/09 também permitiu observar a utilização de registros físicos relacionados a estoque, devoluções e pedidos cancelados.
+A visita realizada em 02/09/2026 também permitiu observar a utilização de registros físicos relacionados a estoque, devoluções e pedidos cancelados.
 
 Essa observação contribuiu para identificar a necessidade de organizar e relacionar informações que participam de diferentes processos.
 
