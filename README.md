@@ -3,10 +3,10 @@
 *Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) 
 
 **Colaboradores do projeto**
-- Kevyn Deusdará Antônio (RGM 46970746)
-- Kamilly Anselmoo (RGM 47234237)
-- Maria Eduarda da Silva Costa (RGM 46939563)
 - Igor Tsuyoshi (RGM 47133562)
+- Kamilly Anselmoo (RGM 47234237)
+- Kevyn Deusdará Antônio (RGM 46970746)
+- Maria Eduarda da Silva Costa (RGM 46939563)
 
 ---
 
@@ -144,7 +144,7 @@ LEFT JOIN Pagamento pag
 LEFT JOIN Nota_Fiscal nf
     ON nf.ID_PEDIDO = p.ID_PEDIDO
 LEFT JOIN Entrega e
-    ON e.ID_PEDIDO = p.ID_PEDIDO;
+    ON e.ID_NF = nf.ID_NF;
 ```
 
 Essa consulta permite reunir informações comerciais, financeiras, fiscais e logísticas de um pedido em uma única consulta.
@@ -161,7 +161,7 @@ Quando essas informações não estão relacionadas em uma estrutura única, pod
 
 **Como o banco ajuda:**
 
-O relacionamento entre `Pedido`, `Pagamento`, `Nota_Fiscal` e `Entrega` permite consultar diferentes etapas utilizando o identificador do pedido como referência.
+O relacionamento entre `Pedido`, `Pagamento`, `Nota_Fiscal` e `Entrega` permite consultar diferentes etapas utilizando o identificador do pedido como referência (a entrega é ligada ao pedido por meio da nota fiscal).
 
 **Tabelas/entidades relacionadas:**
 
@@ -182,7 +182,7 @@ LEFT JOIN Pagamento pag
 LEFT JOIN Nota_Fiscal nf
     ON nf.ID_PEDIDO = p.ID_PEDIDO
 LEFT JOIN Entrega e
-    ON e.ID_PEDIDO = p.ID_PEDIDO;
+    ON e.ID_NF = nf.ID_NF;
 ```
 
 O resultado poderá fornecer uma visão integrada da situação de cada pedido.
@@ -228,15 +228,15 @@ A consulta pode auxiliar na identificação de valores pagos, do valor registrad
 
 **Problema:**
 
-A produção dos produtos depende de materiais e embalagens. Por isso, é importante conseguir relacionar um produto produzido aos materiais utilizados em sua produção.
+A produção dos produtos depende de materiais e embalagens. Por isso, é importante conseguir relacionar um produto produzido aos materiais que o compõem e às embalagens utilizadas.
 
 **Como o banco ajuda:**
 
-As entidades `Produto`, `Material` e `Produção` permitem organizar essas informações e estabelecer relações entre o produto fabricado, a produção realizada e os materiais utilizados. Como a relação entre `Produção` e `Material` é muitos-para-muitos, ela é representada pela tabela associativa `Material_Producao` (criada no BRModelo com o nome `é utilizado`).
+As entidades `Produto`, `Material`, `Embalagem` e `Produção` permitem organizar essas informações. Cada registro de `Produção` está ligado a um produto; os materiais que compõem o produto são obtidos pela tabela associativa `Produto_Material` (criada no BRModelo com o nome `é feito com`) e as embalagens, pela tabela associativa `Produto_Embalagem` (criada com o nome `Utiliza`). Assim, é possível saber quais materiais e embalagens estão associados ao produto de cada produção.
 
 **Tabelas/entidades relacionadas:**
 
-`Produto`, `Material`, `Produção` e `Material_Producao`.
+`Produto`, `Material`, `Produção`, `Produto_Material`, `Embalagem` e `Produto_Embalagem`.
 
 **Consulta:**
 
@@ -249,17 +249,23 @@ SELECT
     pr.QUANTIDADE_PRODUCAO,
     pr.STATUS_PRODUCAO,
     mat.ID_MATERIAL,
-    mat.NM_MATERIAL
+    mat.NM_MATERIAL,
+    emb.ID_EMBALAGEM,
+    emb.TIPO_EMBALAGEM
 FROM Produto prod
 JOIN Produção pr
     ON pr.ID_PRODUTO = prod.ID_PRODUTO
-JOIN Material_Producao mp
-    ON mp.ID_PRODUCAO = pr.ID_PRODUCAO
+JOIN Produto_Material pm
+    ON pm.ID_PRODUTO = prod.ID_PRODUTO
 JOIN Material mat
-    ON mat.ID_MATERIAL = mp.ID_MATERIAL;
+    ON mat.ID_MATERIAL = pm.ID_MATERIAL
+JOIN Produto_Embalagem pe
+    ON pe.ID_PRODUTO = prod.ID_PRODUTO
+JOIN Embalagem emb
+    ON emb.ID_EMBALAGEM = pe.ID_EMBALAGEM;
 ```
 
-A consulta permite obter informações sobre o produto, a produção e os materiais relacionados.
+A consulta permite obter informações sobre o produto, a produção, os materiais e as embalagens relacionados.
 
 ---
 
@@ -273,11 +279,11 @@ Informações como código de rastreio, data de envio, data de entrega e status 
 
 **Como o banco ajuda:**
 
-A entidade `Entrega` está relacionada ao `Pedido`, permitindo consultar informações logísticas utilizando o identificador do pedido.
+A entidade `Entrega` está relacionada à `Nota_Fiscal`, que por sua vez está relacionada ao `Pedido`, permitindo consultar informações logísticas a partir do identificador do pedido.
 
 **Tabelas/entidades relacionadas:**
 
-`Pedido` e `Entrega`.
+`Pedido`, `Nota_Fiscal` e `Entrega`.
 
 **Consulta:**
 
@@ -293,8 +299,10 @@ SELECT
     e.PLACA_CAMINHAO,
     e.TRANSPORTADORA
 FROM Pedido p
+JOIN Nota_Fiscal nf
+    ON nf.ID_PEDIDO = p.ID_PEDIDO
 JOIN Entrega e
-    ON e.ID_PEDIDO = p.ID_PEDIDO;
+    ON e.ID_NF = nf.ID_NF;
 ```
 
 A consulta permite acompanhar o status logístico dos pedidos e suas respectivas informações de entrega.
@@ -346,11 +354,11 @@ Quando essas informações não estão relacionadas ao cliente que fez a solicit
 
 **Como o banco ajuda:**
 
-A entidade `Atendimento_SAC` está relacionada a `Cliente`, a `Funcionário` e a `Devolução`, permitindo consultar, a partir do protocolo, quem solicitou, quem atendeu e se o atendimento originou uma devolução.
+A entidade `Atendimento_SAC` está relacionada a `Cliente`, a `Func_SAC` (especialização de `Funcionário`) e a `Devolução`, permitindo consultar, a partir do protocolo, quem solicitou, quem atendeu e se o atendimento originou uma devolução.
 
 **Tabelas/entidades relacionadas:**
 
-`Atendimento_SAC`, `Cliente`, `Funcionário` e `Devolução`.
+`Atendimento_SAC`, `Cliente`, `Func_SAC`, `Funcionário` e `Devolução`.
 
 **Consulta:**
 
@@ -367,8 +375,10 @@ SELECT
 FROM Atendimento_SAC a
 JOIN Cliente c
     ON c.ID_CLIENTE = a.ID_CLIENTE
+JOIN Func_SAC fs
+    ON fs.ID_FUNCIONARIO = a.ID_FUNCIONARIO
 JOIN Funcionário f
-    ON f.ID_FUNCIONARIO = a.ID_FUNCIONARIO
+    ON f.ID_FUNCIONARIO = fs.ID_FUNCIONARIO
 LEFT JOIN Devolução d
     ON d.ID_ATENDIMENTO = a.ID_ATENDIMENTO;
 ```
@@ -383,15 +393,15 @@ A consulta permite acompanhar cada atendimento junto ao cliente, ao funcionário
 
 Durante a visita, foram observados registros em papel relacionados a devoluções.
 
-Uma devolução envolve o pedido de origem, os produtos devolvidos e suas quantidades, o motivo e eventual reembolso. Quando essas informações ficam em registros separados, pode ser difícil identificar o que foi devolvido e a que pedido a devolução se refere.
+Uma devolução envolve o pedido de origem, a nota fiscal, o produto devolvido e sua quantidade, o motivo e eventual reembolso. Quando essas informações ficam em registros separados, pode ser difícil identificar o que foi devolvido e a que pedido a devolução se refere.
 
 **Como o banco ajuda:**
 
-A entidade `Devolução` está relacionada a `Pedido` e, por meio da tabela associativa `Devolucao_Produto` (criada no BRModelo com o nome `Contém`), aos produtos devolvidos e às respectivas quantidades.
+A entidade `Devolução` está relacionada a `Pedido`, a `Nota_Fiscal` e a `Produto`, além do `Atendimento_SAC` que a originou. A quantidade devolvida (`QUANTIDADE_DEVOLVIDA`) é registrada na própria tabela `Devolução`.
 
 **Tabelas/entidades relacionadas:**
 
-`Devolução`, `Pedido`, `Produto` e `Devolucao_Produto`.
+`Devolução`, `Pedido`, `Nota_Fiscal` e `Produto`.
 
 **Consulta:**
 
@@ -406,17 +416,18 @@ SELECT
     p.STATUS_PEDIDO,
     prod.ID_PRODUTO,
     prod.NM_PRODUTO,
-    dp.QUANTIDADE_DEVOLVIDA
+    d.QUANTIDADE_DEVOLVIDA,
+    nf.NUM_NF
 FROM Devolução d
 JOIN Pedido p
     ON p.ID_PEDIDO = d.ID_PEDIDO
-JOIN Devolucao_Produto dp
-    ON dp.ID_DEVOLUCAO = d.ID_DEVOLUCAO
+JOIN Nota_Fiscal nf
+    ON nf.ID_NF = d.ID_NF
 JOIN Produto prod
-    ON prod.ID_PRODUTO = dp.ID_PRODUTO;
+    ON prod.ID_PRODUTO = d.ID_PRODUTO;
 ```
 
-A consulta permite identificar, para cada devolução, o pedido de origem, os produtos devolvidos, as quantidades e a situação do processo.
+A consulta permite identificar, para cada devolução, o pedido de origem, a nota fiscal, o produto devolvido, a quantidade e a situação do processo.
 
 ---
 
@@ -424,17 +435,17 @@ A consulta permite identificar, para cada devolução, o pedido de origem, os pr
 
 **Problema:**
 
-A produção depende de materiais adquiridos junto a fornecedores. Cada pedido de material possui datas, status, valor total e uma lista de materiais com quantidades e preços unitários.
+A produção depende de materiais adquiridos junto a fornecedores. Cada pedido de material possui datas, status, valor total e se refere a um material, com quantidade solicitada e preço unitário.
 
 Quando essas informações não estão relacionadas ao fornecedor e aos materiais solicitados, pode ser difícil acompanhar o que foi pedido, a quem e quando se espera receber.
 
 **Como o banco ajuda:**
 
-A entidade `Pedido_Material` está relacionada a `Fornecedor` e, por meio da tabela associativa `Pedido_Material_Item` (criada no BRModelo com o nome `Contém`), aos materiais solicitados, com quantidade e preço unitário.
+O relacionamento `Fornece` entre `Fornecedor` e `Material` é representado pela tabela associativa `Pedido_Material`, que registra cada pedido de material feito a um fornecedor, com o material solicitado, a quantidade e o preço unitário.
 
 **Tabelas/entidades relacionadas:**
 
-`Pedido_Material`, `Fornecedor`, `Material` e `Pedido_Material_Item`.
+`Pedido_Material`, `Fornecedor` e `Material`.
 
 **Consulta:**
 
@@ -447,15 +458,13 @@ SELECT
     pm.PRECO_TOTAL,
     f.NM_FORNECEDOR,
     mat.NM_MATERIAL,
-    pmi.QUANTIDADE_SOLICITADA,
-    pmi.PRECO_UNITARIO
+    pm.QUANTIDADE_SOLICITADA,
+    pm.PRECO_UNITARIO
 FROM Pedido_Material pm
 JOIN Fornecedor f
     ON f.ID_FORNECEDOR = pm.ID_FORNECEDOR
-JOIN Pedido_Material_Item pmi
-    ON pmi.ID_PEDIDO_MATERIAL = pm.ID_PEDIDO_MATERIAL
 JOIN Material mat
-    ON mat.ID_MATERIAL = pmi.ID_MATERIAL;
+    ON mat.ID_MATERIAL = pm.ID_MATERIAL;
 ```
 
 A consulta permite acompanhar os pedidos de materiais por fornecedor, com datas previstas, status, quantidades e preços.
@@ -486,6 +495,8 @@ Seus atributos permitem armazenar:
 - **CEP_CLIENTE:** registra o CEP do endereço do cliente.
 - **UF_CLIENTE:** identifica a unidade federativa do endereço.
 
+O cliente é especializado em `Pessoa_Fisica` e `Pessoa_Juridica` (especialização total, representada por `(t, c)` no DER). `Pessoa_Fisica` identifica o cliente pessoa física (o CPF fica registrado em `Cliente`) e `Pessoa_Juridica` registra o **CNPJ** do cliente pessoa jurídica.
+
 ### Funcionário
 
 O funcionário é responsável pela relação comercial associada aos pedidos e também pelas demais atividades internas registradas no modelo (atendimentos, ponto e produção).
@@ -494,25 +505,26 @@ Seus atributos permitem armazenar:
 
 - **ID_FUNCIONARIO:** identifica unicamente o funcionário.
 - **NM_FUNCIONARIO:** registra o nome do funcionário.
-- **CARGO:** registra o cargo exercido pelo funcionário.
 - **DT_ADMISSAO:** registra a data de admissão do funcionário.
 - **TEL_FUNCIONARIO:** permite armazenar seu contato telefônico.
 - **EMAIL_FUNCIONARIO:** registra seu endereço eletrônico.
+
+O funcionário é especializado em `Func_Vendas` (cadastra pedidos), `Func_SAC` (realiza atendimentos) e `Func_Producao` (participa de produções), conforme a especialização total `(t, c)` do DER. O atributo `CARGO` deixou de existir no modelo; a função do funcionário passa a ser representada por essas especializações.
 
 ---
 
 ## 6.2 Registro de pedidos
 
-A entidade `Pedido` representa uma solicitação comercial realizada por um cliente e cadastrada por um funcionário.
+A entidade `Pedido` representa uma solicitação comercial realizada por um cliente e cadastrada por um funcionário de vendas (`Func_Vendas`).
 
 O pedido funciona como um dos principais pontos de integração do modelo, pois se relaciona com outras entidades, como:
 
 - Cliente;
-- Funcionário;
+- Funcionário de vendas (`Func_Vendas`);
 - Produto;
 - Pagamento;
 - Nota Fiscal;
-- Entrega;
+- Entrega (indiretamente, por meio da Nota Fiscal);
 - Devolução.
 
 ### Informações do pedido
@@ -558,7 +570,7 @@ Cada produto possui informações próprias que permitem identificá-lo, descrev
 - **UNIDADE_PRODUTO:** unidade utilizada para representar o produto.
 - **DESCRIÇÃO_PRODUTO:** descrição complementar das características do produto.
 
-Os produtos podem aparecer em diferentes pedidos e também estar relacionados a diferentes registros de produção e a diferentes lotes.
+Os produtos podem aparecer em diferentes pedidos e também estar relacionados a diferentes registros de produção e a diferentes lotes. Cada produto também se relaciona aos materiais que o compõem (`Produto_Material`) e às embalagens que utiliza (`Produto_Embalagem`).
 
 ---
 
@@ -575,7 +587,7 @@ Esses materiais são diferentes dos produtos acabados. Enquanto o produto repres
 - **UNIDADE_MATERIAL:** unidade de medida utilizada para o material.
 - **ESTOQUE_MIN_MATERIAL:** quantidade mínima de estoque considerada para o material.
 
-A entidade pode ser relacionada tanto aos fornecedores quanto aos produtos, aos pedidos de materiais e às produções.
+A entidade pode ser relacionada tanto aos fornecedores (por meio dos pedidos de materiais, `Pedido_Material`) quanto aos produtos que ela ajuda a compor.
 
 ---
 
@@ -592,17 +604,15 @@ A entidade `Fornecedor` representa empresas ou organizações responsáveis pelo
 - **ENDERECO_FORNECEDOR:** registra o endereço do fornecedor.
 - **CEP_FORNECEDOR:** registra o CEP do endereço do fornecedor.
 
-O relacionamento com `Material` permite representar quais materiais podem ser obtidos de cada fornecedor.
+O relacionamento `Fornece` com `Material` permite representar quais materiais são obtidos de cada fornecedor, por meio dos pedidos de materiais (`Pedido_Material`).
 
 ---
 
 ## 6.7 Pedido de materiais (Pedido_Material)
 
-A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto aos fornecedores.
+A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto aos fornecedores. No DER, ela corresponde ao relacionamento `Fornece` entre `Fornecedor` e `Material`, que possui atributos próprios e, no modelo lógico, é gerado como tabela associativa.
 
 Ela é importante porque o processo de aquisição de materiais possui características diferentes do pedido comercial realizado pelo cliente.
-
-Ótimo.
 
 Cada pedido de material corresponde à solicitação de um único tipo de material a um fornecedor. Caso a empresa precise adquirir diferentes materiais, deverão ser registrados pedidos separados. Para cada pedido solicitado, são registrados a quantidade solicitada (`QUANTIDADE_SOLICITADA`) e o preço unitário (`PRECO_UNITARIO`), atributos do relacionamento `Fornece`.
 
@@ -613,6 +623,8 @@ Cada pedido de material corresponde à solicitação de um único tipo de materi
 - **DT_PREVISTA:** indica a data prevista para atendimento.
 - **STATUS:** registra a situação atual do pedido.
 - **PRECO_TOTAL:** representa o valor total relacionado à solicitação.
+- **QUANTIDADE_SOLICITADA:** registra a quantidade do material solicitada ao fornecedor.
+- **PRECO_UNITARIO:** registra o preço unitário do material no pedido.
 
 ---
 
@@ -629,7 +641,7 @@ Um mesmo produto pode possuir diferentes registros de produção, representando 
 - **QUANTIDADE_PRODUCAO:** registra a quantidade produzida.
 - **STATUS_PRODUCAO:** registra a situação da produção.
 
-A produção também se relaciona com os materiais e as embalagens utilizados no processo e com os funcionários que participam dela.
+A produção está relacionada ao produto fabricado (e, por meio dele, aos materiais e às embalagens associados) e aos funcionários de produção (`Func_Producao`) que participam dela.
 
 ---
 
@@ -637,7 +649,7 @@ A produção também se relaciona com os materiais e as embalagens utilizados no
 
 A entidade `Embalagem` representa os recipientes ou estruturas utilizados para acondicionar os produtos durante a produção.
 
-Ela foi representada separadamente de `Material` porque possui características específicas relacionadas à sua função de embalagem.
+Ela foi representada separadamente de `Material` porque possui características específicas relacionadas à sua função de embalagem. Cada embalagem está relacionada a pelo menos um produto, por meio do relacionamento `Utiliza`, e um produto pode utilizar nenhuma ou várias embalagens.
 
 ### Informações registradas
 
@@ -678,7 +690,7 @@ A entidade `Nota_Fiscal` representa o documento fiscal relacionado ao pedido.
 - **VALOR_TOTAL:** valor total registrado na nota.
 - **STATUS_NF:** situação atual da nota fiscal.
 
-A relação com `Pedido` permite identificar qual operação comercial originou determinada nota fiscal.
+A relação com `Pedido` permite identificar qual operação comercial originou determinada nota fiscal. A nota fiscal também está relacionada à `Entrega` (que ela origina), à `Devolução` (que a referencia) e ao `Faturamento` (que a documenta).
 
 ---
 
@@ -697,7 +709,7 @@ A entidade `Entrega` representa o processo logístico de envio do pedido.
 - **PLACA_CAMINHAO:** identifica o caminhão utilizado, por meio de sua placa.
 - **TRANSPORTADORA:** identifica a transportadora responsável pela entrega.
 
-A entidade permite acompanhar a etapa posterior ao processamento do pedido.
+A entidade permite acompanhar a etapa posterior ao processamento do pedido. Cada entrega está vinculada a exatamente uma nota fiscal (`Nota_Fiscal`), e é por meio dela que se chega ao pedido.
 
 ---
 
@@ -736,7 +748,7 @@ Cada registro pertence a exatamente um funcionário, e um funcionário pode poss
 
 A entidade `Atendimento_SAC` representa um atendimento realizado ao cliente, como uma solicitação, reclamação ou dúvida.
 
-Cada atendimento é solicitado por exatamente um cliente e realizado por exatamente um funcionário. Um atendimento pode registrar nenhuma ou uma devolução, o que permite relacionar o contato do cliente ao processo de devolução quando ele ocorrer.
+Cada atendimento é solicitado por exatamente um cliente e realizado por exatamente um funcionário de SAC (`Func_SAC`). Um atendimento pode registrar nenhuma ou uma devolução, o que permite relacionar o contato do cliente ao processo de devolução quando ele ocorrer.
 
 ### Informações registradas
 
@@ -753,7 +765,7 @@ Cada atendimento é solicitado por exatamente um cliente e realizado por exatame
 
 A entidade `Devolução` representa o processo de devolução de produtos relacionado a um pedido.
 
-Cada devolução é registrada a partir de exatamente um atendimento (`Atendimento_SAC`), está relacionada a exatamente um pedido e contém um ou vários produtos devolvidos. A quantidade devolvida de cada produto é registrada no relacionamento `Contém` (atributo `QUANTIDADE_DEVOLVIDA`).
+Cada devolução é registrada a partir de exatamente um atendimento (`Atendimento_SAC`), está relacionada a exatamente um pedido, a exatamente uma nota fiscal e a exatamente um produto devolvido. A quantidade devolvida é registrada no atributo `QUANTIDADE_DEVOLVIDA` da própria devolução.
 
 Esse processo está ligado às devoluções observadas em registros de papel durante a visita (seção 4).
 
@@ -764,6 +776,7 @@ Esse processo está ligado às devoluções observadas em registros de papel dur
 - **MOTIVO:** registra o motivo informado para a devolução.
 - **STATUS_DEVOLUCAO:** indica a situação atual do processo de devolução.
 - **REEMBOLSO_DEVOLUCAO:** registra o valor do reembolso relacionado à devolução, quando houver.
+- **QUANTIDADE_DEVOLVIDA:** registra a quantidade do produto devolvida.
 
 ---
 
@@ -772,38 +785,41 @@ Esse processo está ligado às devoluções observadas em registros de papel dur
 As principais regras consideradas na construção do modelo são:
 
 - RN1. Cada pedido deve estar associado a um cliente.
-- RN2. Cada pedido deve estar associado a um funcionário.
+- RN2. Cada pedido deve estar associado a um funcionário de vendas (`Func_Vendas`).
 - RN3. Um cliente pode realizar vários pedidos.
-- RN4. Um funcionário pode cadastrar vários pedidos.
+- RN4. Um funcionário de vendas pode cadastrar vários pedidos.
 - RN5. Cada pedido possui pelo menos um produto.
 - RN6. Um produto pode aparecer em vários pedidos.
 - RN7. Um pedido pode possuir zero ou vários pagamentos.
 - RN8. Cada pagamento pertence a um pedido.
 - RN9. Um pedido pode gerar zero ou uma nota fiscal.
 - RN10. Cada nota fiscal está associada a um pedido.
-- RN11. Um pedido pode possuir zero ou uma entrega, conforme a cardinalidade representada no DER.
-- RN12. Cada entrega está associada a um pedido.
+- RN11. Uma nota fiscal pode gerar zero ou uma entrega, conforme a cardinalidade representada no DER.
+- RN12. Cada entrega está associada a uma nota fiscal (e, por meio dela, a um pedido).
 - RN13. Um fornecedor pode fornecer vários materiais.
 - RN14. Um material pode ser fornecido por vários fornecedores.
 - RN15. Cada produto está relacionado a pelo menos um material, e um material pode estar relacionado a diferentes produtos.
 - RN16. Uma produção deve estar associada a um produto.
-- RN17. Uma produção utiliza materiais.
-- RN18. Uma produção utiliza embalagens.
+- RN17. O registro de produção não se relaciona diretamente a materiais: os materiais de uma produção são os associados ao produto produzido.
+- RN18. Um produto pode utilizar nenhuma ou várias embalagens, e cada embalagem é utilizada por pelo menos um produto.
 - RN19. Um mesmo produto pode possuir diferentes registros de produção.
 - RN20. Os valores monetários devem possuir validação para evitar valores negativos.
 - RN21. Quantidades devem possuir validação para evitar valores inválidos.
 - RN22. Dados pessoais devem possuir mecanismos de proteção contra acesso não autorizado.
 - RN23. Cada lote pertence a exatamente um produto, e um produto pode possuir zero ou vários lotes.
 - RN24. Cada registro de ponto pertence a exatamente um funcionário, e um funcionário pode possuir zero ou vários registros de ponto.
-- RN25. Um funcionário pode participar de zero ou várias produções, e cada produção possui pelo menos um funcionário participante.
-- RN26. Cada atendimento (SAC) está associado a exatamente um cliente e é realizado por exatamente um funcionário.
+- RN25. Um funcionário de produção (`Func_Producao`) pode participar de zero ou várias produções, e cada produção possui pelo menos um funcionário participante.
+- RN26. Cada atendimento (SAC) está associado a exatamente um cliente e é realizado por exatamente um funcionário de SAC (`Func_SAC`).
 - RN27. Um atendimento pode registrar zero ou uma devolução, e cada devolução está relacionada a exatamente um atendimento.
 - RN28. Cada devolução está relacionada a exatamente um pedido, e um pedido pode possuir zero ou várias devoluções.
-- RN29. Cada devolução contém pelo menos um produto, com a respectiva quantidade devolvida.
-- RN30. Cada pedido de material está relacionado a exatamente um fornecedor e contém pelo menos um material.
+- RN29. Cada devolução refere-se a exatamente um produto, com a respectiva quantidade devolvida.
+- RN30. Cada pedido de material está relacionado a exatamente um fornecedor e a exatamente um material, com a quantidade solicitada e o preço unitário.
 - RN31. Cada nota fiscal documenta um faturamento, e um faturamento pode estar relacionado a zero ou uma nota fiscal.
+- RN32. Cada devolução está relacionada a exatamente uma nota fiscal, e uma nota fiscal pode possuir zero ou várias devoluções.
+- RN33. Todo cliente é especializado em pessoa física e/ou pessoa jurídica (especialização total `(t, c)`); o CNPJ é registrado em `Pessoa_Juridica`.
+- RN34. Todo funcionário é especializado em `Func_Vendas`, `Func_SAC` e/ou `Func_Producao` (especialização total `(t, c)`).
 
-> **Observação para a implementação:** no modelo lógico, uma chave estrangeira isoladamente não impede que haja vários registros relacionados. Para garantir os limites de "zero ou uma" (RN9, RN11 e RN27), a implementação em SQL deverá utilizar restrições `UNIQUE` em `Nota_Fiscal.ID_PEDIDO`, `Entrega.ID_PEDIDO` e `Devolução.ID_ATENDIMENTO`. Os mínimos "um ou mais" (por exemplo, RN5, RN17 e RN29) não são impostos pela estrutura das tabelas e deverão ser garantidos por validações na aplicação ou por triggers.
+> **Observação para a implementação:** no modelo lógico, uma chave estrangeira isoladamente não impede que haja vários registros relacionados. Para garantir os limites de "zero ou uma" (RN9, RN11, RN27 e RN31), a implementação em SQL deverá utilizar restrições `UNIQUE` em `Nota_Fiscal.ID_PEDIDO`, `Entrega.ID_NF`, `Devolução.ID_ATENDIMENTO` e `Faturamento.ID_NF`. Os mínimos "um ou mais" (por exemplo, RN5 e RN25) não são impostos pela estrutura das tabelas e deverão ser garantidos por validações na aplicação ou por triggers.
 
 ---
 
@@ -815,7 +831,7 @@ O dicionário de dados apresenta a finalidade de cada entidade e de seus princip
 
 ## 8.1 Cliente
 
-A entidade `Cliente` representa a pessoa ou organização que realiza pedidos junto à empresa.
+A entidade `Cliente` representa a pessoa ou organização que realiza pedidos junto à empresa. É especializada em `Pessoa_Fisica` e `Pessoa_Juridica` (item 8.18).
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -831,13 +847,12 @@ A entidade `Cliente` representa a pessoa ou organização que realiza pedidos ju
 
 ## 8.2 Funcionário
 
-A entidade `Funcionário` representa o profissional responsável pelo cadastro dos pedidos, pela realização dos atendimentos, pelo registro de ponto e pela participação nas produções.
+A entidade `Funcionário` representa o profissional responsável pelo cadastro dos pedidos, pela realização dos atendimentos, pelo registro de ponto e pela participação nas produções. Essas atividades são distribuídas entre as especializações `Func_Vendas`, `Func_SAC` e `Func_Producao` (item 8.18).
 
 | Atributo | Descrição detalhada |
 |---|---|
 | `ID_FUNCIONARIO` | Identificador único utilizado para diferenciar cada funcionário cadastrado. |
 | `NM_FUNCIONARIO` | Nome completo utilizado para identificação do funcionário. |
-| `CARGO` | Cargo ou função exercida pelo funcionário na empresa. |
 | `DT_ADMISSAO` | Data em que o funcionário foi admitido. |
 | `TEL_FUNCIONARIO` | Número de telefone utilizado para contato com o funcionário. |
 | `EMAIL_FUNCIONARIO` | Endereço de e-mail utilizado como canal de comunicação com o funcionário. |
@@ -850,7 +865,7 @@ A entidade `Pedido` representa a solicitação comercial realizada pelo cliente.
 
 | Atributo | Descrição detalhada |
 |---|---|
-| `ID_PEDIDO` | Identificador único do pedido, utilizado para relacioná-lo aos produtos, pagamentos, notas fiscais, entregas e devoluções. |
+| `ID_PEDIDO` | Identificador único do pedido, utilizado para relacioná-lo aos produtos, pagamentos, notas fiscais e devoluções (a entrega é relacionada por meio da nota fiscal). |
 | `DT_PEDIDO` | Data em que o pedido foi realizado ou cadastrado no sistema. |
 | `PRECO_PEDIDO` | Valor associado ao pedido, representando seu preço total conforme a regra definida para o modelo. |
 | `STATUS_PEDIDO` | Situação atual do pedido, permitindo identificar se ele está, por exemplo, em andamento, cancelado ou concluído. |
@@ -915,7 +930,7 @@ A entidade `Fornecedor` representa a organização responsável por fornecer mat
 
 ## 8.8 Pedido_Material
 
-A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto a um fornecedor. Cada pedido de material está relacionado a exatamente um fornecedor e contém um ou vários materiais (a quantidade solicitada e o preço unitário de cada material são registrados no relacionamento `Contém`, descrito no item 8.18).
+A entidade `Pedido_Material` representa uma solicitação de materiais realizada junto a um fornecedor. No DER, corresponde ao relacionamento `Fornece` entre `Fornecedor` e `Material` e é gerada como tabela associativa. Cada pedido de material está relacionado a exatamente um fornecedor e a exatamente um material.
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -924,6 +939,8 @@ A entidade `Pedido_Material` representa uma solicitação de materiais realizada
 | `DT_PREVISTA` | Data prevista para recebimento ou atendimento da solicitação. |
 | `STATUS` | Situação atual do pedido de materiais. |
 | `PRECO_TOTAL` | Valor total associado aos materiais solicitados no pedido. |
+| `QUANTIDADE_SOLICITADA` | Quantidade do material solicitada ao fornecedor. |
+| `PRECO_UNITARIO` | Preço unitário do material no pedido. |
 
 ---
 
@@ -942,7 +959,7 @@ A entidade `Produção` representa uma ocorrência de fabricação.
 
 ## 8.10 Embalagem
 
-A entidade `Embalagem` representa os elementos utilizados para acondicionar os produtos.
+A entidade `Embalagem` representa os elementos utilizados para acondicionar os produtos. Cada embalagem está relacionada a pelo menos um produto, por meio do relacionamento `Utiliza`.
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -971,7 +988,7 @@ A entidade `Nota_Fiscal` representa o documento fiscal associado ao pedido.
 
 ## 8.12 Entrega
 
-A entidade `Entrega` representa a etapa logística relacionada ao envio do pedido.
+A entidade `Entrega` representa a etapa logística relacionada ao envio do pedido. Cada entrega está relacionada a exatamente uma nota fiscal (`Nota_Fiscal`).
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -1002,7 +1019,7 @@ A entidade `Faturamento` representa informações relacionadas ao processo finan
 
 ## 8.14 Atendimento_SAC
 
-A entidade `Atendimento_SAC` representa um atendimento realizado ao cliente. Cada atendimento está relacionado a exatamente um cliente (que o solicita) e a exatamente um funcionário (que o realiza), podendo registrar nenhuma ou uma devolução.
+A entidade `Atendimento_SAC` representa um atendimento realizado ao cliente. Cada atendimento está relacionado a exatamente um cliente (que o solicita) e a exatamente um funcionário de SAC (`Func_SAC`, que o realiza), podendo registrar nenhuma ou uma devolução.
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -1017,7 +1034,7 @@ A entidade `Atendimento_SAC` representa um atendimento realizado ao cliente. Cad
 
 ## 8.15 Devolução
 
-A entidade `Devolução` representa o registro de um processo de devolução. Cada devolução está relacionada a exatamente um atendimento (`Atendimento_SAC`) e a exatamente um pedido, e contém um ou vários produtos devolvidos (a quantidade devolvida de cada produto é registrada no relacionamento `Contém`, descrito no item 8.18).
+A entidade `Devolução` representa o registro de um processo de devolução. Cada devolução está relacionada a exatamente um atendimento (`Atendimento_SAC`), a exatamente um pedido, a exatamente uma nota fiscal e a exatamente um produto devolvido.
 
 | Atributo | Descrição detalhada |
 |---|---|
@@ -1026,6 +1043,7 @@ A entidade `Devolução` representa o registro de um processo de devolução. Ca
 | `MOTIVO` | Motivo informado para realização da devolução. |
 | `STATUS_DEVOLUCAO` | Situação atual do processo de devolução. |
 | `REEMBOLSO_DEVOLUCAO` | Valor do reembolso relacionado à devolução, quando houver. |
+| `QUANTIDADE_DEVOLVIDA` | Quantidade do produto devolvida na devolução. |
 
 ---
 
@@ -1056,16 +1074,31 @@ A entidade `Lote` representa um lote de fabricação de um produto. Cada lote pe
 
 ---
 
-## 8.18 Atributos de relacionamentos
+## 8.18 Especializações de Cliente e Funcionário
 
-Alguns atributos pertencem aos relacionamentos muitos-para-muitos e, no modelo lógico, ficam armazenados nas tabelas associativas correspondentes.
+`Cliente` e `Funcionário` são entidades genéricas, e cada uma possui especializações totais `(t, c)` no DER. No modelo lógico, cada especialização é uma tabela cuja chave primária é também chave estrangeira para a entidade genérica.
+
+| Entidade | Atributo | Descrição detalhada |
+|---|---|---|
+| `Pessoa_Fisica` | `ID_CLIENTE` | Identifica o cliente pessoa física (PK e FK para `Cliente`). Não possui atributos próprios; o CPF fica em `Cliente`. |
+| `Pessoa_Juridica` | `ID_CLIENTE` | Identifica o cliente pessoa jurídica (PK e FK para `Cliente`). |
+| `Pessoa_Juridica` | `CNPJ` | CNPJ do cliente pessoa jurídica. |
+| `Func_Vendas` | `ID_FUNCIONARIO` | Identifica o funcionário de vendas, que cadastra pedidos (PK e FK para `Funcionário`). |
+| `Func_SAC` | `ID_FUNCIONARIO` | Identifica o funcionário de SAC, que realiza atendimentos (PK e FK para `Funcionário`). |
+| `Func_Producao` | `ID_FUNCIONARIO` | Identifica o funcionário de produção, que participa de produções (PK e FK para `Funcionário`). |
+
+---
+
+## 8.19 Atributos de relacionamentos
+
+Alguns atributos pertencem a relacionamentos e, no modelo lógico, ficam armazenados nas tabelas associativas correspondentes (ou na tabela que recebe a chave estrangeira, nos relacionamentos 1:N).
 
 | Relacionamento | Atributo | Descrição detalhada |
 |---|---|---|
 | `Pedido — Possui — Produto` | `QUANTIDADE_PEDIDA` | Quantidade de determinado produto incluída no pedido. |
-| `Material — Contém — Pedido_Material` | `QUANTIDADE_SOLICITADA` | Quantidade de determinado material solicitada ao fornecedor no pedido de material. |
-| `Material — Contém — Pedido_Material` | `PRECO_UNITARIO` | Preço unitário de determinado material no pedido de material. |
-| `Devolução — Contém — Produto` | `QUANTIDADE_DEVOLVIDA` | Quantidade de determinado produto devolvida na devolução. |
+| `Fornecedor — Fornece — Material` | `QUANTIDADE_SOLICITADA` | Quantidade de determinado material solicitada ao fornecedor no pedido de material (demais atributos do relacionamento no item 8.8). |
+| `Fornecedor — Fornece — Material` | `PRECO_UNITARIO` | Preço unitário de determinado material no pedido de material. |
+| `Devolução — Contém — Nota_Fiscal` | `QUANTIDADE_DEVOLVIDA` | Quantidade de produto devolvida na devolução (no modelo lógico, fica na tabela `Devolução`). |
 
 ---
 
@@ -1076,27 +1109,27 @@ As cardinalidades devem ser interpretadas exatamente de acordo com o DER atualiz
 | Relacionamento | Cardinalidade | Descrição |
 |---|---|---|
 | `Cliente — Faz — Pedido` | Cliente `(0,n)` / Pedido `(1,1)` | Um cliente pode realizar nenhum ou vários pedidos, enquanto cada pedido está associado a exatamente um cliente. |
-| `Funcionário — Cadastra — Pedido` | Funcionário `(0,n)` / Pedido `(1,1)` | Um funcionário pode cadastrar nenhum ou vários pedidos, enquanto cada pedido está associado a exatamente um funcionário. |
+| `Func_Vendas — Cadastra — Pedido` | Func_Vendas `(0,n)` / Pedido `(1,1)` | Um funcionário de vendas pode cadastrar nenhum ou vários pedidos, enquanto cada pedido está associado a exatamente um funcionário de vendas. |
 | `Pedido — Possui — Pagamento` | Pedido `(0,n)` / Pagamento `(1,1)` | Um pedido pode possuir nenhum ou vários pagamentos, enquanto cada pagamento pertence a exatamente um pedido. |
 | `Pedido — Possui — Produto` | Pedido `(1,n)` / Produto `(0,n)` | Cada pedido possui pelo menos um produto, enquanto um produto pode estar presente em nenhum ou vários pedidos. O relacionamento possui o atributo `QUANTIDADE_PEDIDA`. |
 | `Pedido — Gera — Nota_Fiscal` | Pedido `(0,1)` / Nota_Fiscal `(1,1)` | Um pedido pode não gerar ou gerar uma nota fiscal, enquanto cada nota fiscal está vinculada a exatamente um pedido. |
-| `Pedido — Gera — Entrega` | Pedido `(0,1)` / Entrega `(1,1)` | Um pedido pode não gerar ou gerar uma entrega, enquanto cada entrega está vinculada a exatamente um pedido. |
-| `Fornecedor — Fornece — Material` | Fornecedor `(0,n)` / Material `(0,n)` | Um fornecedor pode fornecer nenhum ou vários materiais, e um material pode ser fornecido por nenhum ou vários fornecedores. |
-| `Fornecedor — Recebe — Pedido_Material` | Fornecedor `(0,n)` / Pedido_Material `(1,1)` | Um fornecedor pode receber nenhum ou vários pedidos de materiais, enquanto cada pedido de material está relacionado a exatamente um fornecedor. |
-| `Material — Contém — Pedido_Material` | Material `(0,n)` / Pedido_Material `(1,n)` | Um material pode estar associado a nenhum ou vários pedidos de materiais, enquanto um pedido de material contém um ou vários materiais. O relacionamento possui os atributos `QUANTIDADE_SOLICITADA` e `PRECO_UNITARIO`. |
+| `Nota_Fiscal — Gera — Entrega` | Nota_Fiscal `(0,1)` / Entrega `(1,1)` | Uma nota fiscal pode não gerar ou gerar uma entrega, enquanto cada entrega está vinculada a exatamente uma nota fiscal. |
+| `Fornecedor — Fornece — Material` | Fornecedor `(0,n)` / Material `(0,n)` | Um fornecedor pode fornecer nenhum ou vários materiais, e um material pode ser fornecido por nenhum ou vários fornecedores. O relacionamento possui os atributos `ID_PEDIDO_MATERIAL`, `DT_PEDIDO`, `DT_PREVISTA`, `STATUS`, `PRECO_TOTAL`, `QUANTIDADE_SOLICITADA` e `PRECO_UNITARIO` (tabela associativa `Pedido_Material`). |
 | `Material — é feito com — Produto` | Material `(0,n)` / Produto `(1,n)` | Um material pode estar associado a nenhum ou vários produtos, enquanto cada produto possui pelo menos um material relacionado. |
-| `Material — é utilizado — Produção` | Material `(0,n)` / Produção `(1,n)` | Um material pode ser utilizado em nenhuma ou várias produções, enquanto cada produção utiliza pelo menos um material. |
 | `Produto — é produzido em — Produção` | Produto `(0,n)` / Produção `(1,1)` | Um produto pode possuir nenhum ou vários registros de produção, enquanto cada produção está relacionada a exatamente um produto. |
-| `Embalagem — Utiliza — Produção` | Embalagem `(0,n)` / Produção `(1,n)` | Uma embalagem pode estar relacionada a nenhuma ou várias produções, enquanto cada produção utiliza pelo menos uma embalagem. |
-| `Funcionário — Participa — Produção` | Funcionário `(0,n)` / Produção `(1,n)` | Um funcionário pode participar de nenhuma ou várias produções, enquanto cada produção possui pelo menos um funcionário participante. |
+| `Produto — Utiliza — Embalagem` | Produto `(0,n)` / Embalagem `(1,n)` | Um produto pode utilizar nenhuma ou várias embalagens, enquanto cada embalagem é utilizada por pelo menos um produto. |
+| `Func_Producao — Participa — Produção` | Func_Producao `(0,n)` / Produção `(1,n)` | Um funcionário de produção pode participar de nenhuma ou várias produções, enquanto cada produção possui pelo menos um funcionário participante. |
 | `Produto — Possui — Lote` | Produto `(0,n)` / Lote `(1,1)` | Um produto pode possuir nenhum ou vários lotes, enquanto cada lote está relacionado a exatamente um produto. |
 | `Funcionário — Registra — Registro_Ponto` | Funcionário `(0,n)` / Registro_Ponto `(1,1)` | Um funcionário pode possuir nenhum ou vários registros de ponto, enquanto cada registro de ponto pertence a exatamente um funcionário. |
 | `Atendimento_SAC — Solicita — Cliente` | Atendimento `(1,1)` / Cliente `(0,n)` | Cada atendimento está relacionado a exatamente um cliente, enquanto um cliente pode possuir nenhum ou vários atendimentos. |
-| `Funcionário — Realiza — Atendimento_SAC` | Funcionário `(0,n)` / Atendimento `(1,1)` | Um funcionário pode realizar nenhum ou vários atendimentos, enquanto cada atendimento é realizado por exatamente um funcionário. |
+| `Func_SAC — Realiza — Atendimento_SAC` | Func_SAC `(0,n)` / Atendimento `(1,1)` | Um funcionário de SAC pode realizar nenhum ou vários atendimentos, enquanto cada atendimento é realizado por exatamente um funcionário de SAC. |
 | `Atendimento_SAC — Registra — Devolução` | Atendimento `(0,1)` / Devolução `(1,1)` | Um atendimento pode registrar nenhuma ou uma devolução, enquanto cada devolução está relacionada a exatamente um atendimento. |
 | `Devolução — Tem — Pedido` | Devolução `(1,1)` / Pedido `(0,n)` | Cada devolução está relacionada a exatamente um pedido, enquanto um pedido pode possuir nenhuma ou várias devoluções. |
-| `Devolução — Contém — Produto` | Devolução `(1,n)` / Produto `(0,n)` | Cada devolução contém um ou vários produtos, enquanto um produto pode estar presente em nenhuma ou várias devoluções. O relacionamento possui o atributo `QUANTIDADE_DEVOLVIDA`. |
+| `Devolução — Refere-se — Produto` | Devolução `(1,1)` / Produto `(0,n)` | Cada devolução refere-se a exatamente um produto, enquanto um produto pode estar presente em nenhuma ou várias devoluções. |
+| `Devolução — Contém — Nota_Fiscal` | Devolução `(1,1)` / Nota_Fiscal `(0,n)` | Cada devolução está relacionada a exatamente uma nota fiscal, enquanto uma nota fiscal pode possuir nenhuma ou várias devoluções. O relacionamento possui o atributo `QUANTIDADE_DEVOLVIDA`. |
 | `Nota_Fiscal — Documenta — Faturamento` | Nota_Fiscal `(1,1)` / Faturamento `(0,1)` | Cada nota fiscal está relacionada a um faturamento, enquanto um faturamento pode estar relacionado a nenhuma ou uma nota fiscal. |
+| `Cliente — especialização — Pessoa_Fisica / Pessoa_Juridica` | Especialização total `(t, c)` | Todo cliente é especializado em pessoa física e/ou pessoa jurídica. |
+| `Funcionário — especialização — Func_Vendas / Func_SAC / Func_Producao` | Especialização total `(t, c)` | Todo funcionário é especializado em funcionário de vendas, de SAC e/ou de produção. |
 
 ---
 
@@ -1128,7 +1161,7 @@ Essas tabelas são necessárias porque, no modelo relacional, uma relação N:N 
 
 > **Observação sobre valores monetários:** Variáveis que representam valores em moeda estão no tipo FLOAT pela limitação do BRModelo. Na implementação do SQL serão alteradas para DECIMAL.
 
-> Os nomes das tabelas associativas abaixo seguem a nomenclatura deste documento; no BRModelo, essas tabelas foram geradas automaticamente com o nome do relacionamento correspondente (por exemplo, `Possui`, `é feito com`, `é utilizado`).
+> Os nomes das tabelas associativas abaixo seguem a nomenclatura deste documento; no BRModelo, essas tabelas foram geradas automaticamente com o nome do relacionamento correspondente (por exemplo, `Possui`, `é feito com`, `Utiliza`).
 
 ## 11.1 Pedido × Produto
 
@@ -1139,7 +1172,7 @@ O relacionamento `Possui` apresenta:
 
 Como um pedido pode possuir vários produtos e um produto pode aparecer em vários pedidos, foi necessária uma estrutura associativa, como:
 
-`Pedido_Produto`
+`Item_Pedido`
 
 Essa tabela armazena as referências ao pedido (`ID_PEDIDO`) e ao produto (`ID_PRODUTO`), que formam sua chave primária composta, e o atributo específico da relação, `QUANTIDADE_PEDIDA`.
 
@@ -1154,9 +1187,9 @@ O relacionamento `Fornece` apresenta:
 
 Como um fornecedor pode fornecer vários materiais e um material pode ser fornecido por vários fornecedores, foi necessária uma estrutura associativa:
 
-`Fornecedor_Material`
+`Pedido_Material`
 
-Essa tabela permite registrar quais materiais são fornecidos por cada fornecedor.
+Essa tabela registra cada pedido de material feito a um fornecedor: armazena o identificador do pedido (`ID_PEDIDO_MATERIAL`), as referências ao fornecedor (`ID_FORNECEDOR`) e ao material (`ID_MATERIAL`) e os atributos próprios do relacionamento (`DT_PEDIDO`, `DT_PREVISTA`, `STATUS`, `PRECO_TOTAL`, `QUANTIDADE_SOLICITADA` e `PRECO_UNITARIO`).
 
 ---
 
@@ -1175,72 +1208,51 @@ Ela permite registrar quais materiais estão associados à composição de cada 
 
 ---
 
-## 11.4 Material × Produção
-
-O relacionamento `é utilizado` apresenta:
-
-- `Material (0,n)`
-- `Produção (1,n)`
-
-Como uma produção pode utilizar vários materiais e um mesmo material pode participar de várias produções, foi criada uma estrutura associativa:
-
-`Material_Producao`
-
-Essa estrutura permite registrar a relação entre cada produção e os materiais utilizados.
-
----
-
-## 11.5 Material × Pedido_Material
-
-O relacionamento `Contém` apresenta:
-
-- `Material (0,n)`
-- `Pedido_Material (1,n)`
-
-Como um pedido de material pode conter diversos materiais e um material pode aparecer em diferentes pedidos, a relação necessita de uma estrutura intermediária, como:
-
-`Pedido_Material_Item`
-
-Essa estrutura armazena as referências ao pedido de material e ao material e os atributos específicos da relação: `QUANTIDADE_SOLICITADA` e `PRECO_UNITARIO`.
-
----
-
-## 11.6 Produção × Embalagem
+## 11.4 Produto × Embalagem
 
 O relacionamento `Utiliza` apresenta:
 
-- `Embalagem (0,n)`
-- `Produção (1,n)`
+- `Produto (0,n)`
+- `Embalagem (1,n)`
 
-Uma produção pode utilizar várias embalagens e uma embalagem pode ser utilizada em diferentes produções.
+Como um produto pode utilizar várias embalagens e uma embalagem pode ser utilizada em diferentes produtos, foi necessária uma estrutura associativa:
 
-Por esse motivo, a relação também deverá ser representada por uma estrutura associativa no modelo lógico.
+`Produto_Embalagem`
+
+Essa tabela armazena as referências ao produto (`ID_PRODUTO`) e à embalagem (`ID_EMBALAGEM`), que formam sua chave primária composta.
 
 ---
 
-## 11.7 Funcionário × Produção
+## 11.5 Func_Producao × Produção
 
 O relacionamento `Participa` apresenta:
 
-- `Funcionário (0,n)`
+- `Func_Producao (0,n)`
 - `Produção (1,n)`
 
-Como um funcionário pode participar de várias produções e uma produção pode contar com vários funcionários, foi necessária uma estrutura associativa, que armazena as referências à produção (`ID_PRODUCAO`) e ao funcionário (`ID_FUNCIONARIO`).
+Como um funcionário de produção pode participar de várias produções e uma produção pode contar com vários funcionários, foi necessária uma estrutura associativa:
+
+`Funcionario_Producao`
+
+Essa tabela armazena as referências à produção (`ID_PRODUCAO`) e ao funcionário (`ID_FUNCIONARIO`, que referencia `Func_Producao`), formando a chave primária composta.
 
 ---
 
-## 11.8 Devolução × Produto
+## 11.6 Especializações
 
-O relacionamento `Contém` (entre `Devolução` e `Produto`) apresenta:
+As especializações de `Cliente` (`Pessoa_Fisica` e `Pessoa_Juridica`) e de `Funcionário` (`Func_Vendas`, `Func_SAC` e `Func_Producao`) foram transformadas em tabelas próprias. Em cada uma, a chave primária é também chave estrangeira para a entidade genérica (`ID_CLIENTE` ou `ID_FUNCIONARIO`). `Pessoa_Juridica` armazena ainda o atributo `CNPJ`.
 
-- `Devolução (1,n)`
-- `Produto (0,n)`
+As chaves estrangeiras de outras tabelas apontam para a especialização correspondente: `Pedido.ID_FUNCIONARIO` para `Func_Vendas`, `Atendimento_SAC.ID_FUNCIONARIO` para `Func_SAC` e `Funcionario_Producao.ID_FUNCIONARIO` para `Func_Producao`.
 
-Como uma devolução pode conter vários produtos e um produto pode aparecer em diferentes devoluções, foi necessária uma estrutura associativa, como:
+---
 
-`Devolucao_Produto`
+## 11.7 Relacionamentos sem tabela associativa
 
-Essa tabela armazena as referências ao produto (`ID_PRODUTO`) e à devolução (`ID_DEVOLUCAO`) e o atributo específico da relação, `QUANTIDADE_DEVOLVIDA`.
+Relacionamentos em que um dos lados possui cardinalidade `(1,1)` não precisam de tabela associativa e são representados por chave estrangeira. Por exemplo:
+
+- `Devolução` recebe `ID_NF`, `ID_PEDIDO`, `ID_ATENDIMENTO` e `ID_PRODUTO`, além do atributo `QUANTIDADE_DEVOLVIDA`;
+- `Entrega` recebe `ID_NF`;
+- `Faturamento` recebe `ID_NF`.
 
 ---
 
@@ -1265,6 +1277,10 @@ O mesmo princípio é aplicado ao `Funcionário`, que possui seus próprios dado
 `Material` foi separado de `Produto` porque o material representa um recurso utilizado na fabricação, enquanto o produto representa aquilo que será comercializado.
 
 `Embalagem` também possui entidade própria porque apresenta atributos específicos, como tipo e capacidade.
+
+`Pessoa_Fisica` e `Pessoa_Juridica` foram definidas como especializações de `Cliente`, e `Func_Vendas`, `Func_SAC` e `Func_Producao` como especializações de `Funcionário`, porque cada tipo possui papéis e relacionamentos próprios (por exemplo, apenas funcionários de vendas cadastram pedidos e apenas funcionários de SAC realizam atendimentos), mantendo os dados comuns em uma única entidade genérica.
+
+`Pedido_Material` foi representado como o relacionamento `Fornece` entre `Fornecedor` e `Material`, pois cada pedido de material liga um fornecedor a um material e possui atributos próprios, como datas, status, quantidade e preço.
 
 Essa separação facilita a manutenção dos dados e possibilita que diferentes processos sejam relacionados sem que todas as informações precisem ser repetidas.
 
@@ -1305,8 +1321,8 @@ Na área produtiva, as entidades `Produto`, `Produção` e `Material` poderiam f
 - quantidade produzida;
 - produção por período;
 - produtos mais produzidos;
-- materiais utilizados;
-- frequência de utilização dos materiais.
+- materiais associados aos produtos fabricados;
+- frequência de utilização dos materiais nos produtos produzidos.
 
 Dessa forma, o banco pode funcionar como uma fonte estruturada para construção de dashboards.
 
@@ -1383,6 +1399,19 @@ Essas aplicações são possibilidades futuras. O projeto atual não implementa 
 | **Trechos rejeitados ou corrigidos** | Foram corrigidos trechos com informações genéricas que não correspondiam diretamente ao contexto observado na visita. Também foram ajustadas descrições de processos, requisitos e regras de negócio para evitar a inclusão de funcionalidades que não faziam parte do escopo definido pelo grupo. |
 | **Justificativa da escolha final** | O conteúdo final foi mantido após revisão do grupo, pois apresentava as informações necessárias para documentar o projeto e estava mais adequado às informações coletadas na visita, ao DER e às orientações da atividade. |
 | **Reflexão crítica** | A IA interpreta o diagrama a partir de uma imagem e pode errar a leitura de cardinalidades ou nomes de atributos; por isso o grupo precisa conferir tudo com o DER original. Também apontou pontos que precisam de decisão humana (ex.: possível redundância entre Preco_Pedido e Preco). |
+
+#### Uso 4 — Ajuste do README ao DER conceitual e ao modelo lógico revisados
+
+| Item | Registro |
+|---|---|
+| **Ferramenta e etapa** | Claude (Anthropic) — atualização pontual do README para refletir o DER conceitual e o modelo lógico revisados (versões de 28/10/2026). |
+| **Motivação** | Os diagramas foram revisados depois do Uso 3 (especializações de Cliente e Funcionário; `Pedido_Material` como tabela associativa do relacionamento `Fornece`; `Entrega` ligada à `Nota_Fiscal`; `Devolução` ligada a nota fiscal e a um produto; `Produto — Utiliza — Embalagem`; remoção do relacionamento `Material — Produção` e do atributo `CARGO`), e o README precisava ser ajustado sem ser refeito. |
+| **Prompt(s) utilizados** | Solicitação para, com base nos diagramas conceitual e lógico, ajustar apenas o que fosse necessário no README (novas entidades e regras de negócio), mantendo-o coerente com os diagramas. |
+| **Resposta recebida** | README com alterações pontuais nas seções 5, 6, 7, 8, 9, 11, 12, 13 e 15. |
+| **Fontes consultadas e verificadas** | DER conceitual e modelo lógico revisados (BRModelo Web) e a versão anterior do README. [O grupo deve registrar aqui a conferência feita com os diagramas originais.] |
+| **Trechos rejeitados ou corrigidos** | Foram removidos os trechos que descreviam estruturas que não existem mais nos diagramas (`Pedido_Material_Item`, `Devolucao_Produto`, `Material_Producao` e `Fornecedor_Material`), além de um trecho solto ("Ótimo.") na seção 6.7. |
+| **Justificativa da escolha final** | Foi mantida a estrutura original do README, alterando apenas os trechos incoerentes com os diagramas. |
+| **Reflexão crítica** | A leitura de cardinalidades a partir de imagens pode conter erros; o ponto de maior dúvida foi a cardinalidade entre `Nota_Fiscal` e `Entrega`, que deve ser conferida no BRModelo. |
 
 # 16. Conclusão
 
