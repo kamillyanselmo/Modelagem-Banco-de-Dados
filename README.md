@@ -3,10 +3,8 @@
 *Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) 
 
 **Colaboradores do projeto**
-- Igor Tsuyoshi (RGM 47133562)
 - Kamilly Anselmoo (RGM 47234237)
 - Kevyn Deusdará Antônio (RGM 46970746)
-- Maria Eduarda da Silva Costa (RGM 46939563)
 
 ---
 
@@ -64,7 +62,7 @@ A entrevista teve como finalidade compreender como determinados processos são r
 
 As respostas obtidas foram utilizadas como uma das fontes para a identificação dos processos representados no banco de dados.
 
-A documentação da entrevista foi mantida separada das observações presenciais para deixar claro quais informações foram **relatadas pela entrevistada** e quais situações foram **observadas diretamente pela participante do grupo (Maria Eduarda)**.
+A documentação da entrevista foi mantida separada das observações presenciais para deixar claro quais informações foram **relatadas pela entrevistada** e quais situações foram **observadas diretamente pela ex participante do grupo (Maria Eduarda)**.
 
 ### Levantemento da entrevista
 
