@@ -3,9 +3,14 @@
 *Projeto acadêmico — Modelagem de Banco de Dados (2º semestre) 
 
 **Colaboradores do projeto**
-- Kamilly Anselmoo (RGM 47234237)
+- Kamilly Anselmoo (RGM 47234237) 
+https://github.com/kamillyanselmo
+
 - Kevyn Deusdará Antônio (RGM 46970746)
+https://github.com/kevyndeusdara
+
 - Maria Eduarda da Silva Costa (RGM 46939563)
+(Não possui Github)
 
 ---
 
@@ -949,7 +954,7 @@ O modelo lógico foi implementado no **MySQL**, utilizando o **MySQL Workbench**
 - `DML.sql`: inserção dos dados de exemplo;
 - `DQL.sql`: consultas dos problemas P1 a P9 (seção 5).
 
-Versão do MySQL: [informar, usando `SELECT VERSION();`].
+Versão do MySQL: 8.0.
 
 ---
 
