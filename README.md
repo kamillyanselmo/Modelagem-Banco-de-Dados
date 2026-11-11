@@ -1182,6 +1182,7 @@ evidências_SGBD/
 
 - [📄 Entrevista](Levantamento/Entrevista/entrevista-muriel.md)
 - [📄 Observações presenciais](Levantamento/observacoes-visita.md)
+- [📄 Dicionário de dados].(Dicionario_de_Dados.html)
 - [📁 Evidências fotográficas](Levantamento/Entrevista/Fotos/)
 - [📁 Scripts SQL (DDL, DML e DQL)](sql/)
 - [📁 Evidências da execução no SGBD](evidências_SGBD/)
