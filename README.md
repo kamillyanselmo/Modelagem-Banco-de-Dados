@@ -5,6 +5,7 @@
 **Colaboradores do projeto**
 - Kamilly Anselmoo (RGM 47234237)
 - Kevyn Deusdará Antônio (RGM 46970746)
+- Maria Eduarda da Silva Costa (RGM 46939563)
 
 ---
 
