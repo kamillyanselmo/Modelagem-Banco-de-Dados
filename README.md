@@ -1182,10 +1182,10 @@ evidências_SGBD/
 
 - [📄 Entrevista](Levantamento/Entrevista/entrevista-muriel.md)
 - [📄 Observações presenciais](Levantamento/observacoes-visita.md)
-- [📄 Dicionário de dados].(Dicionario_de_Dados.html)
 - [📁 Evidências fotográficas](Levantamento/Entrevista/Fotos/)
 - [📁 Scripts SQL (DDL, DML e DQL)](sql/)
 - [📁 Evidências da execução no SGBD](evidências_SGBD/)
+- **Dicionário de Dados:** [Acessar o Dicionário de Dados](https://github.com/kamillyanselmo/Modelagem-Banco-de-Dados/blob/main/Dicionario_de_Dados.html)
 
 A documentação da entrevista contém as informações relatadas pela entrevistada.
 
