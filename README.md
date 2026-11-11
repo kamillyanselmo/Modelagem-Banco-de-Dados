@@ -68,7 +68,7 @@ A entrevista teve como finalidade compreender como determinados processos são r
 
 As respostas obtidas foram utilizadas como uma das fontes para a identificação dos processos representados no banco de dados.
 
-A documentação da entrevista foi mantida separada das observações presenciais para deixar claro quais informações foram **relatadas pela entrevistada** e quais situações foram **observadas diretamente pela ex participante do grupo (Maria Eduarda)**.
+A documentação da entrevista foi mantida separada das observações presenciais para deixar claro quais informações foram **relatadas pela entrevistada** e quais situações foram **observadas diretamente pela participante do grupo (Maria Eduarda)**.
 
 ### Levantemento da entrevista
 
